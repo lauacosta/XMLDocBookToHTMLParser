@@ -5,6 +5,14 @@
 %option noyywrap
 
 texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-_]+\"?)*
+url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|((\/)([a-zA-z0-9])+).([a-zA-z0-9])+)?
+
+/*
+protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
+dominio ([a-zA-Z0-9]+.)+[a-zA-Z0-9]+
+puerto (:[0-9]+)?
+ruta ((\/)|((\/)([a-zA-z0-9])+).([a-zA-z0-9])+)?
+*/
 
 %%
 "<article>"             { printf("Article Apertura: %s\n", yytext);         }
@@ -82,7 +90,10 @@ texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-_]+\"?)*
 "<entrytbl>"            { printf("EntryTBL Apertura: %s\n", yytext);        }
 "</entrytbl>"           { printf("EntryTBL Cierre: %s\n", yytext);          }
 "<link xlink:href: >"   { printf("Link: %s\n", yytext);                     }
-{texto}                   { printf("Texto: %s\n", yytext);                    }
+{url}                   { printf("Es una URL: %s\n", yytext);                }
+{texto}                   { printf("Texto: %s\n", yytext);                  }
+\n         { /* Ignorar saltos de línea */ }
+[ \t]+     { /* Ignorar espacios y tabuladores */ }
 %%
 /* \n                      {                                                   } */
 int main(){
