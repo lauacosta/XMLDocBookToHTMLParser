@@ -11,7 +11,7 @@ TARGETF = scanner.l
 default: $(TARGETB)	$(TARGETF)
 	$(BISON) $(BFLAGS) $(TARGETB)
 	$(FLEX) $(TARGETF)
-	$(CC) $(CFLAGS) -o ~/LexerParser/bin/test grammar.tab.c lex.yy.c 
+	$(CC) $(CFLAGS) -o ~/LexerParser/bin/test grammar.tab.c lex.yy.c  -lfl
 
 clean:
 		$(RM) test *.o *.c 

@@ -801,7 +801,7 @@ char *yytext;
 #line 1 "scanner.l"
 #line 2 "scanner.l"
     #include "grammar.tab.h"
-    int num = 1;
+    int line_num = 1;
 #line 806 "lex.yy.c"
 /*
 protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
@@ -1088,393 +1088,393 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 19 "scanner.l"
-{ printf("Article Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("Article Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 20 "scanner.l"
-{ printf("Article Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Article Cierre: %s - Linea: %d\n", yytext, line_num);            } 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 21 "scanner.l"
-{ printf("Info Apertura: %s - Linea: %d\n", yytext, num);            }
+{ printf("Info Apertura: %s - Linea: %d\n", yytext, line_num);             } 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 22 "scanner.l"
-{ printf("Info Cierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("Info Cierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 23 "scanner.l"
-{ printf("Title Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Title Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 24 "scanner.l"
-{ printf("Title Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Title Cierre: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 25 "scanner.l"
-{ printf("Abstract Apertura: %s - Linea: %d\n", yytext, num);        }
+{ printf("Abstract Apertura: %s - Linea: %d\n", yytext, line_num);         }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 26 "scanner.l"
-{ printf("Abstract Cierre: %s - Linea: %d\n", yytext, num);          }
+{ printf("Abstract Cierre: %s - Linea: %d\n", yytext, line_num);           }  
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 27 "scanner.l"
-{ printf("Para Apertura: %s - Linea: %d\n", yytext, num);            }
+{ printf("Para Apertura: %s - Linea: %d\n", yytext, line_num);             } 
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 28 "scanner.l"
-{ printf("Para Cierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("Para Cierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 29 "scanner.l"
-{ printf("Author Apertura: %s - Linea: %d\n", yytext, num);          }
+{ printf("Author Apertura: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 30 "scanner.l"
-{ printf("Author Cierre: %s - Linea: %d\n", yytext, num);            }
+{ printf("Author Cierre: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 31 "scanner.l"
-{ printf("PersonName Apertura: %s - Linea: %d\n", yytext, num);      }
+{ printf("PersonName Apertura: %s - Linea: %d\n", yytext, line_num);       } 
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 32 "scanner.l"
-{ printf("PersonName Cierre: %s - Linea: %d\n", yytext, num);        }
+{ printf("PersonName Cierre: %s - Linea: %d\n", yytext, line_num);         } 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 33 "scanner.l"
-{ printf("Firstname Apertura: %s - Linea: %d\n", yytext, num);       }
+{ printf("Firstname Apertura: %s - Linea: %d\n", yytext, line_num);        }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 34 "scanner.l"
-{ printf("Firstname Cierre: %s - Linea: %d\n", yytext, num);         }
+{ printf("Firstname Cierre: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 35 "scanner.l"
-{ printf("Surname Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("Surname Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 36 "scanner.l"
-{ printf("Surname Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Surname Cierre: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 37 "scanner.l"
-{ printf("Date Apertura: %s - Linea: %d\n", yytext, num);            }
+{ printf("Date Apertura: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 38 "scanner.l"
-{ printf("Date Cierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("Date Cierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 39 "scanner.l"
-{ printf("Section Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("Section Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 40 "scanner.l"
-{ printf("Section Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Section Cierre: %s - Linea: %d\n", yytext, line_num);            } 
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 41 "scanner.l"
-{ printf("SimpleSect Apertura: %s - Linea: %d\n", yytext, num);      }
+{ printf("SimpleSect Apertura: %s - Linea: %d\n", yytext, line_num);       } 
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 42 "scanner.l"
-{ printf("SimpleSect Cierre: %s - Linea: %d\n", yytext, num);        }
+{ printf("SimpleSect Cierre: %s - Linea: %d\n", yytext, line_num);         }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 43 "scanner.l"
-{ printf("Copyright Apertura: %s - Linea: %d\n", yytext, num);       }
+{ printf("Copyright Apertura: %s - Linea: %d\n", yytext, line_num);        }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 44 "scanner.l"
-{ printf("Copyright Cierre: %s - Linea: %d\n", yytext, num);         }
+{ printf("Copyright Cierre: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 45 "scanner.l"
-{ printf("Address Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("Address Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 46 "scanner.l"
-{ printf("Address Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Address Cierre: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 47 "scanner.l"
-{ printf("City Apertura: %s - Linea: %d\n", yytext, num);            }   
+{ printf("City Apertura: %s - Linea: %d\n", yytext, line_num);             }   
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 48 "scanner.l"
-{ printf("City Cierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("City Cierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 49 "scanner.l"
-{ printf("State Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("State Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 50 "scanner.l"
-{ printf("State Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("State Cierre: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 51 "scanner.l"
-{ printf("Postcode Apertura: %s - Linea: %d\n", yytext, num);        }
+{ printf("Postcode Apertura: %s - Linea: %d\n", yytext, line_num);         }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 52 "scanner.l"
-{ printf("Postcode Cierre: %s - Linea: %d\n", yytext, num);          } 
+{ printf("Postcode Cierre: %s - Linea: %d\n", yytext, line_num);           } 
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 53 "scanner.l"
-{ printf("Street Apertura: %s - Linea: %d\n", yytext, num);          }
+{ printf("Street Apertura: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 54 "scanner.l"
-{ printf("Street Cierre: %s - Linea: %d\n", yytext, num);            }
+{ printf("Street Cierre: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 55 "scanner.l"
-{ printf("Email Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Email Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 56 "scanner.l"
-{ printf("Email Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Email Cierre: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 57 "scanner.l"
-{ printf("Phone Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Phone Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 58 "scanner.l"
-{ printf("PhoneCierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("PhoneCierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 59 "scanner.l"
-{ printf("ItemizedList Apertura: %s - Linea: %d\n", yytext, num);    }
+{ printf("ItemizedList Apertura: %s - Linea: %d\n", yytext, line_num);     }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 60 "scanner.l"
-{ printf("ItemizedList Cierre: %s - Linea: %d\n", yytext, num);      }
+{ printf("ItemizedList Cierre: %s - Linea: %d\n", yytext, line_num);       }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 61 "scanner.l"
-{ printf("Emphasis Apertura: %s - Linea: %d\n", yytext, num);        }
+{ printf("Emphasis Apertura: %s - Linea: %d\n", yytext, line_num);         }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 62 "scanner.l"
-{ printf("Emphasis Cierre: %s - Linea: %d\n", yytext, num);          }
+{ printf("Emphasis Cierre: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 63 "scanner.l"
-{ printf("Holder Apertura: %s - Linea: %d\n", yytext, num);          }
+{ printf("Holder Apertura: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 64 "scanner.l"
-{ printf("Holder Cierre: %s - Linea: %d\n", yytext, num);            }
+{ printf("Holder Cierre: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 65 "scanner.l"
-{ printf("SimPara Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("SimPara Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 66 "scanner.l"
-{ printf("Simpara Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Simpara Cierre: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 #line 67 "scanner.l"
-{ printf("Year Apertura: %s - Linea: %d\n", yytext, num);            }
+{ printf("Year Apertura: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 #line 68 "scanner.l"
-{ printf("Year Cierre: %s - Linea: %d\n", yytext, num);              } 
+{ printf("Year Cierre: %s - Linea: %d\n", yytext, line_num);               } 
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 #line 69 "scanner.l"
-{ printf("Comment Apertura: %s - Linea: %d\n", yytext, num);         }
+{ printf("Comment Apertura: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 #line 70 "scanner.l"
-{ printf("Comment Cierre: %s - Linea: %d\n", yytext, num);           }
+{ printf("Comment Cierre: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
 #line 71 "scanner.l"
-{ printf("Important Apertura: %s - Linea: %d\n", yytext, num);       }
+{ printf("Important Apertura: %s - Linea: %d\n", yytext, line_num);        }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 72 "scanner.l"
-{ printf("Important Cierre: %s - Linea: %d\n", yytext, num);         }
+{ printf("Important Cierre: %s - Linea: %d\n", yytext, line_num);          }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 73 "scanner.l"
-{ printf("Link Apertura: %s - Linea: %d\n", yytext, num);            }
+{ printf("Link Apertura: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 74 "scanner.l"
-{ printf("Link Cierre: %s - Linea: %d\n", yytext, num);              }
+{ printf("Link Cierre: %s - Linea: %d\n", yytext, line_num);               }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 75 "scanner.l"
-{ printf("Videodata : %s - Linea: %d\n", yytext, num);               }
+{ printf("Videodata : %s - Linea: %d\n", yytext, line_num);                }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
 #line 76 "scanner.l"
-{ printf("Imagedata: %s - Linea: %d\n", yytext, num);                }
+{ printf("Imagedata: %s - Linea: %d\n", yytext, line_num);                 }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
 #line 77 "scanner.l"
-{ printf("InformalTable Apertura: %s - Linea: %d\n", yytext, num);   }
+{ printf("InformalTable Apertura: %s - Linea: %d\n", yytext, line_num);    }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
 #line 78 "scanner.l"
-{ printf("InformalTable Cierre: %s - Linea: %d\n", yytext, num);     }
+{ printf("InformalTable Cierre: %s - Linea: %d\n", yytext, line_num);      }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
 #line 79 "scanner.l"
-{ printf("Tgroup Apertura: %s - Linea: %d\n", yytext, num);          }
+{ printf("Tgroup Apertura: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
 #line 80 "scanner.l"
-{ printf("Tgroup Cierre: %s - Linea: %d\n", yytext, num);            }
+{ printf("Tgroup Cierre: %s - Linea: %d\n", yytext, line_num);             }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
 #line 81 "scanner.l"
-{ printf("Row Apertura: %s - Linea: %d\n", yytext, num);             }
+{ printf("Row Apertura: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
 #line 82 "scanner.l"
-{ printf("Row Cierre: %s - Linea: %d\n", yytext, num);               }
+{ printf("Row Cierre: %s - Linea: %d\n", yytext, line_num);                } 
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
 #line 83 "scanner.l"
-{ printf("Table Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Table Apertura: %s - Linea: %d\n", yytext, line_num);            } 
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
 #line 84 "scanner.l"
-{ printf("Table Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Table Cierre: %s - Linea: %d\n", yytext, line_num);              }  
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
 #line 85 "scanner.l"
-{ printf("Thead Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Thead Apertura: %s - Linea: %d\n", yytext, line_num);            } 
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
 #line 86 "scanner.l"
-{ printf("Thead Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Thead Cierre: %s - Linea: %d\n", yytext, line_num);              } 
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
 #line 87 "scanner.l"
-{ printf("Tfoot Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Tfoot Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
 #line 88 "scanner.l"
-{ printf("Tfoot Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Tfoot Cierre: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
 #line 89 "scanner.l"
-{ printf("Tbody Apertura: %s - Linea: %d\n", yytext, num);           }
+{ printf("Tbody Apertura: %s - Linea: %d\n", yytext, line_num);            }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
 #line 90 "scanner.l"
-{ printf("Tbody Cierre: %s - Linea: %d\n", yytext, num);             }
+{ printf("Tbody Cierre: %s - Linea: %d\n", yytext, line_num);              }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
 #line 91 "scanner.l"
-{ printf("EntryTBL Apertura: %s - Linea: %d\n", yytext, num);        }
+{ printf("EntryTBL Apertura: %s - Linea: %d\n", yytext, line_num);         }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
 #line 92 "scanner.l"
-{ printf("EntryTBL Cierre: %s - Linea: %d\n", yytext, num);          }
+{ printf("EntryTBL Cierre: %s - Linea: %d\n", yytext, line_num);           }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
 #line 93 "scanner.l"
-{ printf("Link: %s - Linea: %d\n", yytext, num);                     }
+{ printf("Link: %s - Linea: %d\n", yytext, line_num);                      }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
 #line 94 "scanner.l"
-{ printf("Es una URL: %s - Linea: %d\n", yytext, num);                }
+{ printf("Es una URL: %s - Linea: %d\n", yytext, line_num);                }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
 #line 95 "scanner.l"
-{ printf("Texto: %s - Linea: %d\n", yytext, num);                  }
+{ printf("Texto: %s - Linea: %d\n", yytext, line_num);                     }
 	YY_BREAK
 case 78:
 /* rule 78 can match eol */
 YY_RULE_SETUP
 #line 96 "scanner.l"
-{ num=num+1;}
+{ line_num +=1 ;}
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
@@ -1484,7 +1484,7 @@ YY_RULE_SETUP
 case 80:
 YY_RULE_SETUP
 #line 98 "scanner.l"
-{ printf("Error: caracter no reconocido - Linea: %d\n",num); exit(1); }
+{ printf("Error: caracter no reconocido - Linea: %d\n",line_num); exit(1); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
