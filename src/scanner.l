@@ -1,5 +1,4 @@
-%%{
-    #include "grammar.tab.h"
+%{
     int line_num = 1;
 %}
 
