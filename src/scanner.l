@@ -1,4 +1,4 @@
-%{
+%%{
     #include "grammar.tab.h"
     int line_num = 1;
 %}
@@ -6,13 +6,13 @@
 %option noyywrap
 
 texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@]+\"?)*
-url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|((\/)([a-zA-z0-9\_\-])+)\.([a-zA-z0-9])+)?
+url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|(\/[a-zA-Z0-9\_\-]+)+\.[a-zA-Z0-9]+)?
 
 /*
 protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
 dominio ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
 puerto (:[0-9]+)?
-ruta ((\/)|((\/)([a-zA-z0-9\_\-])+)\.([a-zA-z0-9])+)?
+ruta ((\/)|(\/[a-zA-z0-9\_\-]+)+\.[a-zA-z0-9]+)?
 */
 
 %%
@@ -91,7 +91,7 @@ ruta ((\/)|((\/)([a-zA-z0-9\_\-])+)\.([a-zA-z0-9])+)?
 "<entrytbl>"            { printf("EntryTBL Apertura: %s - Linea: %d\n", yytext, line_num);         }
 "</entrytbl>"           { printf("EntryTBL Cierre: %s - Linea: %d\n", yytext, line_num);           }
 "<link xlink:href: >"   { printf("Link: %s - Linea: %d\n", yytext, line_num);                      }
-{url}                   { printf("Es una URL: %s - Linea: %d\n", yytext, line_num);                }
+{url}                   { printf("URL: %s - Linea: %d\n", yytext, line_num);                       }
 {texto}                 { printf("Texto: %s - Linea: %d\n", yytext, line_num);                     }
 \n                      { line_num +=1 ;}
 [ \t]+                  { /* Ignorar espacios y tabuladores */ }
@@ -100,5 +100,7 @@ ruta ((\/)|((\/)([a-zA-z0-9\_\-])+)\.([a-zA-z0-9])+)?
 /* \n                      {                                                   } */
 
 int main(){
+    printf(" ~ ~ ~ Analizador Lexico - Grupo nro. 19 ~ ~ ~ \n");
+    printf("Listado de tokens detectados: \n");
     yylex();
 }
