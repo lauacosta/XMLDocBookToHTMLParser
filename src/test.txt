@@ -1,6 +1,7 @@
 <article>
 <info>
-<title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y
+<title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y lecto de todo lo q es bueno              tabeado
+asgsag
 <abstract>
 <title>Ejemplo TPI</title>
 <para>Aceptor DocBook/XML y Conversor a HTML</para>

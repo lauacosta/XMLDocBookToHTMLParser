@@ -3,8 +3,9 @@
 %}
 
 %option noyywrap
+%option nodefault
 
-texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@]+\"?)*
+texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@\t\ ]+\"?)*
 url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|(\/[a-zA-Z0-9\_\-]+)+\.[a-zA-Z0-9]+)?
 
 /*
@@ -96,10 +97,8 @@ ruta ((\/)|(\/[a-zA-z0-9\_\-]+)+\.[a-zA-z0-9]+)?
 [ \t]+                  { /* Ignorar espacios y tabuladores */ }
 .                       { printf("Error: caracter no reconocido - Linea: %d\n",line_num); exit(1); }
 %%
-/* \n                      {                                                   } */
 
 int main(int argc, char **argv) {
-
     if(argc > 1) {
         if(!(yyin = fopen(argv[1], "r"))) {
             perror(argv[1]);
