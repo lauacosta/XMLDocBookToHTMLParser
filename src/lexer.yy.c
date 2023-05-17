@@ -2495,7 +2495,14 @@ void yyfree (void * ptr )
 
 /* \n                      {                                                   } */
 
-int main(){
+int main(int argc, char **argv) {
+
+    if(argc > 1) {
+        if(!(yyin = fopen(argv[1], "r"))) {
+            perror(argv[1]);
+            return 1;
+        }
+    }
     printf(" ~ ~ ~ Analizador Lexico - Grupo nro. 19 ~ ~ ~ \n");
     printf("Listado de tokens detectados: \n");
     yylex();
