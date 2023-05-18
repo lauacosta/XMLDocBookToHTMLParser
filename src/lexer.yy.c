@@ -443,7 +443,7 @@ static const YY_CHAR yy_ec[256] =
        13,   14,    5,    5,   15,   15,   15,   15,   15,   15,
        15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
        15,   15,   15,   15,   15,   15,   15,   15,   15,   15,
-        1,    1,    1,    1,    7,    1,   16,   17,   18,   19,
+        5,    5,    5,    1,    7,    1,   16,   17,   18,   19,
 
        20,   21,   22,   23,   24,   15,   25,   26,   27,   28,
        29,   30,   15,   31,   32,   33,   34,   35,   36,   37,
@@ -800,15 +800,16 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "./scanner.l"
 #line 2 "./scanner.l"
+    #include <string.h>
     int line_num = 1;
-#line 805 "./lexer.yy.c"
+#line 806 "./lexer.yy.c"
 /*
 protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
 dominio ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
 puerto (:[0-9]+)?
 ruta ((\/)|(\/[a-zA-z0-9\_\-]+)+\.[a-zA-z0-9]+)?
 */
-#line 812 "./lexer.yy.c"
+#line 813 "./lexer.yy.c"
 
 #define INITIAL 0
 
@@ -1027,7 +1028,7 @@ YY_DECL
 	{
 #line 18 "./scanner.l"
 
-#line 1031 "./lexer.yy.c"
+#line 1032 "./lexer.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1490,7 +1491,7 @@ YY_RULE_SETUP
 #line 99 "./scanner.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1494 "./lexer.yy.c"
+#line 1495 "./lexer.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2498,10 +2499,28 @@ void yyfree (void * ptr )
 #line 99 "./scanner.l"
 
 
+const char *getExtension(const char *filename) {
+    /* strrchr devuelve la última ocurrencia de un caracter, 
+    si no lo encuentra devuelve un NULL pointer. */
+    const char *dot = strrchr(filename, '.');
+    /* Controla si el archivo tiene extensión o si dot no es un NULL pointer 
+    si lo cumple, devuelve el resto de caracteres luego del punto. */
+    if (dot && dot != filename) return dot + 1;;
+    return "";
+}
+
 int main(int argc, char **argv) {
     if(argc > 1) {
+        /* Controla si el archivo no existe */
         if(!(yyin = fopen(argv[1], "r"))) {
             perror(argv[1]);
+            fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
+            return 1;
+        }
+
+        char *path = argv[1];
+        if(strcmp(getExtension(path), "xml") != 0){
+            printf("La extensión del archivo no es .xml, pruebe con la extensión correcta.");
             return 1;
         }
     }
