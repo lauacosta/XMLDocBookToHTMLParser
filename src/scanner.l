@@ -6,16 +6,18 @@
 %option noyywrap nodefault
 
 texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@\\[\] ]+\"?)*
-url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|(\/[a-zA-Z0-9\_\-]+)+\.[a-zA-Z0-9]+)?
+url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 
 /*
 protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
 dominio ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
 puerto (:[0-9]+)?
-ruta ((\/)|(\/[a-zA-z0-9\_\-]+)+\.[a-zA-z0-9]+)?
+ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 */
 
 %%
+
+"<!DOCTYPE article>"    { printf("Encabezado: %s\n", yytext);                }
 "<article>"             { printf("Article Apertura: %s\n", yytext);          }
 "</article>"            { printf("Article Cierre: %s\n", yytext);            } 
 "<info>"                { printf("Info Apertura: %s\n", yytext);             } 
@@ -95,7 +97,7 @@ ruta ((\/)|(\/[a-zA-z0-9\_\-]+)+\.[a-zA-z0-9]+)?
 {texto}                 { printf("Texto: %s\n", yytext);                     }
 \n                      { line_num +=1 ;}
 [ \t]+                  { /* Ignorar espacios y tabuladores */ }
-.                       { printf("Error: caracter no reconocido - Linea: %d\n",line_num); exit(1); }
+.                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%
 
 const char *getExtension(const char *filename) {
