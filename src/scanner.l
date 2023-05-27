@@ -5,7 +5,7 @@
 
 %option noyywrap nodefault
 
-texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@\\[\] ]+\"?)*
+texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóú\-\_\/\@\\[\]\% ]+\"?)*
 url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?((\/)|(\/[a-zA-Z0-9\_\-]+)+\.[a-zA-Z0-9]+)?
 
 /*
@@ -102,8 +102,8 @@ const char *getExtension(const char *filename) {
     /* strrchr devuelve la última ocurrencia de un caracter, 
     si no lo encuentra devuelve un NULL pointer. */
     const char *dot = strrchr(filename, '.');
-    /* Controla si el archivo tiene extensión o si dot no es un NULL pointer 
-    si lo cumple, devuelve el resto de caracteres luego del punto. */
+    /* Controla si el archivo tiene extensión alguna o si la dot no es un puntero a NULL. 
+    Si lo cumple, devuelve el resto de caracteres luego del punto. */
     if (dot && dot != filename) return dot + 1;;
     return "";
 }
@@ -124,7 +124,11 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-    printf("~~~~~~~~~~~~~~~~~~ Analizador Lexico - Grupo N°19 ~~~~~~~~~~~~~~~~~~ \n");
-    printf("-- Tokens Detectados: \n");
+    printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
+    printf("\n\t Version 1.5.0 ultima modificación 27-05-23\n");
+    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
+    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
+    
+    printf("\n »» Tokens detectados: \n");
     yylex();
 }

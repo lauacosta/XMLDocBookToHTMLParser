@@ -437,7 +437,7 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    4,    5,    6,    1,    1,    1,    1,    1,    5,
+        1,    4,    5,    6,    1,    1,    5,    1,    1,    5,
         5,    1,    1,    5,    7,    8,    9,   10,   10,   10,
        10,   10,   10,   10,   10,   10,   10,   11,    5,   12,
        13,   14,    5,    5,   15,   15,   15,   15,   15,   15,
@@ -2503,8 +2503,8 @@ const char *getExtension(const char *filename) {
     /* strrchr devuelve la última ocurrencia de un caracter, 
     si no lo encuentra devuelve un NULL pointer. */
     const char *dot = strrchr(filename, '.');
-    /* Controla si el archivo tiene extensión o si dot no es un NULL pointer 
-    si lo cumple, devuelve el resto de caracteres luego del punto. */
+    /* Controla si el archivo tiene extensión alguna o si la dot no es un puntero a NULL. 
+    Si lo cumple, devuelve el resto de caracteres luego del punto. */
     if (dot && dot != filename) return dot + 1;;
     return "";
 }
@@ -2514,6 +2514,7 @@ int main(int argc, char **argv) {
         /* Controla si el archivo no existe */
         if(!(yyin = fopen(argv[1], "r"))) {
             perror(argv[1]);
+            /* Así podríamos poner nuestro mensaje de error personalizado */
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
             return 1;
         }
@@ -2524,8 +2525,12 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-    printf("~~~~~~~~~~~~~~~~~~ Analizador Lexico - Grupo N°19 ~~~~~~~~~~~~~~~~~~ \n");
-    printf("-- Tokens Detectados: \n");
+    printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
+    printf("\n\t Version 1.5.0 ultima modificación 27-05-23\n");
+    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
+    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
+    
+    printf("\n »» Tokens detectados: \n");
     yylex();
 }
 
