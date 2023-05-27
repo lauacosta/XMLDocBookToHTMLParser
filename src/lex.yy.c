@@ -1,6 +1,5 @@
-#line 2 "./lexer.yy.c"
 
-#line 4 "./lexer.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -439,7 +438,7 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    4,    5,    6,    1,    1,    7,    1,    1,    7,
+        1,    4,    5,    6,    1,    1,    1,    1,    1,    7,
         7,    1,    1,    7,    8,    9,   10,   11,   11,   11,
        11,   11,   11,   11,   11,   11,   11,   12,    7,   13,
        14,   15,    7,    7,   16,   16,   17,   18,   19,   16,
@@ -819,18 +818,18 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "./scanner.l"
-#line 2 "./scanner.l"
+#line 1 "scanner.l"
+#line 2 "scanner.l"
     #include <string.h>
     int line_num = 1;
-#line 827 "./lexer.yy.c"
+#line 826 "lex.yy.c"
 /*
 protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
 dominio ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
 puerto (:[0-9]+)?
 ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 */
-#line 834 "./lexer.yy.c"
+#line 833 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -1047,10 +1046,10 @@ YY_DECL
 		}
 
 	{
-#line 18 "./scanner.l"
+#line 18 "scanner.l"
 
 
-#line 1054 "./lexer.yy.c"
+#line 1053 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1109,416 +1108,416 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "./scanner.l"
+#line 20 "scanner.l"
 { printf("Encabezado: %s\n", yytext);                }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "./scanner.l"
+#line 21 "scanner.l"
 { printf("Article Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "./scanner.l"
+#line 22 "scanner.l"
 { printf("Article Cierre: %s\n", yytext);            } 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "./scanner.l"
+#line 23 "scanner.l"
 { printf("Info Apertura: %s\n", yytext);             } 
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "./scanner.l"
+#line 24 "scanner.l"
 { printf("Info Cierre: %s\n", yytext);               }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "./scanner.l"
+#line 25 "scanner.l"
 { printf("Title Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "./scanner.l"
+#line 26 "scanner.l"
 { printf("Title Cierre: %s\n", yytext);              }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "./scanner.l"
+#line 27 "scanner.l"
 { printf("Abstract Apertura: %s\n", yytext);         }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "./scanner.l"
+#line 28 "scanner.l"
 { printf("Abstract Cierre: %s\n", yytext);           }  
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "./scanner.l"
+#line 29 "scanner.l"
 { printf("Para Apertura: %s\n", yytext);             } 
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 30 "./scanner.l"
+#line 30 "scanner.l"
 { printf("Para Cierre: %s\n", yytext);               }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 31 "./scanner.l"
+#line 31 "scanner.l"
 { printf("Author Apertura: %s\n", yytext);           }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 32 "./scanner.l"
+#line 32 "scanner.l"
 { printf("Author Cierre: %s\n", yytext);             }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 33 "./scanner.l"
+#line 33 "scanner.l"
 { printf("PersonName Apertura: %s\n", yytext);       } 
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 34 "./scanner.l"
+#line 34 "scanner.l"
 { printf("PersonName Cierre: %s\n", yytext);         } 
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 35 "./scanner.l"
+#line 35 "scanner.l"
 { printf("Firstname Apertura: %s\n", yytext);        }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 36 "./scanner.l"
+#line 36 "scanner.l"
 { printf("Firstname Cierre: %s\n", yytext);          }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 37 "./scanner.l"
+#line 37 "scanner.l"
 { printf("Surname Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 38 "./scanner.l"
+#line 38 "scanner.l"
 { printf("Surname Cierre: %s\n", yytext);            }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 39 "./scanner.l"
+#line 39 "scanner.l"
 { printf("Date Apertura: %s\n", yytext);             }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 40 "./scanner.l"
+#line 40 "scanner.l"
 { printf("Date Cierre: %s\n", yytext);               }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 41 "./scanner.l"
+#line 41 "scanner.l"
 { printf("Section Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 42 "./scanner.l"
+#line 42 "scanner.l"
 { printf("Section Cierre: %s\n", yytext);            } 
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 43 "./scanner.l"
+#line 43 "scanner.l"
 { printf("SimpleSect Apertura: %s\n", yytext);       } 
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 44 "./scanner.l"
+#line 44 "scanner.l"
 { printf("SimpleSect Cierre: %s\n", yytext);         }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 45 "./scanner.l"
+#line 45 "scanner.l"
 { printf("Copyright Apertura: %s\n", yytext);        }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 46 "./scanner.l"
+#line 46 "scanner.l"
 { printf("Copyright Cierre: %s\n", yytext);          }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 47 "./scanner.l"
+#line 47 "scanner.l"
 { printf("Address Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 48 "./scanner.l"
+#line 48 "scanner.l"
 { printf("Address Cierre: %s\n", yytext);            }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 49 "./scanner.l"
+#line 49 "scanner.l"
 { printf("City Apertura: %s\n", yytext);             }   
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 50 "./scanner.l"
+#line 50 "scanner.l"
 { printf("City Cierre: %s\n", yytext);               }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 51 "./scanner.l"
+#line 51 "scanner.l"
 { printf("State Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 52 "./scanner.l"
+#line 52 "scanner.l"
 { printf("State Cierre: %s\n", yytext);              }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 53 "./scanner.l"
+#line 53 "scanner.l"
 { printf("Postcode Apertura: %s\n", yytext);         }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 54 "./scanner.l"
+#line 54 "scanner.l"
 { printf("Postcode Cierre: %s\n", yytext);           } 
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 55 "./scanner.l"
+#line 55 "scanner.l"
 { printf("Street Apertura: %s\n", yytext);           }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 56 "./scanner.l"
+#line 56 "scanner.l"
 { printf("Street Cierre: %s\n", yytext);             }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 57 "./scanner.l"
+#line 57 "scanner.l"
 { printf("Email Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 58 "./scanner.l"
+#line 58 "scanner.l"
 { printf("Email Cierre: %s\n", yytext);              }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 59 "./scanner.l"
+#line 59 "scanner.l"
 { printf("Phone Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 60 "./scanner.l"
+#line 60 "scanner.l"
 { printf("PhoneCierre: %s\n", yytext);               }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 61 "./scanner.l"
+#line 61 "scanner.l"
 { printf("ItemizedList Apertura: %s\n", yytext);     }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 62 "./scanner.l"
+#line 62 "scanner.l"
 { printf("ItemizedList Cierre: %s\n", yytext);       }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 63 "./scanner.l"
+#line 63 "scanner.l"
 { printf("Emphasis Apertura: %s\n", yytext);         }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 64 "./scanner.l"
+#line 64 "scanner.l"
 { printf("Emphasis Cierre: %s\n", yytext);           }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 65 "./scanner.l"
+#line 65 "scanner.l"
 { printf("Holder Apertura: %s\n", yytext);           }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 66 "./scanner.l"
+#line 66 "scanner.l"
 { printf("Holder Cierre: %s\n", yytext);             }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 67 "./scanner.l"
+#line 67 "scanner.l"
 { printf("SimPara Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 68 "./scanner.l"
+#line 68 "scanner.l"
 { printf("Simpara Cierre: %s\n", yytext);            }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 69 "./scanner.l"
+#line 69 "scanner.l"
 { printf("Year Apertura: %s\n", yytext);             }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 70 "./scanner.l"
+#line 70 "scanner.l"
 { printf("Year Cierre: %s\n", yytext);               } 
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 71 "./scanner.l"
+#line 71 "scanner.l"
 { printf("Comment Apertura: %s\n", yytext);          }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 72 "./scanner.l"
+#line 72 "scanner.l"
 { printf("Comment Cierre: %s\n", yytext);            }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 73 "./scanner.l"
+#line 73 "scanner.l"
 { printf("Important Apertura: %s\n", yytext);        }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 74 "./scanner.l"
+#line 74 "scanner.l"
 { printf("Important Cierre: %s\n", yytext);          }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 75 "./scanner.l"
+#line 75 "scanner.l"
 { printf("Link Apertura: %s\n", yytext);             }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 76 "./scanner.l"
+#line 76 "scanner.l"
 { printf("Link Cierre: %s\n", yytext);               }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 77 "./scanner.l"
+#line 77 "scanner.l"
 { printf("Videodata : %s\n", yytext);                }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 78 "./scanner.l"
+#line 78 "scanner.l"
 { printf("Imagedata: %s\n", yytext);                 }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 79 "./scanner.l"
+#line 79 "scanner.l"
 { printf("InformalTable Apertura: %s\n", yytext);    }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 80 "./scanner.l"
+#line 80 "scanner.l"
 { printf("InformalTable Cierre: %s\n", yytext);      }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 81 "./scanner.l"
+#line 81 "scanner.l"
 { printf("Tgroup Apertura: %s\n", yytext);           }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 82 "./scanner.l"
+#line 82 "scanner.l"
 { printf("Tgroup Cierre: %s\n", yytext);             }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 83 "./scanner.l"
+#line 83 "scanner.l"
 { printf("Row Apertura: %s\n", yytext);              }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 84 "./scanner.l"
+#line 84 "scanner.l"
 { printf("Row Cierre: %s\n", yytext);                } 
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 85 "./scanner.l"
+#line 85 "scanner.l"
 { printf("Table Apertura: %s\n", yytext);            } 
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 86 "./scanner.l"
+#line 86 "scanner.l"
 { printf("Table Cierre: %s\n", yytext);              }  
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 87 "./scanner.l"
+#line 87 "scanner.l"
 { printf("Thead Apertura: %s\n", yytext);            } 
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 88 "./scanner.l"
+#line 88 "scanner.l"
 { printf("Thead Cierre: %s\n", yytext);              } 
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 89 "./scanner.l"
+#line 89 "scanner.l"
 { printf("Tfoot Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 90 "./scanner.l"
+#line 90 "scanner.l"
 { printf("Tfoot Cierre: %s\n", yytext);              }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 91 "./scanner.l"
+#line 91 "scanner.l"
 { printf("Tbody Apertura: %s\n", yytext);            }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 92 "./scanner.l"
+#line 92 "scanner.l"
 { printf("Tbody Cierre: %s\n", yytext);              }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 93 "./scanner.l"
+#line 93 "scanner.l"
 { printf("EntryTBL Apertura: %s\n", yytext);         }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 94 "./scanner.l"
+#line 94 "scanner.l"
 { printf("EntryTBL Cierre: %s\n", yytext);           }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 95 "./scanner.l"
+#line 95 "scanner.l"
 { printf("Link: %s\n", yytext);                      }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 96 "./scanner.l"
+#line 96 "scanner.l"
 { printf("URL: %s\n", yytext);                       }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 97 "./scanner.l"
+#line 97 "scanner.l"
 { printf("Texto: %s\n", yytext);                     }
 	YY_BREAK
 case 79:
 /* rule 79 can match eol */
 YY_RULE_SETUP
-#line 98 "./scanner.l"
+#line 98 "scanner.l"
 { line_num +=1 ;}
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 99 "./scanner.l"
+#line 99 "scanner.l"
 { /* Ignorar espacios y tabuladores */ }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 100 "./scanner.l"
+#line 100 "scanner.l"
 { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 101 "./scanner.l"
+#line 101 "scanner.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 1522 "./lexer.yy.c"
+#line 1521 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2523,15 +2522,15 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 101 "./scanner.l"
+#line 101 "scanner.l"
 
 
 const char *getExtension(const char *filename) {
     /* strrchr devuelve la última ocurrencia de un caracter, 
     si no lo encuentra devuelve un NULL pointer. */
     const char *dot = strrchr(filename, '.');
-    /* Controla si el archivo tiene extensión alguna o si la dot no es un puntero a NULL. 
-    Si lo cumple, devuelve el resto de caracteres luego del punto. */
+    /* Controla si el archivo tiene extensión o si dot no es un NULL pointer 
+    si lo cumple, devuelve el resto de caracteres luego del punto. */
     if (dot && dot != filename) return dot + 1;;
     return "";
 }
@@ -2552,12 +2551,8 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-    printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
-    printf("\n\t Version 1.5.0 ultima modificación 27-05-23\n");
-    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
-    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
-    
-    printf("\n »» Tokens detectados: \n");
+    printf("~~~~~~~~~~~~~~~~~~ Analizador Lexico - Grupo N°19 ~~~~~~~~~~~~~~~~~~ \n");
+    printf("-- Tokens Detectados: \n");
     yylex();
 }
 
