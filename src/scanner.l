@@ -128,8 +128,9 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
+        
     printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
-    printf("\n\t Version 1.5.0 ultima modificación 27-05-23\n");
+    printf("\n\t Ultima modificación 27-05-23\n");
     printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
     printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
     
