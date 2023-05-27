@@ -22,11 +22,12 @@
         	<street>French 414</street>
         	<email>ssl@gmail.com</email>
         	<phone>3624888888s</phone>
-                </address>
+    	</address>
 	</info>
 	<title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y Parser</title>
         <section>
-    	\n<title>Título sección 1</title>
+»
+    	<title>Título sección 1</title>
 	</section>
 	<section>
     	<title>Objetivo</title>
@@ -136,7 +137,7 @@
                 	<para>etiqueta <emphasis>article</emphasis>. Todo artículo está encerrado dentro de la apertura y el cierre de esa etiqueta. Marca el principio y fin del mismo (marca el elemento raíz de un documento).</para>
             	</listitem>
             	<listitem>
-                	<para><emphasis>i</emphasis>. Opcionalmente, querrá agregar alguna información de "encabezado". La información del encabezado incluye el título del artículo, el nombre y la dirección de correo electrónico del autor, el historial de revisión del documento y otras cosas. Por ahora, solo agregaremos el título del artículo y el nombre del autor.</para>
+                	<para><emphasis>i</emphasis>. opcionalmente, querrá agregar alguna información de "encabezado". La información del encabezado incluye el título del artículo, el nombre y la dirección de correo electrónico del autor, el historial de revisión del documento y otras cosas. Por ahora, solo agregaremos el título del artículo y el nombre del autor.</para>
             	</listitem>
             	<listitem>
                 	<para>Luego del encabezado aparecen las secciones de primer nivel, se pueden agregar secciones y subsecciones, respetando el orden de prioridad.</para>
