@@ -76,7 +76,7 @@ ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 "</important>"          { printf("\n- Important Cierre: \n\t%s\n", yytext);           }
 "<link>"                { printf("\n- Link Apertura: \n\t%s\n", yytext);              }
 "</link>"               { printf("\n- Link Cierre: \n\t%s\n", yytext);                }
-"<videodata fileref= "  { printf("\n- Videodata : \n\t%s\n", yytext);                 }
+"<videodata fileref= "  { printf("\n- Videodata: \n\t%s\n", yytext);                 }
 "<imagedata fileref= "  { printf("\n- Imagedata: \n\t%s\n", yytext);                  }
 "<informaltable"        { printf("\n- InformalTable Apertura: \n\t%s\n", yytext);     }
 "</informaltable>"      { printf("\n- InformalTable Cierre: \n\t%s\n", yytext);       }
