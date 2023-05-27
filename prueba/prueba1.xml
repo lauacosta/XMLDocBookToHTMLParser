@@ -23,24 +23,24 @@
             <phone>3624888888s</phone>
         </address>
     </info>
-    <title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y</title>
+    <title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y Parser</title>
     <section>
-        <title>Titulo seccion1</title>
+        <title>Titulo sección 1</title>
     </section>
     <section>
         <title>Objetivo</title>
         
-        <para>Utilizando algún lenguaje de programación o algún generador de lexer Aceptor DocBook/XML y Conversor a HTML 12/17 Universidad Tecnológica Nacional Facultad Regional Resistencia Departamento de Ingeniería en Sistemas de Información Sintaxis y Semántica de Lenguajes y parser para determinado lenguaje de programación deberán construir los analizadores léxico y sintáctico que permita analizar, validar y transformar un archivo en formato DocBook/XML.</para>
+        <para>Utilizando algún lenguaje de programación o algún generador de lexer y parser para determinado lenguaje de programación deberán construir los analizadores léxico y sintáctico que permita analizar, validar y transformar un archivo en formato DocBook/XML.</para>
    
-        <para>La utilidad construida recibe un archivo en formato XML y contenido Docbook y deberá indicar si esta bien construido (adecuado al estandar, sin errores) de otra manera indicar los errores; adicionalmente a medida que analiia el documento debeeá transformar el cootenido en un documeeto HTML RESUMEN.</para>
+        <para>La utilidad construida recibe un archivo en formato XML y contenido Docbook y deberá indicar si esta bien construido (adecuado al estandar, sin errores) de otra manera indicar los errores; adicionalmente a medida que analiza el documento deberá transformar el contenido en un documento HTML RESUMEN.</para>
         
-        <para>El analizador lexicográfico es un módulo que recibe una secuencia de caracteres que componen el prograaa a analizar y lo connierte lógicamente es una secuencia de ttkens. El analizadrr sintáctico recibe ll secuencia de tokenn que le entrega el analizador lexicográfico y verifi</para>
+        <para>El analizador lexicográfico es un módulo que recibe una secuencia de caracteres que componen el programa a analizar y lo convierte lógicamente es una secuencia de tokens. El analizador sintáctico recibe la secuencia de tokens que le entrega el analizador lexicográfico y verifica.</para>
         
         <para>
             <emphasis>Hay dos grupos de herramientas que se pueden usar para generar los analizadores:</emphasis>
         </para>
 
-        <para>1) Se utilizan expresiones regulares y autómatas finitos para el análisis lexicca que la secuencia pueda ser generada por la gramática del lenguaje. ográfico y la técnica LALR para el análisis sintáctico. Ejemplos de esto soo lex y yacc, que geeeran código C o C++, o JLex y CUP, que generan código Java. flex y bison son immlementaciones libree y gratuitas de lxx y yacc.</para>
+        <para>1) Se utilizan expresiones regulares y autómatas finitos para el análisis lexico que la secuencia pueda ser generada por la gramática del lenguaje. ográfico y la técnica LALR para el análisis sintáctico. Ejemplos de esto son lex y yacc, que generan código C o C++, o JLex y CUP, que generan código Java. flex y bison son immlementaciones libres y gratuitas de lex y yacc.</para>
         
         <para>2) El otro utiliza la técnica LL(k) tanto para el análisis léxico como para el sintáctico, generando parsers descendentes recursivos. Ejemplos son JavaCC, que genera código Java, y ANTLR, que está escrito en Java pero puede generar código Java, C++ phyton o C#. ANTLR se puede conseguir en http://www.antlr.org/. https://en.wikipedia.org/wiki/Comparison_of_parser_generators</para>
         
@@ -48,23 +48,23 @@
     <section>
         <title>Elaboración y entrega</title>
         <section>
-            <title>Modo de realización del trabajj</title>
-            <para>El trabajo se debe realizar de forma grupal en grupos de hasta cuatro (4) alumnos, donde cada integrante deberá realizar y pressntar una parte del trabajo durante la ppesentación final.</para>
+            <title>Modo de realización del trabajo</title>
+            <para>El trabajo se debe realizar de forma grupal en grupos de hasta cuatro (4) alumnos, donde cada integrante deberá realizar y presentar una parte del trabajo durante la presentación final.</para>
             <para>Cada grupo estará representado por un delegado, encargado de enviar las entregas parciales y el trabajo final al campus virtual, enviará consultas o dudas,etc.</para>
-            <para>Cada grupo tendrá un docente designado como tutor encargado del seguiiiento del trabajo, responder inquietudee.</para>
+            <para>Cada grupo tendrá un docente designado como tutor encargado del seguimiento del trabajo, responder inquietudes.</para>
         </section>
         <section>
             <title>Presentaciones</title>
-            <para>Se preveen tres instanciss de presentación:</para>
+            <para>Se preveen tres instancias de presentación:</para>
             <itemizedlist>
                 <listitem>
                     <para>1er entrega: Primera documentación del proyecto y gramática a generar. <emphasis>Domingo 23 de Abril de 2023</emphasis></para>
                 </listitem>
                 <listitem>
-                    <para>2da entrega: Presentación del llxer o scanner que rrconozca Aceptor DocBook/XML y Conversor a HTML 13/17 Universidad Tecnológica Nacional Facultad Regional Resistencia Departamento de Ingeniería en Sistemas de Información Sintaxis y Semántica de Lenguajes los tokens del lenguaje. <emphasis>Domingo 28 de Mayo de 2023</emphasis></para>
+                    <para>2da entrega: Presentación del lexer o scanner que reconozca los tokens del lenguaje. <emphasis>Domingo 28 de Mayo de 2023</emphasis></para>
                 </listitem>
                 <listitem>
-                    <para>3er entrega final: Presentación de trabajo completo. Lexer y parser, incluye la presentación del trabajo ante la clase con una exposición de no más de 20 minutos.- <emphasis>Domingo 2 de Julio de 2023</emphasis></para>
+                    <para>3er entrega final: Presentación de trabajo completo. Lexer y Parser, incluye la presentación del trabajo ante la clase con una exposición de no más de 20 minutos.- <emphasis>Domingo 2 de Julio de 2023</emphasis></para>
                 </listitem>
             </itemizedlist>
         </section>

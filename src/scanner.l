@@ -104,7 +104,7 @@ const char *getExtension(const char *filename) {
     /* strrchr devuelve la última ocurrencia de un caracter, 
     si no lo encuentra devuelve un NULL pointer. */
     const char *dot = strrchr(filename, '.');
-    /* Controla si el archivo tiene extensión alguna o si la dot no es un puntero a NULL. 
+    /* Controla si el archivo tiene extensión alguna o si dot no es un puntero a NULL. 
     Si lo cumple, devuelve el resto de caracteres luego del punto. */
     if (dot && dot != filename) return dot + 1;;
     return "";
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
     if(argc > 1) {
         /* Controla si el archivo no existe */
         if(!(yyin = fopen(argv[1], "r"))) {
-            perror(argv[1]);
+            //perror(argv[1]);
             /* Así podríamos poner nuestro mensaje de error personalizado */
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
             return 1;
