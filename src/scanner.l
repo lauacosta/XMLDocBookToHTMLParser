@@ -5,18 +5,24 @@
 
 %option noyywrap nodefault
 
-texto   ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/\@\\[\]\%\+\#\=\&\$\'\”\“ ]+\"?)*
-url (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
+texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/\@\\[\]\%\+\#\=\&\$\'\”\“ ]+\"?)*
+url             (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
+ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\")?
 
-/*
-protocolo (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
-dominio ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
-puerto (:[0-9]+)?
-ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
+/* TODO:
+- Resolver el conflicto entre texto y ruta, porque en el ejemplo <imagedata fileref="figures/eiffeltower.eps"/>, se reconoce como texto porque toma en cuenta al / del final
+- Resolver el conflicto entre texto y url, hay casos que url no reconoce. Por ejemplo: https://frre.cvg.utn.edu.ar/pluginfile.php/82337/mod_resource/content/8/SSL2023-TP1_InterpreteDockBook.pdf o https://www.youtube.com/watch?v=dBpvW48Vc0M
 */
 
-%%
+/*
+- protocolo: (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
+- dominio: ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
+- puerto: (:[0-9]+)?
+- ruta: (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
+*/
 
+
+%%
 "<!DOCTYPE article>"    { printf("\n- Encabezado: \n\t %s\n", yytext);                }
 "<article>"             { printf("\n- Article Apertura: \n\t %s\n", yytext);          }
 "</article>"            { printf("\n- Article Cierre: \n\t %s\n", yytext);            }
@@ -76,8 +82,14 @@ ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 "</important>"          { printf("\n- Important Cierre: \n\t%s\n", yytext);           }
 "<link>"                { printf("\n- Link Apertura: \n\t%s\n", yytext);              }
 "</link>"               { printf("\n- Link Cierre: \n\t%s\n", yytext);                }
-"<videodata fileref= "  { printf("\n- Videodata: \n\t%s\n", yytext);                 }
-"<imagedata fileref= "  { printf("\n- Imagedata: \n\t%s\n", yytext);                  }
+"<mediaobject>"         { printf("\n- MediaObject Apertura: \n\t%s\n", yytext);       }
+"</mediaobject>"        { printf("\n- MediaObject Cierre: \n\t%s\n", yytext);         }
+"<videoobject>"         { printf("\n- VideoObject Apertura: \n\t%s\n", yytext);       }
+"</videoobject>"        { printf("\n- VideoObject Cierre: \n\t%s\n", yytext);         }
+"<imageobject>"         { printf("\n- ImageObject Apertura: \n\t%s\n", yytext);       }
+"</imageobject>"        { printf("\n- ImageObject Cierre: \n\t%s\n", yytext);         }
+"<videodata fileref="  { printf("\n- Videodata: \n\t%s\n", yytext);                  }
+"<imagedata fileref="  { printf("\n- Imagedata: \n\t%s\n", yytext);                  }
 "<informaltable"        { printf("\n- InformalTable Apertura: \n\t%s\n", yytext);     }
 "</informaltable>"      { printf("\n- InformalTable Cierre: \n\t%s\n", yytext);       }
 "<tgroup>"              { printf("\n- Tgroup Apertura: \n\t%s\n", yytext);            }
@@ -94,10 +106,12 @@ ruta (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 "</tbody>"              { printf("\n- Tbody Cierre: \n\t%s\n", yytext);               }
 "<entrytbl>"            { printf("\n- EntryTBL Apertura: \n\t%s\n", yytext);          }
 "</entrytbl>"           { printf("\n- EntryTBL Cierre: \n\t%s\n", yytext);            }
-"<link xlink:href: >"   { printf("\n- Link: \n\t%s\n", yytext);                       }
+"<link xlink:href:>"    { printf("\n- Link: \n\t%s\n", yytext);                       }
+"/>"                    { printf("\n- Cierre: \n\t%s\n", yytext);                     }
 {url}                   { printf("\n- URL: \n\t%s\n", yytext);                        }
+{ruta}                  { printf("\n- Ruta: \n\t%s\n", yytext);                       }
 {texto}                 { printf("\n- Texto: \n\t%s\n", yytext);                      }
-\n                      { line_num +=1 ;}
+\n                      { line_num +=1 ;                                              }
 [ \t]+                  { /* Ignorar espacios y tabuladores */                        }
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%
