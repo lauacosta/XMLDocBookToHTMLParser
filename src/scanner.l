@@ -125,11 +125,7 @@ void printWelcome(){
     printf("\n »» Tokens detectados: \n");
 }
 
-int main(int argc, char **argv) {
-    
-    /* ---------------------------------------------
-                    ERROR CONTROL   
-    ------------------------------------------------ */ 
+int errorControl (int argc, char **argv) {
     if(argc > 1) {
         if(!(yyin = fopen(argv[1], "r"))) {
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
@@ -137,11 +133,18 @@ int main(int argc, char **argv) {
         }
 
         char *path = argv[1];
+
         if(strcmp(getExtension(path), "xml") != 0){
             printf("La extensión del archivo no es .xml, pruebe con la extensión correcta.");
             return 1;
         }
     }
+    return 0;
+}
+
+int main(int argc, char **argv) {
+    if (errorControl(argc, argv))
+        return 1;
 
     printWelcome();
     yylex();

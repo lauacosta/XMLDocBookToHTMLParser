@@ -7,5 +7,7 @@ No es un analizador léxico completo del lenguaje DocBook sino que sólo reconoc
 ## Descripción de las carpetas
 - 'bin/': Contiene al ejecutable.
 - 'prueba/': Contiene documentos DocBook de prueba, tanto ejemplos válidos como inválidos.
-- 'src/': Contiene el codigo fuente y los distintos archivos del programa necesarios para construirlo.
+- 'src/': Contiene el codigo fuente y los distintos archivos del programa necesarios para construirlo. Además contiene un script de bash "build.sh" para construir el programa.
 - 'doc/': Contiene la documentación del programa.
+
+
