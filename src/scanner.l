@@ -9,17 +9,12 @@ texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/
 url             (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 
-/* TODO:
-- Resolver el conflicto entre texto y url, hay casos que url no reconoce. Por ejemplo: https://frre.cvg.utn.edu.ar/pluginfile.php/82337/mod_resource/content/8/SSL2023-TP1_InterpreteDockBook.pdf o https://www.youtube.com/watch?v=dBpvW48Vc0M
-*/
-
 /*
 - protocolo: (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
 - dominio: ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
 - puerto: (:[0-9]+)?
 - ruta: (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 */
-
 
 %%
 "<!DOCTYPE article>"    { printf("\n- Encabezado: \n\t %s\n", yytext);                }
@@ -87,9 +82,9 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</videoobject>"        { printf("\n- VideoObject Cierre: \n\t%s\n", yytext);         }
 "<imageobject>"         { printf("\n- ImageObject Apertura: \n\t%s\n", yytext);       }
 "</imageobject>"        { printf("\n- ImageObject Cierre: \n\t%s\n", yytext);         }
-"<videodata fileref="   { printf("\n- Videodata: \n\t%s\n", yytext);                   }
-"<imagedata fileref="   { printf("\n- Imagedata: \n\t%s\n", yytext);                   }
-"<informaltable>"       { printf("\n- InformalTable Apertura: \n\t%s\n", yytext);    }
+"<videodata fileref="   { printf("\n- Videodata: \n\t%s\n", yytext);                  }
+"<imagedata fileref="   { printf("\n- Imagedata: \n\t%s\n", yytext);                  }
+"<informaltable>"       { printf("\n- InformalTable Apertura: \n\t%s\n", yytext);     }
 "</informaltable>"      { printf("\n- InformalTable Cierre: \n\t%s\n", yytext);       }
 "<tgroup>"              { printf("\n- Tgroup Apertura: \n\t%s\n", yytext);            }
 "</tgroup>"             { printf("\n- Tgroup Cierre: \n\t%s\n", yytext);              }
@@ -114,22 +109,29 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%
 
-const char *getExtension(const char *filename) {
-    /* strrchr devuelve la última ocurrencia de un caracter, 
-    si no lo encuentra devuelve un NULL pointer. */
-    const char *dot = strrchr(filename, '.');
-    /* Controla si el archivo tiene extensión alguna o si dot no es un puntero a NULL. 
-    Si lo cumple, devuelve el resto de caracteres luego del punto. */
-    if (dot && dot != filename) return dot + 1;;
+const char* getExtension(const char* filename) {
+    const char* extension = strrchr(filename, '.');
+    if (extension && extension != filename) return extension + 1;;
     return "";
 }
 
+void printWelcome(){
+
+    printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
+    printf("\n\t Ultima modificación 03-06-23\n");
+    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
+    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
+    
+    printf("\n »» Tokens detectados: \n");
+}
+
 int main(int argc, char **argv) {
+    
+    /* ---------------------------------------------
+                    ERROR CONTROL   
+    ------------------------------------------------ */ 
     if(argc > 1) {
-        /* Controla si el archivo no existe */
         if(!(yyin = fopen(argv[1], "r"))) {
-            //perror(argv[1]);
-            /* Así podríamos poner nuestro mensaje de error personalizado */
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
             return 1;
         }
@@ -140,12 +142,7 @@ int main(int argc, char **argv) {
             return 1;
         }
     }
-        
-    printf("\n\t ANALIZADOR LÉXICO  -  Grupo N°19\n");
-    printf("\n\t Ultima modificación 03-06-23\n");
-    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
-    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
-    
-    printf("\n »» Tokens detectados: \n");
+
+    printWelcome();
     yylex();
 }
