@@ -1,5 +1,5 @@
 %{
-    #include <string.h>
+    #include "grammar.tab.h"
     int line_num = 1;
 %}
 
@@ -17,94 +17,94 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 */
 
 %%
-"<!DOCTYPE article>"    { printf("\n- Encabezado: \n\t %s\n", yytext);                }
-"<article>"             { printf("\n- Article Apertura: \n\t %s\n", yytext);          }
-"</article>"            { printf("\n- Article Cierre: \n\t %s\n", yytext);            }
-"<info>"                { printf("\n- Info Apertura: \n\t %s\n", yytext);             }
-"</info>"               { printf("\n- Info Cierre: \n\t %s\n", yytext);               }
-"<title>"               { printf("\n- Title Apertura: \n\t %s\n", yytext);            }
-"</title>"              { printf("\n- Title Cierre: \n\t%s\n", yytext);               }
-"<abstract>"            { printf("\n- Abstract Apertura: \n\t%s\n", yytext);          }
-"</abstract>"           { printf("\n- Abstract Cierre: \n\t%s\n", yytext);            } 
-"<para>"                { printf("\n- Para Apertura: \n\t%s\n", yytext);              }
-"</para>"               { printf("\n- Para Cierre: \n\t%s\n", yytext);                }
-"<author>"              { printf("\n- Author Apertura: \n\t%s\n", yytext);            }
-"</author>"             { printf("\n- Author Cierre: \n\t%s\n", yytext);              }
-"<personname>"          { printf("\n- PersonName Apertura: \n\t %s\n", yytext);       }
-"</personname>"         { printf("\n- PersonName Cierre: \n\t%s\n", yytext);          }
-"<firstname>"           { printf("\n- Firstname Apertura: \n\t%s\n", yytext);         }
-"</firstname>"          { printf("\n- Firstname Cierre: \n\t%s\n", yytext);           } 
-"<surname>"             { printf("\n- Surname Apertura: \n\t%s\n", yytext);           }
-"</surname>"            { printf("\n- Surname Cierre: \n\t%s\n", yytext);             }
-"<date>"                { printf("\n- Date Apertura: \n\t%s\n", yytext);              }
-"</date>"               { printf("\n- Date Cierre: \n\t%s\n", yytext);                }
-"<section>"             { printf("\n- Section Apertura: \n\t%s\n", yytext);           }
-"</section>"            { printf("\n- Section Cierre: \n\t%s\n", yytext);             } 
-"<simplesect>"          { printf("\n- SimpleSect Apertura: \n\t%s\n", yytext);        } 
-"</simplesect>"         { printf("\n- SimpleSect Cierre: \n\t%s\n", yytext);          }
-"<copyright>"           { printf("\n- Copyright Apertura: \n\t%s\n", yytext);         }
-"</copyright>"          { printf("\n- Copyright Cierre: \n\t%s\n", yytext);           }
-"<address>"             { printf("\n- Address Apertura: \n\t%s\n", yytext);           }
-"</address>"            { printf("\n- Address Cierre: \n\t%s\n", yytext);             }
-"<city>"                { printf("\n- City Apertura: \n\t%s\n", yytext);              }  
-"</city>"               { printf("\n- City Cierre: \n\t%s\n", yytext);                }
-"<state>"               { printf("\n- State Apertura: \n\t%s\n", yytext);             } 
-"</state>"              { printf("\n- State Cierre: \n\t%s\n", yytext);               }
-"<postcode>"            { printf("\n- Postcode Apertura: \n\t%s\n", yytext);          }
-"</postcode>"           { printf("\n- Postcode Cierre: \n\t%s\n", yytext);            }
-"<street>"              { printf("\n- Street Apertura: \n\t%s\n", yytext);            }
-"</street>"             { printf("\n- Street Cierre: \n\t%s\n", yytext);              }
-"<email>"               { printf("\n- Email Apertura: \n\t%s\n", yytext);             }
-"</email>"              { printf("\n- Email Cierre: \n\t%s\n", yytext);               }
-"<phone>"               { printf("\n- Phone Apertura: \n\t%s\n", yytext);             }
-"</phone>"              { printf("\n- PhoneCierre: \n\t%s\n", yytext);                }
-"<itemizedlist>"        { printf("\n- ItemizedList Apertura: \n\t%s\n", yytext);      }
-"</itemizedlist>"       { printf("\n- ItemizedList Cierre: \n\t%s\n", yytext);        }
-"<listitem>"            { printf("\n- Listitem Apertura: \n\t%s\n", yytext);          }
-"</listitem>"           { printf("\n- Listitem Cierre: \n\t%s\n", yytext);            }
-"<emphasis>"            { printf("\n- Emphasis Apertura: \n\t%s\n", yytext);          }
-"</emphasis>"           { printf("\n- Emphasis Cierre: \n\t%s\n", yytext);            }
-"<holder>"              { printf("\n- Holder Apertura: \n\t%s\n", yytext);            }
-"</holder>"             { printf("\n- Holder Cierre: \n\t%s\n", yytext);              }
-"<simpara>"             { printf("\n- SimPara Apertura: \n\t%s\n", yytext);           }
-"</simpara>"            { printf("\n- Simpara Cierre: \n\t%s\n", yytext);             }
-"<year>"                { printf("\n- Year Apertura: \n\t%s\n", yytext);              }
-"</year>"               { printf("\n- Year Cierre: \n\t%s\n", yytext);                } 
-"<comment>"             { printf("\n- Comment Apertura: \n\t%s\n", yytext);           }
-"</comment>"            { printf("\n- Comment Cierre: \n\t%s\n", yytext);             }
-"<important>"           { printf("\n- Important Apertura: \n\t%s\n", yytext);         }
-"</important>"          { printf("\n- Important Cierre: \n\t%s\n", yytext);           }
-"<link>"                { printf("\n- Link Apertura: \n\t%s\n", yytext);              }
-"</link>"               { printf("\n- Link Cierre: \n\t%s\n", yytext);                }
-"<mediaobject>"         { printf("\n- MediaObject Apertura: \n\t%s\n", yytext);       }
-"</mediaobject>"        { printf("\n- MediaObject Cierre: \n\t%s\n", yytext);         }
-"<videoobject>"         { printf("\n- VideoObject Apertura: \n\t%s\n", yytext);       }
-"</videoobject>"        { printf("\n- VideoObject Cierre: \n\t%s\n", yytext);         }
-"<imageobject>"         { printf("\n- ImageObject Apertura: \n\t%s\n", yytext);       }
-"</imageobject>"        { printf("\n- ImageObject Cierre: \n\t%s\n", yytext);         }
-"<videodata fileref="   { printf("\n- Videodata: \n\t%s\n", yytext);                  }
-"<imagedata fileref="   { printf("\n- Imagedata: \n\t%s\n", yytext);                  }
-"<informaltable>"       { printf("\n- InformalTable Apertura: \n\t%s\n", yytext);     }
-"</informaltable>"      { printf("\n- InformalTable Cierre: \n\t%s\n", yytext);       }
-"<tgroup>"              { printf("\n- Tgroup Apertura: \n\t%s\n", yytext);            }
-"</tgroup>"             { printf("\n- Tgroup Cierre: \n\t%s\n", yytext);              }
-"<row>"                 { printf("\n- Row Apertura: \n\t%s\n", yytext);               }
-"</row>"                { printf("\n- Row Cierre: \n\t%s\n", yytext);                 }
-"<table>"               { printf("\n- Table Apertura: \n\t%s\n", yytext);             }
-"</table>"              { printf("\n- Table Cierre: \n\t%s\n", yytext);               }
-"<thead>"               { printf("\n- Thead Apertura: \n\t%s\n", yytext);             }
-"</thead>"              { printf("\n- Thead Cierre: \n\t%s\n", yytext);               }
-"<tfoot>"               { printf("\n- Tfoot Apertura: \n\t%s\n", yytext);             }
-"</tfoot>"              { printf("\n- Tfoot Cierre: \n\t%s\n", yytext);               }
-"<tbody>"               { printf("\n- Tbody Apertura: \n\t%s\n", yytext);             }
-"</tbody>"              { printf("\n- Tbody Cierre: \n\t%s\n", yytext);               }
-"<entrytbl>"            { printf("\n- EntryTBL Apertura: \n\t%s\n", yytext);          }
-"</entrytbl>"           { printf("\n- EntryTBL Cierre: \n\t%s\n", yytext);            }
-"<link xlink:href:"     { printf("\n- Link: \n\t%s\n", yytext);                       }
-{url}                   { printf("\n- URL: \n\t%s\n", yytext);                        }
-{ruta}                  { printf("\n- Ruta: \n\t%s\n", yytext);                       }
-{texto}                 { printf("\n- Texto: \n\t%s\n", yytext);                      }
-\n                      { line_num +=1 ;                                              }
+"<!DOCTYPE article>"    { return DOCTYPE;            }
+"<article>"             { return A_ARTICLE;          }
+"</article>"            { return C_ARTICLE;          }
+"<info>"                { return A_INFO;             }
+"</info>"               { return C_INFO;             }
+"<title>"               { return A_TITLE;            }
+"</title>"              { return C_TITLE;            }
+"<abstract>"            { return A_ABSTRACT;         }
+"</abstract>"           { return C_ABSTRACT;         }  
+"<para>"                { return A_PARA;             }
+"</para>"               { return C_PARA;             }
+"<author>"              { return A_AUTHOR;           }
+"</author>"             { return C_AUTHOR;           }
+"<personname>"          { return A_PERSONNAME;       }
+"</personname>"         { return C_PERSONNAME;       }
+"<firstname>"           { return A_FIRSTNAME;        }
+"</firstname>"          { return C_FIRSTNAME;        } 
+"<surname>"             { return A_SURNAME;          }
+"</surname>"            { return C_SURNAME;          }
+"<date>"                { return A_DATE;             }
+"</date>"               { return C_DATE;             }
+"<section>"             { return A_SECTION;          }
+"</section>"            { return C_SECTION;          } 
+"<simplesect>"          { return A_SIMSECTION;       } 
+"</simplesect>"         { return C_SIMSECTION;       }
+"<copyright>"           { return A_COPYRIGHT;        }
+"</copyright>"          { return C_COPYRIGHT;        }
+"<address>"             { return A_ADDRESS;          }
+"</address>"            { return C_ADDRESS;          }
+"<city>"                { return A_CITY;             }
+"</city>"               { return C_CITY;             }
+"<state>"               { return A_STATE;            } 
+"</state>"              { return C_STATE;            }   
+"<postcode>"            { return A_POSTCODE;         }   
+"</postcode>"           { return C_POSTCODE;         }
+"<street>"              { return A_STREET;           }
+"</street>"             { return C_STREET;           }
+"<email>"               { return A_EMAIL;            }
+"</email>"              { return C_EMAIL;            }
+"<phone>"               { return A_PHONE;            }
+"</phone>"              { return C_PHONE;            }
+"<itemizedlist>"        { return A_ITEMIZEDLIST;     }
+"</itemizedlist>"       { return C_ITEMIZEDLIST;     }
+"<listitem>"            { return A_LISTITEM;         }
+"</listitem>"           { return C_LISTITEM;         }
+"<emphasis>"            { return A_EMPHASIS;         }
+"</emphasis>"           { return C_EMPHASIS;         }
+"<holder>"              { return A_HOLDER;           }
+"</holder>"             { return C_HOLDER;           }
+"<simpara>"             { return A_SIMPARA;          }
+"</simpara>"            { return C_SIMPARA;          }
+"<year>"                { return A_YEAR;             }
+"</year>"               { return C_YEAR;             }  
+"<comment>"             { return A_COMMENT;          }
+"</comment>"            { return C_COMMENT;          }
+"<important>"           { return A_IMPORTANT;        }
+"</important>"          { return C_IMPORTANT;        }
+"<link>"                { return A_LINK;             }
+"</link>"               { return C_LINK;             }
+"<mediaobject>"         { return A_MEDIAOBJECT;      }
+"</mediaobject>"        { return C_MEDIAOBJECT;      }
+"<videoobject>"         { return A_VIDEOOBJECT;      }
+"</videoobject>"        { return C_VIDEOOBJECT;      }
+"<imageobject>"         { return A_IMAGEOBJECT;      }
+"</imageobject>"        { return C_IMAGEOBJECT;      }
+"<videodata fileref="   { return VIDEODATA;          }
+"<imagedata fileref="   { return IMAGEDATA;          }
+"<informaltable>"       { return A_INFORMALTABLE;    }
+"</informaltable>"      { return C_INFORMALTABLE;    }
+"<tgroup>"              { return A_TGROUP;           }
+"</tgroup>"             { return C_TGROUP;           }
+"<row>"                 { return A_ROW;              }
+"</row>"                { return C_ROW;              }  
+"<table>"               { return A_TABLE;            }
+"</table>"              { return C_TABLE;            }
+"<thead>"               { return A_THEAD;            }
+"</thead>"              { return C_THEAD;            }
+"<tfoot>"               { return A_TFOOT;            }
+"</tfoot>"              { return C_TFOOT;            }
+"<tbody>"               { return A_TBODY;            }
+"</tbody>"              { return C_TBODY;            }
+"<entrytbl>"            { return A_ENTRYTBL;         }
+"</entrytbl>"           { return C_ENTRYTBL;         }
+"<link xlink:href:"     { return XLINK;              }
+{url}                   { return URL;                }
+{ruta}                  { return RUTA;               }
+{texto}                 { return TEXTO;              }
+\n                      { line_num +=1; return EOL;  }
 [ \t]+                  { /* Ignorar espacios y tabuladores */                        }
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%
@@ -140,12 +140,4 @@ int errorControl (int argc, char **argv) {
         }
     }
     return 0;
-}
-
-int main(int argc, char **argv) {
-    if (errorControl(argc, argv))
-        return 1;
-
-    printWelcome();
-    yylex();
 }
