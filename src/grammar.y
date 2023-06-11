@@ -2,7 +2,7 @@
     #include <string.h>
 %}
 
-%token EOL TEXTO RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE
+%token TEXTO RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
 %token A_TITLE          C_TITLE
@@ -45,345 +45,334 @@
 %token A_ENTRYTBL       C_ENTRYTBL
 %token A_ENTRY          C_ENTRY
 
+%start sigma
+
 %%
 
-input:
-     DOCTYPE article EOL { printf("Cumple! *:)\n"); return 0;}
+sigma:
+     DOCTYPE article
 ;
 
 article: 
-    A_ARTICLE Info      Title       Content     Section     C_ARTICLE 
-|   A_ARTICLE Info      Title       Content     SimSection  C_ARTICLE 
-|   A_ARTICLE Info      Title       Content                 C_ARTICLE 
-|   A_ARTICLE Info      Content     Section                 C_ARTICLE 
-|   A_ARTICLE Info      Content     SimSection              C_ARTICLE 
-|   A_ARTICLE Info      Content                             C_ARTICLE 
-|   A_ARTICLE Title     Content     Section                 C_ARTICLE 
-|   A_ARTICLE Title     Content     SimSection              C_ARTICLE 
-|   A_ARTICLE Title     Content                             C_ARTICLE 
-|   A_ARTICLE Content   Section                             C_ARTICLE 
-|   A_ARTICLE Content   SimSection                          C_ARTICLE 
-|   A_ARTICLE Content                                       C_ARTICLE 
+    A_ARTICLE info      title       content     section     C_ARTICLE 
+|   A_ARTICLE info      title       content     simsection  C_ARTICLE 
+|   A_ARTICLE info      title       content                 C_ARTICLE 
+|   A_ARTICLE info      content     section                 C_ARTICLE 
+|   A_ARTICLE info      content     simsection              C_ARTICLE 
+|   A_ARTICLE info      content                             C_ARTICLE 
+|   A_ARTICLE title     content     section                 C_ARTICLE 
+|   A_ARTICLE title     content     simsection              C_ARTICLE 
+|   A_ARTICLE title     content                             C_ARTICLE 
+|   A_ARTICLE content   section                             C_ARTICLE 
+|   A_ARTICLE content   simsection                          C_ARTICLE 
+|   A_ARTICLE content                                       C_ARTICLE 
 ;
 
-Content:
-    ItemizedList    Content | ItemizedList
-|   Important       Content | Important
-|   Para            Content | Para
-|   SimPara         Content | SimPara
-|   Address         Content | Address
-|   MediaObject     Content | MediaObject
-|   InformalTable   Content | InformalTable
-|   Comment         Content | Comment
-|   Abstract        Content | Abstract
+content:
+    itemizedlist    content | itemizedlist
+|   important       content | important
+|   para            content | para
+|   simpara         content | simpara
+|   address         content | address
+|   mediaobject     content | mediaobject
+|   informaltable   content | informaltable
+|   comment         content | comment
+|   abstract        content | abstract
 ;
 
-Section: 
-    A_SECTION Info      Title       Content     Section     C_SECTION
-|   A_SECTION Info      Title       Content     SimSection  C_SECTION
-|   A_SECTION Info      Content     Section                 C_SECTION
-|   A_SECTION Info      Content     SimSection              C_SECTION
-|   A_SECTION Title     Content     Section                 C_SECTION
-|   A_SECTION Title     Content     SimSection              C_SECTION
-|   A_SECTION Content   Section                             C_SECTION
-|   A_SECTION Content   SimSection                          C_SECTION
-|   A_SECTION Content                                       C_SECTION
+section: 
+    A_SECTION info      title       content     section     C_SECTION
+|   A_SECTION info      title       content     simsection  C_SECTION
+|   A_SECTION info      content     section                 C_SECTION
+|   A_SECTION info      content     simsection              C_SECTION
+|   A_SECTION info      content                             C_SECTION
+|   A_SECTION title     content     section                 C_SECTION
+|   A_SECTION title     content     simsection              C_SECTION
+|   A_SECTION title     content                             C_SECTION
+|   A_SECTION content   section                             C_SECTION
+|   A_SECTION content   simsection                          C_SECTION
+|   A_SECTION content                                       C_SECTION
 ;
 
-SimSection:
-    A_SIMSECTION Info   Title   Content     C_SIMSECTION
-|   A_SIMSECTION Info   Content             C_SIMSECTION
-|   A_SIMSECTION Title  Content             C_SIMSECTION
-|   A_SIMSECTION Content                    C_SIMSECTION
-;
-
-
-InfoContent:
-    Title       InfoContent | Title
-|   MediaObject InfoContent | MediaObject
-|   Abstract    InfoContent | Abstract
-|   Address     InfoContent | Address
-|   Author      InfoContent | Author
-|   Date        InfoContent | Date
-|   Copyright   InfoContent | Copyright
-;
-
-Info: 
-    A_INFO InfoContent C_INFO
+simsection:
+    A_SIMSECTION info   title   content     C_SIMSECTION
+|   A_SIMSECTION info   content             C_SIMSECTION
+|   A_SIMSECTION title  content             C_SIMSECTION
+|   A_SIMSECTION content                    C_SIMSECTION
 ;
 
 
-AbstractContent:
-    Para AbstractContent    | Para
-|   SimPara AbstractContent | SimPara
+infocontent:
+    title       infocontent | title
+|   mediaobject infocontent | mediaobject
+|   abstract    infocontent | abstract
+|   address     infocontent | address
+|   author      infocontent | author
+|   date        infocontent | date
+|   Copyright   infocontent | Copyright
 ;
 
-Abstract:
-    A_ABSTRACT Title AbstractContent    C_ABSTRACT
-|   A_ABSTRACT AbstractContent          C_ABSTRACT
+info: 
+    A_INFO infocontent C_INFO
 ;
 
-AddressContent:
-    TEXTO AddressContent    | TEXTO
-|   Street AddressContent   | Street
-|   City AddressContent     | City
-|   State AddressContent    | State
-|   Phone AddressContent    | Phone
-|   Email AddressContent    | Email
+
+abstractcontent:
+    para abstractcontent    | para
+|   simpara abstractcontent | simpara
 ;
 
-Address: 
-    A_ADDRESS AddressContent C_ADDRESS
+abstract:
+    A_ABSTRACT title abstractcontent    C_ABSTRACT
+|   A_ABSTRACT abstractcontent          C_ABSTRACT
 ;
 
-AuthorContent:
-    Firstname AuthorContent
-|   Surname AuthorContent
-|   Surname
+addresscontent:
+    TEXTO addresscontent    | TEXTO
+|   street addresscontent   | street
+|   city addresscontent     | city
+|   state addresscontent    | state
+|   phone addresscontent    | phone
+|   email addresscontent    | email
 ;
 
-Author:
-    A_AUTHOR AuthorContent C_AUTHOR
+address: 
+    A_ADDRESS addresscontent C_ADDRESS
 ;
 
-CopyrightYearContent:
-    Year CopyrightYearContent
-|   Year CopyrightHolderContent
-|   Year
+authorcontent:
+    firstname authorcontent
+|   surname authorcontent
+|   surname
 ;
 
-CopyrightHolderContent:
-    Holder CopyrightHolderContent | Holder
+author:
+    A_AUTHOR authorcontent C_AUTHOR
+;
+
+copyrightyearcontent:
+    year copyrightyearcontent
+|   year copyrightholdercontent
+|   year
+;
+
+copyrightholdercontent:
+    holder copyrightholdercontent | holder
 ;
 
 Copyright:
-    A_COPYRIGHT CopyrightYearContent C_COPYRIGHT
-
-TitleContent: 
-    Emphasis TitleContent   | Emphasis
-|   Link TitleContent       | Link
-|   Email TitleContent      | Email
-|   TEXTO TitleContent      | TEXTO
+    A_COPYRIGHT copyrightyearcontent C_COPYRIGHT
 ;
 
-Title:
-    A_TITLE TitleContent C_TITLE
+titlecontent: 
+    emphasis titlecontent   | emphasis
+|   link titlecontent       | link
+|   email titlecontent      | email
+|   TEXTO titlecontent      | TEXTO
 ;
 
-SimParaContent:
-    Emphasis | TEXTO    |   Personame
-|   Link     | Email
-|   Author   | Comment
+title:
+    A_TITLE titlecontent C_TITLE
 ;
 
-SimPara:
-    A_SIMPARA SimPara SimParaContent C_SIMPARA
-|   A_SIMPARA SimParaContent C_SIMPARA
+simparacontent:
+    emphasis | TEXTO    |   personame
+|   link     | email
+|   author   | comment
 ;
 
-Emphasis:
-    A_EMPHASIS Emphasis SimParaContent C_EMPHASIS
-|   A_EMPHASIS SimParaContent C_EMPHASIS
+simpara:
+    A_SIMPARA simpara simparacontent C_SIMPARA
+|   A_SIMPARA simparacontent C_SIMPARA
 ;
 
-Comment:
-    A_COMMENT Comment SimParaContent C_COMMENT
-|   A_COMMENT SimParaContent C_COMMENT
+emphasis:
+    A_EMPHASIS emphasis simparacontent C_EMPHASIS
+|   A_EMPHASIS simparacontent C_EMPHASIS
 ;
 
-Link:
-    A_LINK Link SimParaContent C_LINK
-|   A_LINK SimParaContent C_LINK
+comment:
+    A_COMMENT comment simparacontent C_COMMENT
+|   A_COMMENT simparacontent C_COMMENT
 ;
 
-ParaContent:
-    Emphasis    | Link          | Email     | Author
-|   Comment     | ItemizedList  | Important | Address
-|   MediaObject | InformalTable
+link:
+    A_LINK link simparacontent C_LINK
+|   A_LINK simparacontent C_LINK
 ;
 
-Para:
-    A_PARA Para ParaContent C_PARA
-|   A_PARA ParaContent C_PARA
+paracontent:
+    emphasis    | link          | email     | author
+|   comment     | itemizedlist  | important | address
+|   mediaobject | informaltable | TEXTO
 ;
 
-Important:
-    A_IMPORTANT Title Content C_IMPORTANT
-|   A_IMPORTANT Content C_IMPORTANT
+para:
+    A_PARA para paracontent C_PARA
+|   A_PARA paracontent C_PARA
 ;
 
-SharedContent:
-    Comment SharedContent       | Comment
-|   Emphasis SharedContent      | Emphasis
-|   Link SharedContent          | Link
-|   TEXTO SharedContent         | TEXTO
+important:
+    A_IMPORTANT title content C_IMPORTANT
+|   A_IMPORTANT content C_IMPORTANT
 ;
 
-Personame:
-    A_PERSONNAME Firstname Surname C_PERSONNAME
+sharedcontent:
+    comment sharedcontent       | comment
+|   emphasis sharedcontent      | emphasis
+|   link sharedcontent          | link
+|   TEXTO sharedcontent         | TEXTO
+;
+
+personame:
+    A_PERSONNAME firstname surname C_PERSONNAME
 ;
 
 
-Firstname:
-    A_FIRSTNAME SharedContent C_FIRSTNAME
+firstname:
+    A_FIRSTNAME sharedcontent C_FIRSTNAME
 ;
 
-Surname:
-    A_SURNAME SharedContent C_SURNAME
+surname:
+    A_SURNAME sharedcontent C_SURNAME
 ;
 
-Street:
-    A_STREET SharedContent C_STREET
+street:
+    A_STREET sharedcontent C_STREET
 ;
 
-City:
-    A_CITY SharedContent C_CITY
+city:
+    A_CITY sharedcontent C_CITY
 ;
 
-Phone:
-    A_PHONE SharedContent C_PHONE
+phone:
+    A_PHONE sharedcontent C_PHONE
 ;
 
-Email:
-    A_EMAIL SharedContent C_EMAIL
+email:
+    A_EMAIL sharedcontent C_EMAIL
 ;
 
-Date:
-    A_DATE SharedContent C_DATE
+date:
+    A_DATE sharedcontent C_DATE
 ;
 
-Year:
-    A_YEAR SharedContent C_YEAR
+year:
+    A_YEAR sharedcontent C_YEAR
 ;
 
-Holder:
-    A_HOLDER SharedContent C_HOLDER
+holder:
+    A_HOLDER sharedcontent C_HOLDER
 ;
 
-State:
-    A_STATE SharedContent C_STATE
+state:
+    A_STATE sharedcontent C_STATE
 ;
 
-MediaObjectContent:
-    VideoObject MediaObjectContent  |   VideoObject
-|   ImageObject MediaObjectContent  |   ImageObject
+mediaobjectcontent:
+    videoobject mediaobjectcontent  |   videoobject
+|   imageobject mediaobjectcontent  |   imageobject
 ;
 
-MediaObject:
-    A_MEDIAOBJECT Info          VideoObject         MediaObjectContent  C_MEDIAOBJECT
-|   A_MEDIAOBJECT Info          ImageObject         MediaObjectContent  C_MEDIAOBJECT
-|   A_MEDIAOBJECT VideoObject   MediaObjectContent                      C_MEDIAOBJECT
-|   A_MEDIAOBJECT ImageObject   MediaObjectContent                      C_MEDIAOBJECT
-|   A_MEDIAOBJECT VideoObject                                           C_MEDIAOBJECT
-|   A_MEDIAOBJECT ImageObject                                           C_MEDIAOBJECT
+mediaobject:
+    A_MEDIAOBJECT info          videoobject         mediaobjectcontent  C_MEDIAOBJECT
+|   A_MEDIAOBJECT info          imageobject         mediaobjectcontent  C_MEDIAOBJECT
+|   A_MEDIAOBJECT videoobject   mediaobjectcontent                      C_MEDIAOBJECT
+|   A_MEDIAOBJECT imageobject   mediaobjectcontent                      C_MEDIAOBJECT
+|   A_MEDIAOBJECT videoobject                                           C_MEDIAOBJECT
+|   A_MEDIAOBJECT imageobject                                           C_MEDIAOBJECT
 ;
 
-ImageObject:
-    A_IMAGEOBJECT Info      ImageData    C_IMAGEOBJECT
-|   A_IMAGEOBJECT ImageData              C_IMAGEOBJECT
+imageobject:
+    A_IMAGEOBJECT info      imagedata    C_IMAGEOBJECT
+|   A_IMAGEOBJECT imagedata              C_IMAGEOBJECT
 ;
 
-VideoObject:
-    A_VIDEOOBJECT Info      VideoData   C_VIDEOOBJECT
-|   A_VIDEOOBJECT VideoData             C_VIDEOOBJECT
+videoobject:
+    A_VIDEOOBJECT info      videodata   C_VIDEOOBJECT
+|   A_VIDEOOBJECT videodata             C_VIDEOOBJECT
 ;
 
-VideoData:
-    VIDEODATA RUTA 
+videodata:
+    VIDEODATA RUTA C_REF
 ;
 
-ImageData:
-    IMAGEDATA RUTA 
+imagedata:
+    IMAGEDATA RUTA C_REF
 ;
 
-ItemizedList:
-    A_ITEMIZEDLIST ListItem ItemizedList C_ITEMIZEDLIST
-|   A_ITEMIZEDLIST ListItem C_ITEMIZEDLIST
+itemizedlist:
+    A_ITEMIZEDLIST listitem itemizedlist C_ITEMIZEDLIST
+|   A_ITEMIZEDLIST listitem C_ITEMIZEDLIST
 ;
 
-ListItem:
-    A_LISTITEM  Content ListItem C_LISTITEM
-|   A_LISTITEM  Content C_LISTITEM
+listitem:
+    A_LISTITEM  content listitem C_LISTITEM
+|   A_LISTITEM  content C_LISTITEM
 ;
 
-InformalTableContent:
-    MediaObject InformalTableContent    | MediaObject
-|   Tgroup  InformalTableContent        |   Tgroup
+informaltablecontent:
+    mediaobject informaltablecontent    | mediaobject
+|   tgroup  informaltablecontent        | tgroup
 ;
 
-InformalTable:
-    A_INFORMALTABLE InformalTableContent C_INFORMALTABLE
+informaltable:
+    A_INFORMALTABLE informaltablecontent C_INFORMALTABLE
 ;
 
-Tgroup:
-    A_TGROUP Thead  Tbody   Tfoot   C_TGROUP
-|   A_TGROUP Thead  Tfoot           C_TGROUP
-|   A_TGROUP Tbody  Tfoot           C_TGROUP
-|   A_TGROUP Tfoot                  C_TGROUP
+tgroup:
+    A_TGROUP thead  tbody   tfoot   C_TGROUP
+|   A_TGROUP thead  tfoot           C_TGROUP
+|   A_TGROUP tbody  tfoot           C_TGROUP
+|   A_TGROUP tfoot                  C_TGROUP
 ;
 
-TableContent:
-    Row TableContent    |   Row
+tablecontent:
+    row tablecontent    |   row
 ;
 
-Thead:
-     A_THEAD    TableContent    C_THEAD
+thead:
+     A_THEAD    tablecontent    C_THEAD
 ;
 
-Tbody:
-     A_TBODY    TableContent    C_TBODY
+tbody:
+     A_TBODY    tablecontent    C_TBODY
 ;
 
-Tfoot:
-     A_TFOOT    TableContent    C_TFOOT
+tfoot:
+     A_TFOOT    tablecontent    C_TFOOT
 ;
 
-RowContent:
-    Entry RowContent    |   Entry
-|   EntryTbl RowContent |   EntryTbl
+rowcontent:
+    entry rowcontent    |   entry
+|   entrytbl rowcontent |   entrytbl
 ;
 
-Row:
-   A_ROW    RowContent  C_ROW
+row:
+   A_ROW    rowcontent  C_ROW
 ;
 
-EntryContent:
-    TEXTO           EntryContent | TEXTO
-|   ItemizedList    EntryContent | ItemizedList
-|   Important       EntryContent | Important
-|   Para            EntryContent | Para
-|   SimPara         EntryContent | SimPara
-|   MediaObject     EntryContent | MediaObject
-|   Comment         EntryContent | Comment
-|   Abstract        EntryContent | Abstract
+entrycontent:
+    TEXTO           entrycontent | TEXTO
+|   itemizedlist    entrycontent | itemizedlist
+|   important       entrycontent | important
+|   para            entrycontent | para
+|   simpara         entrycontent | simpara
+|   mediaobject     entrycontent | mediaobject
+|   comment         entrycontent | comment
+|   abstract        entrycontent | abstract
 ;
 
-Entry:
-    A_ENTRY EntryContent C_ENTRY
+entry:
+    A_ENTRY entrycontent C_ENTRY
 ;
 
-EntryTbl:
-    A_ENTRYTBL  Thead Tbody C_ENTRYTBL
-|   A_ENTRYTBL  Tbody C_ENTRYTBL
+entrytbl:
+    A_ENTRYTBL  thead tbody C_ENTRYTBL
+|   A_ENTRYTBL  tbody C_ENTRYTBL
 ;
 
-Xlink:
-    XLINK URL
+xlink:
+    XLINK URL C_REF
 ;
-
 %%
-
-int main(int argc, char **argv) {
-    if (errorControl(argc, argv))
-        return 1;
-
-    printWelcome();
-    yyparse();
-    return 0;
-
-}
-
-yyerror(char *s){
-    printf("No cumple :(\n");
-    return 1;
-}

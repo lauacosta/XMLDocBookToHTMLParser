@@ -101,11 +101,12 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "<entrytbl>"            { return A_ENTRYTBL;         }
 "</entrytbl>"           { return C_ENTRYTBL;         }
 "<link xlink:href:"     { return XLINK;              }
+"/>"                    { return C_REF;              }
 {url}                   { return URL;                }
 {ruta}                  { return RUTA;               }
 {texto}                 { return TEXTO;              }
-\n                      { line_num +=1; return EOL;  }
-[ \t]+                  { /* Ignorar espacios y tabuladores */                        }
+\n                      { line_num +=1;              }
+[ \t]+                  { ;/* Ignorar espacios y tabuladores */                        }
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%
 
@@ -117,12 +118,11 @@ const char* getExtension(const char* filename) {
 
 void printWelcome(){
 
-    printf("\n\t ANALIZADOR SINTÁCTICO-  Grupo N°19\n");
-    printf("\n\t Ultima modificación 07-06-23\n");
+    printf("\n\t ANALIZADOR SINTACTICO  -  Grupo N°19\n");
+    printf("\n\t Ultima modificación 11-06-23\n");
     printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
     printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
-    
-    printf("\n »» Tokens detectados: \n");
+    printf("\t");    
 }
 
 int errorControl (int argc, char **argv) {
@@ -139,5 +139,19 @@ int errorControl (int argc, char **argv) {
             return 1;
         }
     }
+    return 0;
+}
+
+yyerror(char *s){
+    printf("Analisis Sintactico 'INTERRUMPIDO' - Error en linea: %d \n",line_num);
+    return 1;
+}
+
+int main(int argc, char **argv) {
+    if (errorControl(argc, argv))
+        return 1;
+
+    printWelcome();
+    if (!yyparse()){printf("Analisis Sintactico 'CORRECTO' \n");}    
     return 0;
 }
