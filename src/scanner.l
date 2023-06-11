@@ -101,10 +101,11 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "<entrytbl>"            { return A_ENTRYTBL;         }
 "</entrytbl>"           { return C_ENTRYTBL;         }
 "<link xlink:href:"     { return XLINK;              }
+"/>"                    { return C_REF               }
 {url}                   { return URL;                }
 {ruta}                  { return RUTA;               }
 {texto}                 { return TEXTO;              }
-\n                      { line_num +=1; return EOL;  }
+\n                      { line_num +=1               }
 [ \t]+                  { /* Ignorar espacios y tabuladores */                        }
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
 %%

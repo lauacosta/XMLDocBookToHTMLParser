@@ -2,7 +2,7 @@
     #include <string.h>
 %}
 
-%token EOL TEXTO RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE
+%token EOL TEXTO RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
 %token A_TITLE          C_TITLE
@@ -48,7 +48,7 @@
 %%
 
 input:
-     DOCTYPE article EOL
+     DOCTYPE article
 ;
 
 article: 
