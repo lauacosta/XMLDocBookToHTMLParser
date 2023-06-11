@@ -1521,8 +1521,14 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* input: DOCTYPE article EOL  */
+#line 51 "grammar.y"
+                         { printf("Cumple! :)\n"); return 0;}
+#line 1528 "grammar.tab.c"
+    break;
 
-#line 1526 "grammar.tab.c"
+
+#line 1532 "grammar.tab.c"
 
       default: break;
     }

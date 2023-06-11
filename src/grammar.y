@@ -48,7 +48,7 @@
 %%
 
 input:
-     DOCTYPE article EOL
+     DOCTYPE article EOL { printf("Cumple! *:)\n"); return 0;}
 ;
 
 article: 
@@ -380,6 +380,7 @@ int main(int argc, char **argv) {
     printWelcome();
     yyparse();
     return 0;
+
 }
 
 yyerror(char *s){
