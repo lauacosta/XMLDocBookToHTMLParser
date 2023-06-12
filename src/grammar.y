@@ -109,7 +109,7 @@ infocontent:
 |   address     infocontent | address
 |   author      infocontent | author
 |   date        infocontent | date
-|   Copyright   infocontent | Copyright
+|   copyright   infocontent | copyright
 ;
 
 info: 
@@ -134,6 +134,7 @@ addresscontent:
 |   state addresscontent    | state
 |   phone addresscontent    | phone
 |   email addresscontent    | email
+|   postcode addresscontent | postcode
 ;
 
 address: 
@@ -143,6 +144,8 @@ address:
 authorcontent:
     firstname authorcontent
 |   surname authorcontent
+|   personame authorcontent
+|   personame
 |   surname
 ;
 
@@ -160,8 +163,9 @@ copyrightholdercontent:
     holder copyrightholdercontent | holder
 ;
 
-Copyright:
+copyright:
     A_COPYRIGHT copyrightyearcontent C_COPYRIGHT
+|   A_COPYRIGHT TEXTO C_COPYRIGHT
 ;
 
 titlecontent: 
@@ -239,6 +243,10 @@ surname:
 
 street:
     A_STREET sharedcontent C_STREET
+;
+
+postcode:
+    A_POSTCODE TEXTO C_POSTCODE
 ;
 
 city:

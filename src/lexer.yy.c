@@ -2696,13 +2696,8 @@ const char* getExtension(const char* filename) {
 
 void printWelcome(){
 
-<<<<<<< HEAD
-    printf("\n\t ANALIZADOR SINTÁCTICO-  Grupo N°19\n");
-    printf("\n\t Ultima modificación 07-06-23\n");
-=======
     printf("\n\t ANALIZADOR SINTACTICO  -  Grupo N°19\n");
-    printf("\n\t Ultima modificación 11-06-23\n");
->>>>>>> f0a45a73c9e14ae310cc90491892c21a04166c76
+    printf("\n\t Ultima modificación 12-06-23\n");
     printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
     printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
     printf("\t");    

@@ -22,11 +22,11 @@
         	<street>French 414</street>
         	<email>ssl@gmail.com</email>
         	<phone>3624888888s</phone>
-                </address>
+         </address>
 	</info>
 	<title>Trabajo Práctico Integrador: Diseño e implementación de Lexer y Parser</title>
-        <section>
-    	\n<title>Título sección 1</title>
+    <section>
+    	<title>Título sección 1</title>
 	</section>
 	<section>
     	<title>Objetivo</title>
