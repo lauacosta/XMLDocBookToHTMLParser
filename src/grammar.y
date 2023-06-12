@@ -335,6 +335,10 @@ tgroup:
 |   A_TGROUP tfoot                  C_TGROUP
 ;
 
+table:
+    A_TABLE     tablecontent      C_TABLE
+;
+
 tablecontent:
     row tablecontent    |   row
 ;
