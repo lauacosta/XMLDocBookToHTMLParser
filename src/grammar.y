@@ -1,8 +1,7 @@
 %{   
     #include <string.h>
 %}
-
-%union{char* text}
+%union{char* text;}
 
 %token <text> TEXTO 
 %token RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
@@ -57,18 +56,18 @@ sigma:
 ;
 
 article: 
-    A_ARTICLE info titledoc content section C_ARTICLE
-|   A_ARTICLE info      titledoc       content     simsection  C_ARTICLE 
-|   A_ARTICLE info      titledoc       content                 C_ARTICLE 
-|   A_ARTICLE info      content     section                 C_ARTICLE 
-|   A_ARTICLE info      content     simsection              C_ARTICLE 
-|   A_ARTICLE {printf("<article>");} info      content                             C_ARTICLE {printf("</article>\n");}
-|   A_ARTICLE titledoc     content     section                 C_ARTICLE 
-|   A_ARTICLE titledoc     content     simsection              C_ARTICLE 
-|   A_ARTICLE titledoc     content                             C_ARTICLE 
-|   A_ARTICLE content   section                             C_ARTICLE 
-|   A_ARTICLE content   simsection                          C_ARTICLE 
-|   A_ARTICLE content                                       C_ARTICLE 
+    A_ARTICLE info      titledoc content section C_ARTICLE
+|   A_ARTICLE info      titledoc       content     simsection   C_ARTICLE 
+|   A_ARTICLE info      titledoc       content                  C_ARTICLE 
+|   A_ARTICLE info      content     section                     C_ARTICLE 
+|   A_ARTICLE info      content     simsection                  C_ARTICLE 
+|   A_ARTICLE {printf("<article>");} info      content     C_ARTICLE {printf("</article>\n");}
+|   A_ARTICLE titledoc     content     section                  C_ARTICLE 
+|   A_ARTICLE titledoc     content     simsection               C_ARTICLE 
+|   A_ARTICLE titledoc     content                              C_ARTICLE 
+|   A_ARTICLE content   section                                 C_ARTICLE 
+|   A_ARTICLE content   simsection                              C_ARTICLE 
+|   A_ARTICLE content                                           C_ARTICLE 
 ;
 
 content:
@@ -118,7 +117,6 @@ infocontent:
 info: 
     A_INFO {printf("<info>\n<p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} infocontent C_INFO {printf("</info>\n");}
 ;
-
 
 abstractcontent:
     para abstractcontent    | para

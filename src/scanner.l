@@ -1,9 +1,8 @@
+%option noyywrap nodefault yylineno
 %{
-    #include "grammar.tab.h"
-    int line_num = 1;
+    #include "grammarPrueba.tab.h"
 %}
 
-%option noyywrap nodefault
 
 texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/\@\\[\]\%\+\#\=\&\$\'\”\“ ]+\"?)*
 url             (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
@@ -104,10 +103,10 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "/>"                    { return C_REF;              }
 {url}                   { return URL;                }
 {ruta}                  { return RUTA;               }
-{texto}                 { yylval.text=yytext; return TEXTO;              }
-\n                      { line_num +=1;              }
-[ \t]+                  { ;/* Ignorar espacios y tabuladores */                        }
-.                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
+{texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return TEXTO;}
+\n                      { ; }
+[ \t]+                  { ;/* Ignorar espacios y tabuladores */}
+.                       { printf("hola!"); exit(1); }
 %%
 
 const char* getExtension(const char* filename) {
@@ -116,17 +115,9 @@ const char* getExtension(const char* filename) {
     return "";
 }
 
-void printWelcome(){
-
-    printf("\n\t ANALIZADOR SINTACTICO  -  Grupo N°19\n");
-    printf("\n\t Ultima modificación 12-06-23\n");
-    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
-    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
-    printf("\t");    
-}
-
 int errorControl (int argc, char **argv) {
     if(argc > 1) {
+
         if(!(yyin = fopen(argv[1], "r"))) {
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
             return 1;
@@ -139,21 +130,5 @@ int errorControl (int argc, char **argv) {
             return 1;
         }
     }
-    return 0;
-}
-
-yyerror(char *s){
-    printf("Analisis Sintactico 'INTERRUMPIDO' - Error en linea: %d \n",line_num);
-    return 1;
-}
-
-int main(int argc, char **argv) {
-    if (errorControl(argc, argv))
-        return 1;
-
-    printWelcome();
-    printf("\n");
-    printf("Codigo HTML\n"); 
-    if (!yyparse()){printf("\nAnalisis Sintactico 'CORRECTO' \n");}    
     return 0;
 }
