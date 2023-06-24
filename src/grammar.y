@@ -2,7 +2,10 @@
     #include <string.h>
 %}
 
-%token TEXTO RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
+%union{char* text}
+
+%token <text> TEXTO 
+%token RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
 %token A_TITLE          C_TITLE
@@ -50,19 +53,19 @@
 %%
 
 sigma:
-     DOCTYPE article
+     DOCTYPE {printf("<!DOCTYPE html>\n<html>\n");} article {printf("</html>\n");}
 ;
 
 article: 
-    A_ARTICLE info      title       content     section     C_ARTICLE 
-|   A_ARTICLE info      title       content     simsection  C_ARTICLE 
-|   A_ARTICLE info      title       content                 C_ARTICLE 
+    A_ARTICLE info titledoc content section C_ARTICLE
+|   A_ARTICLE info      titledoc       content     simsection  C_ARTICLE 
+|   A_ARTICLE info      titledoc       content                 C_ARTICLE 
 |   A_ARTICLE info      content     section                 C_ARTICLE 
 |   A_ARTICLE info      content     simsection              C_ARTICLE 
-|   A_ARTICLE info      content                             C_ARTICLE 
-|   A_ARTICLE title     content     section                 C_ARTICLE 
-|   A_ARTICLE title     content     simsection              C_ARTICLE 
-|   A_ARTICLE title     content                             C_ARTICLE 
+|   A_ARTICLE {printf("<article>");} info      content                             C_ARTICLE {printf("</article>\n");}
+|   A_ARTICLE titledoc     content     section                 C_ARTICLE 
+|   A_ARTICLE titledoc     content     simsection              C_ARTICLE 
+|   A_ARTICLE titledoc     content                             C_ARTICLE 
 |   A_ARTICLE content   section                             C_ARTICLE 
 |   A_ARTICLE content   simsection                          C_ARTICLE 
 |   A_ARTICLE content                                       C_ARTICLE 
@@ -71,7 +74,7 @@ article:
 content:
     itemizedlist    content | itemizedlist
 |   important       content | important
-|   para            content | para
+|   para            content | para 
 |   simpara         content | simpara
 |   address         content | address
 |   mediaobject     content | mediaobject
@@ -81,29 +84,29 @@ content:
 ;
 
 section: 
-    A_SECTION info      title       content     section     C_SECTION
-|   A_SECTION info      title       content     simsection  C_SECTION
+    A_SECTION info      titlesec     content     section     C_SECTION
+|   A_SECTION info      titlesec     content     simsection  C_SECTION
 |   A_SECTION info      content     section                 C_SECTION
 |   A_SECTION info      content     simsection              C_SECTION
 |   A_SECTION info      content                             C_SECTION
-|   A_SECTION title     content     section                 C_SECTION
-|   A_SECTION title     content     simsection              C_SECTION
-|   A_SECTION title     content                             C_SECTION
+|   A_SECTION titlesec     content     section                 C_SECTION
+|   A_SECTION titlesec     content     simsection              C_SECTION
+|   A_SECTION {printf("<section>\n");} titlesec     content                             C_SECTION {printf("</section>\n");}
 |   A_SECTION content   section                             C_SECTION
 |   A_SECTION content   simsection                          C_SECTION
 |   A_SECTION content                                       C_SECTION
 ;
 
 simsection:
-    A_SIMSECTION info   title   content     C_SIMSECTION
+    A_SIMSECTION info  {printf("<h2>\n");} titlesec  {printf("</h2>\n");} content     C_SIMSECTION
 |   A_SIMSECTION info   content             C_SIMSECTION
-|   A_SIMSECTION title  content             C_SIMSECTION
+|   A_SIMSECTION {printf("<h2>\n");} titlesec {printf("</h2>\n");} content             C_SIMSECTION
 |   A_SIMSECTION content                    C_SIMSECTION
 ;
 
 
 infocontent:
-    title       infocontent | title
+    titlesec    infocontent | titlesec
 |   mediaobject infocontent | mediaobject
 |   abstract    infocontent | abstract
 |   address     infocontent | address
@@ -113,7 +116,7 @@ infocontent:
 ;
 
 info: 
-    A_INFO infocontent C_INFO
+    A_INFO {printf("<info>\n<p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} infocontent C_INFO {printf("</info>\n");}
 ;
 
 
@@ -123,12 +126,12 @@ abstractcontent:
 ;
 
 abstract:
-    A_ABSTRACT title abstractcontent    C_ABSTRACT
+    A_ABSTRACT titlesec abstractcontent    C_ABSTRACT
 |   A_ABSTRACT abstractcontent          C_ABSTRACT
 ;
 
 addresscontent:
-    TEXTO addresscontent    | TEXTO
+    TEXTO {printf("%s",yylval);}  addresscontent    | TEXTO {printf("%s",yylval);} 
 |   street addresscontent   | street
 |   city addresscontent     | city
 |   state addresscontent    | state
@@ -150,7 +153,7 @@ authorcontent:
 ;
 
 author:
-    A_AUTHOR authorcontent C_AUTHOR
+    A_AUTHOR {printf("<author>\n");} authorcontent C_AUTHOR {printf("</author>\n");}
 ;
 
 copyrightyearcontent:
@@ -172,15 +175,19 @@ titlecontent:
     emphasis titlecontent   | emphasis
 |   link titlecontent       | link
 |   email titlecontent      | email
-|   TEXTO titlecontent      | TEXTO
+|   TEXTO {printf("%s",yylval);} titlecontent      | TEXTO {printf("%s",yylval);}
 ;
 
-title:
-    A_TITLE titlecontent C_TITLE
+titledoc:
+    A_TITLE {printf("<h1>\n");} titlecontent C_TITLE {printf("</h1>\n");}
+;
+
+titlesec:
+    A_TITLE {printf("<h2>\n");} titlecontent C_TITLE {printf("</h2>\n");}
 ;
 
 simparacontent:
-    emphasis | TEXTO    |   personame
+    emphasis | TEXTO {printf("%s",yylval);} |   personame
 |   link     | email
 |   author   | comment
 ;
@@ -208,16 +215,16 @@ link:
 paracontent:
     emphasis    | link          | email     | author
 |   comment     | itemizedlist  | important | address
-|   mediaobject | informaltable | TEXTO
+|   mediaobject | informaltable | TEXTO {printf("%s\n",yylval);}
 ;
 
 para:
-    A_PARA para paracontent C_PARA
-|   A_PARA paracontent C_PARA
+    A_PARA {printf("<p>\n");}  para paracontent C_PARA {printf("</p>\n");} 
+|   A_PARA {printf("<p>\n");}  paracontent C_PARA {printf("</p>\n");} 
 ;
 
 important:
-    A_IMPORTANT title content C_IMPORTANT
+    A_IMPORTANT titlesec content C_IMPORTANT
 |   A_IMPORTANT content C_IMPORTANT
 ;
 
@@ -225,20 +232,20 @@ sharedcontent:
     comment sharedcontent       | comment
 |   emphasis sharedcontent      | emphasis
 |   link sharedcontent          | link
-|   TEXTO sharedcontent         | TEXTO
+|   TEXTO {printf("%s",yylval);}  sharedcontent         | TEXTO {printf("%s",yylval);} 
 ;
 
 personame:
-    A_PERSONNAME firstname surname C_PERSONNAME
+    A_PERSONNAME {printf("<personname>");} firstname surname C_PERSONNAME {printf("</personname>\n");}
 ;
 
 
 firstname:
-    A_FIRSTNAME sharedcontent C_FIRSTNAME
+    A_FIRSTNAME {printf("<firstname>");} sharedcontent C_FIRSTNAME {printf("</firstname>\n");}
 ;
 
 surname:
-    A_SURNAME sharedcontent C_SURNAME
+    A_SURNAME {printf("<surname>");} sharedcontent C_SURNAME {printf("</surname>\n");}
 ;
 
 street:
@@ -246,7 +253,7 @@ street:
 ;
 
 postcode:
-    A_POSTCODE TEXTO C_POSTCODE
+    A_POSTCODE TEXTO {printf("%s",yylval);}  C_POSTCODE
 ;
 
 city:
@@ -365,7 +372,7 @@ row:
 ;
 
 entrycontent:
-    TEXTO           entrycontent | TEXTO
+    TEXTO {printf("%s\n",yylval);} entrycontent | TEXTO {printf("%s\n",yylval);} 
 |   itemizedlist    entrycontent | itemizedlist
 |   important       entrycontent | important
 |   para            entrycontent | para

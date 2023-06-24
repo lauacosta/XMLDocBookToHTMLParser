@@ -1657,7 +1657,7 @@ YY_RULE_SETUP
 case 88:
 YY_RULE_SETUP
 #line 107 "./scanner.l"
-{ return TEXTO;              }
+{ yylval.text=yytext; return TEXTO;              }
 	YY_BREAK
 case 89:
 /* rule 89 can match eol */
@@ -2730,7 +2730,9 @@ int main(int argc, char **argv) {
         return 1;
 
     printWelcome();
-    if (!yyparse()){printf("Analisis Sintactico 'CORRECTO' \n");}    
+    printf("\n");
+    printf("Codigo HTML\n"); 
+    if (!yyparse()){printf("\nAnalisis Sintactico 'CORRECTO' \n");}    
     return 0;
 }
 

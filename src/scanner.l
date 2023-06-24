@@ -104,7 +104,7 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "/>"                    { return C_REF;              }
 {url}                   { return URL;                }
 {ruta}                  { return RUTA;               }
-{texto}                 { return TEXTO;              }
+{texto}                 { yylval.text=yytext; return TEXTO;              }
 \n                      { line_num +=1;              }
 [ \t]+                  { ;/* Ignorar espacios y tabuladores */                        }
 .                       { printf("Error: caracter '%s' no reconocido - Linea: %d\n",yytext,line_num); exit(1); }
@@ -152,6 +152,8 @@ int main(int argc, char **argv) {
         return 1;
 
     printWelcome();
-    if (!yyparse()){printf("Analisis Sintactico 'CORRECTO' \n");}    
+    printf("\n");
+    printf("Codigo HTML\n"); 
+    if (!yyparse()){printf("\nAnalisis Sintactico 'CORRECTO' \n");}    
     return 0;
 }
