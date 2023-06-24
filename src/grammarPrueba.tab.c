@@ -74,9 +74,11 @@
     #include <stdio.h>
     //#define YYDEBUG 1
     void yyerror(const char *str);
-    //FILE *yyin;
+    const char* getExtension(const char* filename);
+    int errorControl (int argc, char **argv);
+    FILE *salida;
 
-#line 80 "grammarPrueba.tab.c"
+#line 82 "grammarPrueba.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -219,14 +221,12 @@ enum yysymbol_kind_t
   YYSYMBOL_para = 112,                     /* para  */
   YYSYMBOL_113_8 = 113,                    /* $@8  */
   YYSYMBOL_114_9 = 114,                    /* $@9  */
-  YYSYMBOL_115_10 = 115,                   /* $@10  */
-  YYSYMBOL_116_11 = 116,                   /* $@11  */
-  YYSYMBOL_titlesec = 117,                 /* titlesec  */
-  YYSYMBOL_118_12 = 118,                   /* $@12  */
-  YYSYMBOL_titlecontent = 119,             /* titlecontent  */
-  YYSYMBOL_120_13 = 120,                   /* $@13  */
-  YYSYMBOL_section = 121,                  /* section  */
-  YYSYMBOL_122_14 = 122                    /* $@14  */
+  YYSYMBOL_titlesec = 115,                 /* titlesec  */
+  YYSYMBOL_116_10 = 116,                   /* $@10  */
+  YYSYMBOL_titlecontent = 117,             /* titlecontent  */
+  YYSYMBOL_118_11 = 118,                   /* $@11  */
+  YYSYMBOL_section = 119,                  /* section  */
+  YYSYMBOL_120_12 = 120                    /* $@12  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -554,16 +554,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  4
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   47
+#define YYLAST   44
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  93
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  30
+#define YYNNTS  28
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  40
+#define YYNRULES  38
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  64
+#define YYNSTATES  62
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   347
@@ -621,11 +621,10 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    59,    59,    59,    63,    63,    66,    67,    67,    71,
-      71,    72,    72,    76,    76,    80,    81,    82,    86,    86,
-      90,    90,    90,    94,    94,    98,    98,   103,   107,   107,
-     107,   108,   108,   108,   112,   112,   116,   116,   116,   120,
-     120
+       0,    62,    62,    62,    66,    66,    69,    70,    70,    74,
+      74,    75,    75,    79,    79,    83,    84,    85,    89,    89,
+      93,    93,    93,    97,    97,   101,   101,   106,   110,   110,
+     111,   111,   115,   115,   119,   119,   119,   123,   123
 };
 #endif
 
@@ -661,8 +660,8 @@ static const char *const yytname[] =
   "C_ENTRY", "$accept", "sigma", "$@1", "content", "article", "$@2",
   "infocontent", "info", "$@3", "authorcontent", "author", "$@4",
   "sharedcontent", "$@5", "firstname", "$@6", "surname", "$@7",
-  "paracontent", "para", "$@8", "$@9", "$@10", "$@11", "titlesec", "$@12",
-  "titlecontent", "$@13", "section", "$@14", YY_NULLPTR
+  "paracontent", "para", "$@8", "$@9", "titlesec", "$@10", "titlecontent",
+  "$@11", "section", "$@12", YY_NULLPTR
 };
 
 static const char *
@@ -677,7 +676,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
 
-#define YYTABLE_NINF (-39)
+#define YYTABLE_NINF (-37)
 
 #define yytable_value_is_error(Yyn) \
   0
@@ -686,13 +685,13 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -4,   -47,     8,     1,   -47,   -47,   -47,     0,   -47,    -3,
+      -4,   -47,     8,     2,   -47,   -47,   -47,     1,   -47,    -3,
      -12,    12,   -14,    -3,   -47,   -47,     4,   -12,   -12,    -3,
       16,   -47,     9,   -47,    17,   -23,   -47,   -47,   -47,    16,
-     -47,   -47,     7,   -47,    10,    11,   -47,   -47,     2,   -23,
-     -23,   -47,     3,    -3,    17,   -47,    22,    22,   -47,   -47,
-     -47,    13,   -47,    -1,   -47,    25,     6,    14,   -47,   -47,
-      22,   -47,   -47,   -47
+     -47,     3,     7,   -47,    10,    11,   -47,   -47,     6,   -23,
+     -23,     5,   -47,    -3,    17,   -47,    21,    21,   -47,   -47,
+     -47,   -47,    -1,   -47,    26,    13,    14,   -47,    21,   -47,
+     -47,   -47
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -701,28 +700,28 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     2,     0,     6,     1,     7,     3,     0,    13,     0,
-       0,    28,     0,     5,    34,    18,     0,    12,    10,     0,
-       0,    39,     0,     4,     0,     0,    14,    11,     9,     0,
-      27,    32,     0,     8,    36,     0,    23,    25,     0,     0,
-      17,    29,     0,     0,     0,    35,     0,     0,    19,    15,
-      16,     0,    33,     0,    37,    22,     0,     0,    30,    40,
-       0,    24,    26,    21
+       0,    28,     0,     5,    32,    18,     0,    12,    10,     0,
+       0,    37,     0,     4,     0,     0,    14,    11,     9,     0,
+      27,     0,     0,     8,    34,     0,    23,    25,     0,     0,
+      17,     0,    31,     0,     0,    33,     0,     0,    19,    15,
+      16,    29,     0,    35,    22,     0,     0,    38,     0,    24,
+      26,    21
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
      -47,   -47,   -47,   -13,   -47,   -47,   -11,   -47,   -47,   -29,
-     -47,   -47,   -46,   -47,   -47,   -47,   -47,   -47,     5,    18,
-     -47,   -47,   -47,   -47,    15,   -47,   -15,   -47,   -47,   -47
+     -47,   -47,   -46,   -47,   -47,   -47,   -47,   -47,    15,    18,
+     -47,   -47,     0,   -47,   -10,   -47,   -47,   -47
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
        0,     2,     3,    12,     6,     7,    16,     9,    10,    38,
-      17,    25,    56,    60,    39,    46,    40,    47,    31,    13,
-      19,    51,    20,    42,    18,    24,    35,    44,    22,    32
+      17,    25,    55,    58,    39,    46,    40,    47,    31,    13,
+      19,    20,    18,    24,    35,    44,    22,    32
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -730,20 +729,20 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      23,    57,    36,    14,    37,     1,    27,    28,     4,    15,
-      49,    50,     5,     8,    63,   -31,    11,    21,    26,    30,
-      34,    33,    14,    52,    48,    55,   -38,    45,   -20,    54,
-      53,    59,    61,    58,    41,     0,     0,    29,     0,     0,
-       0,     0,    62,     0,     0,     0,     0,    43
+      23,    56,    36,    14,    37,     1,    27,    28,     4,    15,
+      49,    50,    61,     5,     8,   -30,    11,    21,    26,    30,
+      34,    33,    14,    42,    54,    51,   -36,    45,    48,   -20,
+      52,    57,    43,     0,    53,     0,     0,    29,     0,    59,
+       0,     0,    60,     0,    41
 };
 
 static const yytype_int8 yycheck[] =
 {
       13,    47,    25,    15,    27,     9,    17,    18,     0,    21,
-      39,    40,    11,    13,    60,     3,    19,    31,    14,     3,
-       3,    12,    15,    20,    22,     3,    16,    16,     3,    44,
-      43,    32,    26,    20,    29,    -1,    -1,    19,    -1,    -1,
-      -1,    -1,    28,    -1,    -1,    -1,    -1,    32
+      39,    40,    58,    11,    13,     3,    19,    31,    14,     3,
+       3,    12,    15,    20,     3,    20,    16,    16,    22,     3,
+      43,    32,    32,    -1,    44,    -1,    -1,    19,    -1,    26,
+      -1,    -1,    28,    -1,    29
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -751,12 +750,12 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,     9,    94,    95,     0,    11,    97,    98,    13,   100,
-     101,    19,    96,   112,    15,    21,    99,   103,   117,   113,
-     115,    31,   121,    96,   118,   104,    14,    99,    99,   112,
-       3,   111,   122,    12,     3,   119,    25,    27,   102,   107,
-     109,   111,   116,   117,   120,    16,   108,   110,    22,   102,
-     102,   114,    20,    96,   119,     3,   105,   105,    20,    32,
-     106,    26,    28,   105
+     101,    19,    96,   112,    15,    21,    99,   103,   115,   113,
+     114,    31,   119,    96,   116,   104,    14,    99,    99,   112,
+       3,   111,   120,    12,     3,   117,    25,    27,   102,   107,
+     109,   111,    20,   115,   118,    16,   108,   110,    22,   102,
+     102,    20,    96,   117,     3,   105,   105,    32,   106,    26,
+      28,   105
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -764,9 +763,8 @@ static const yytype_int8 yyr1[] =
 {
        0,    93,    95,    94,    96,    96,    97,    98,    97,    99,
       99,    99,    99,   101,   100,   102,   102,   102,   104,   103,
-     106,   105,   105,   108,   107,   110,   109,   111,   113,   114,
-     112,   115,   116,   112,   118,   117,   120,   119,   119,   122,
-     121
+     106,   105,   105,   108,   107,   110,   109,   111,   113,   112,
+     114,   112,   116,   115,   118,   117,   117,   120,   119
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -774,9 +772,8 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     3,     2,     1,     0,     0,     6,     2,
        1,     2,     1,     0,     4,     2,     2,     1,     0,     4,
-       0,     3,     1,     0,     4,     0,     4,     1,     0,     0,
-       6,     0,     0,     5,     0,     4,     0,     3,     1,     0,
-       5
+       0,     3,     1,     0,     4,     0,     4,     1,     0,     5,
+       0,     4,     0,     4,     0,     3,     1,     0,     5
 };
 
 
@@ -1240,163 +1237,157 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* $@1: %empty  */
-#line 59 "grammarPrueba.y"
-             {printf("<!DOCTYPE html>\n<html>\n");}
-#line 1246 "grammarPrueba.tab.c"
+#line 62 "grammarPrueba.y"
+             {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n");}
+#line 1243 "grammarPrueba.tab.c"
     break;
 
   case 3: /* sigma: DOCTYPE $@1 article  */
-#line 59 "grammarPrueba.y"
-                                                            {printf("</html>\n");}
-#line 1252 "grammarPrueba.tab.c"
+#line 62 "grammarPrueba.y"
+                                                                                        {fprintf(salida,"</body>\n</html>\n");}
+#line 1249 "grammarPrueba.tab.c"
     break;
 
   case 7: /* $@2: %empty  */
-#line 67 "grammarPrueba.y"
-              {printf("<article>\n");}
-#line 1258 "grammarPrueba.tab.c"
+#line 70 "grammarPrueba.y"
+              {fprintf(salida,"<article>\n");}
+#line 1255 "grammarPrueba.tab.c"
     break;
 
   case 8: /* article: A_ARTICLE $@2 info content section C_ARTICLE  */
-#line 67 "grammarPrueba.y"
-                                                                      {printf("</article>\n");}
-#line 1264 "grammarPrueba.tab.c"
+#line 70 "grammarPrueba.y"
+                                                                              {fprintf(salida,"</article>\n");}
+#line 1261 "grammarPrueba.tab.c"
     break;
 
   case 13: /* $@3: %empty  */
-#line 76 "grammarPrueba.y"
-           {printf("<info> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");}
-#line 1270 "grammarPrueba.tab.c"
+#line 79 "grammarPrueba.y"
+           {fprintf(salida,"<div> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");}
+#line 1267 "grammarPrueba.tab.c"
     break;
 
   case 14: /* info: A_INFO $@3 infocontent C_INFO  */
-#line 76 "grammarPrueba.y"
-                                                                                                                            {printf("</info>\n");}
-#line 1276 "grammarPrueba.tab.c"
+#line 79 "grammarPrueba.y"
+                                                                                                                                   {fprintf(salida,"</p>\n</div>\n");}
+#line 1273 "grammarPrueba.tab.c"
     break;
 
   case 18: /* $@4: %empty  */
-#line 86 "grammarPrueba.y"
-             {printf("<author>\n");}
-#line 1282 "grammarPrueba.tab.c"
+#line 89 "grammarPrueba.y"
+             {fprintf(salida,"<address>\n");}
+#line 1279 "grammarPrueba.tab.c"
     break;
 
   case 19: /* author: A_AUTHOR $@4 authorcontent C_AUTHOR  */
-#line 86 "grammarPrueba.y"
-                                                            {printf("</author>\n");}
-#line 1288 "grammarPrueba.tab.c"
+#line 89 "grammarPrueba.y"
+                                                                     {fprintf(salida,"</address>\n");}
+#line 1285 "grammarPrueba.tab.c"
     break;
 
   case 20: /* $@5: %empty  */
-#line 90 "grammarPrueba.y"
-          {printf("%s",yylval);}
-#line 1294 "grammarPrueba.tab.c"
+#line 93 "grammarPrueba.y"
+          {fprintf(salida,"%s",yylval);}
+#line 1291 "grammarPrueba.tab.c"
     break;
 
   case 22: /* sharedcontent: TEXTO  */
-#line 90 "grammarPrueba.y"
-                                                                {printf("%s",yylval);}
-#line 1300 "grammarPrueba.tab.c"
+#line 93 "grammarPrueba.y"
+                                                                        {fprintf(salida,"%s",yylval);}
+#line 1297 "grammarPrueba.tab.c"
     break;
 
   case 23: /* $@6: %empty  */
-#line 94 "grammarPrueba.y"
-                {printf("<firstname>");}
-#line 1306 "grammarPrueba.tab.c"
+#line 97 "grammarPrueba.y"
+                {fprintf(salida,"<p>");}
+#line 1303 "grammarPrueba.tab.c"
     break;
 
   case 24: /* firstname: A_FIRSTNAME $@6 sharedcontent C_FIRSTNAME  */
-#line 94 "grammarPrueba.y"
-                                                                   {printf("</firstname>\n");}
-#line 1312 "grammarPrueba.tab.c"
+#line 97 "grammarPrueba.y"
+                                                                   {fprintf(salida,"</p>\n");}
+#line 1309 "grammarPrueba.tab.c"
     break;
 
   case 25: /* $@7: %empty  */
-#line 98 "grammarPrueba.y"
-              {printf("<surname>");}
-#line 1318 "grammarPrueba.tab.c"
+#line 101 "grammarPrueba.y"
+              {fprintf(salida,"<p>");}
+#line 1315 "grammarPrueba.tab.c"
     break;
 
   case 26: /* surname: A_SURNAME $@7 sharedcontent C_SURNAME  */
-#line 98 "grammarPrueba.y"
-                                                             {printf("</surname>\n");}
-#line 1324 "grammarPrueba.tab.c"
+#line 101 "grammarPrueba.y"
+                                                               {fprintf(salida,"</p>\n");}
+#line 1321 "grammarPrueba.tab.c"
+    break;
+
+  case 27: /* paracontent: TEXTO  */
+#line 106 "grammarPrueba.y"
+          {fprintf(salida,"%s", yylval);}
+#line 1327 "grammarPrueba.tab.c"
     break;
 
   case 28: /* $@8: %empty  */
-#line 107 "grammarPrueba.y"
-           {printf("<p>");}
-#line 1330 "grammarPrueba.tab.c"
+#line 110 "grammarPrueba.y"
+           {fprintf(salida,"<p>");}
+#line 1333 "grammarPrueba.tab.c"
     break;
 
-  case 29: /* $@9: %empty  */
-#line 107 "grammarPrueba.y"
-                                              {printf("%s", yylval);}
-#line 1336 "grammarPrueba.tab.c"
+  case 29: /* para: A_PARA $@8 para paracontent C_PARA  */
+#line 110 "grammarPrueba.y"
+                                                                  {fprintf(salida,"</p>\n");}
+#line 1339 "grammarPrueba.tab.c"
     break;
 
-  case 30: /* para: A_PARA $@8 para paracontent $@9 C_PARA  */
-#line 107 "grammarPrueba.y"
-                                                                                 {printf("</p>\n");}
-#line 1342 "grammarPrueba.tab.c"
+  case 30: /* $@9: %empty  */
+#line 111 "grammarPrueba.y"
+           {fprintf(salida,"<p>");}
+#line 1345 "grammarPrueba.tab.c"
     break;
 
-  case 31: /* $@10: %empty  */
-#line 108 "grammarPrueba.y"
-           {printf("<p>");}
-#line 1348 "grammarPrueba.tab.c"
+  case 31: /* para: A_PARA $@9 paracontent C_PARA  */
+#line 111 "grammarPrueba.y"
+                                                                  {fprintf(salida,"</p>\n");}
+#line 1351 "grammarPrueba.tab.c"
     break;
 
-  case 32: /* $@11: %empty  */
-#line 108 "grammarPrueba.y"
-                                         {printf("%s", yylval);}
-#line 1354 "grammarPrueba.tab.c"
+  case 32: /* $@10: %empty  */
+#line 115 "grammarPrueba.y"
+                {fprintf(salida,"<h2>");}
+#line 1357 "grammarPrueba.tab.c"
     break;
 
-  case 33: /* para: A_PARA $@10 paracontent $@11 C_PARA  */
-#line 108 "grammarPrueba.y"
-                                                                                 {printf("</p>\n");}
-#line 1360 "grammarPrueba.tab.c"
+  case 33: /* titlesec: A_TITLE $@10 titlecontent C_TITLE  */
+#line 115 "grammarPrueba.y"
+                                                               {fprintf(salida,"</h2>\n");}
+#line 1363 "grammarPrueba.tab.c"
     break;
 
-  case 34: /* $@12: %empty  */
-#line 112 "grammarPrueba.y"
-                {printf("<h2>");}
-#line 1366 "grammarPrueba.tab.c"
+  case 34: /* $@11: %empty  */
+#line 119 "grammarPrueba.y"
+              {fprintf(salida,"%s", yylval);}
+#line 1369 "grammarPrueba.tab.c"
     break;
 
-  case 35: /* titlesec: A_TITLE $@12 titlecontent C_TITLE  */
-#line 112 "grammarPrueba.y"
-                                                       {printf("</h2>\n");}
-#line 1372 "grammarPrueba.tab.c"
+  case 36: /* titlecontent: TEXTO  */
+#line 119 "grammarPrueba.y"
+                                                                      {fprintf(salida,"%s", yylval);}
+#line 1375 "grammarPrueba.tab.c"
     break;
 
-  case 36: /* $@13: %empty  */
-#line 116 "grammarPrueba.y"
-              {printf("%s", yylval);}
-#line 1378 "grammarPrueba.tab.c"
+  case 37: /* $@12: %empty  */
+#line 123 "grammarPrueba.y"
+              {fprintf(salida,"<section>\n");}
+#line 1381 "grammarPrueba.tab.c"
     break;
 
-  case 38: /* titlecontent: TEXTO  */
-#line 116 "grammarPrueba.y"
-                                                              {printf("%s", yylval);}
-#line 1384 "grammarPrueba.tab.c"
-    break;
-
-  case 39: /* $@14: %empty  */
-#line 120 "grammarPrueba.y"
-              {printf("<section>\n");}
-#line 1390 "grammarPrueba.tab.c"
-    break;
-
-  case 40: /* section: A_SECTION $@14 titlesec content C_SECTION  */
-#line 120 "grammarPrueba.y"
-                                                                          {printf("</section>\n");}
-#line 1396 "grammarPrueba.tab.c"
+  case 38: /* section: A_SECTION $@12 titlesec content C_SECTION  */
+#line 123 "grammarPrueba.y"
+                                                                                  {fprintf(salida,"</section>\n");}
+#line 1387 "grammarPrueba.tab.c"
     break;
 
 
-#line 1400 "grammarPrueba.tab.c"
+#line 1391 "grammarPrueba.tab.c"
 
       default: break;
     }
@@ -1589,7 +1580,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 123 "grammarPrueba.y"
+#line 126 "grammarPrueba.y"
 
 
 void printWelcome(){
@@ -1601,7 +1592,7 @@ void printWelcome(){
 }
 
 void yyerror(const char *str) {
-    printf("Analisis Sintactico 'INTERRUMPIDO' -  Error: caracter '%s' no reconocido",  str);
+    printf("Analisis Sintactico 'INTERRUMPIDO' -  Error: '%s' ",  str);
     exit(1);
 }
 
@@ -1609,6 +1600,7 @@ int main(int argc, char **argv) {
     if (errorControl(argc, argv))
         return 1;
 
+    salida = fopen("salida.html", "w");
     printWelcome();
     printf("\n");
     printf("Codigo HTML\n"); 

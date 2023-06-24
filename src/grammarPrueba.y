@@ -4,8 +4,11 @@
     #include <stdio.h>
     //#define YYDEBUG 1
     void yyerror(const char *str);
-    //FILE *yyin;
+    const char* getExtension(const char* filename);
+    int errorControl (int argc, char **argv);
+    FILE *salida;
 %}
+
 %union{char* text;}
 
 %token <text> TEXTO 
@@ -56,7 +59,7 @@
 
 %%
 sigma:
-     DOCTYPE {printf("<!DOCTYPE html>\n<html>\n");} article {printf("</html>\n");}
+     DOCTYPE {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n");} article {fprintf(salida,"</body>\n</html>\n");}
 ;
 
 content:
@@ -64,7 +67,7 @@ content:
 ;
 
 article: 
-|   A_ARTICLE {printf("<article>\n");} info content section C_ARTICLE {printf("</article>\n");}
+|   A_ARTICLE {fprintf(salida,"<article>\n");} info content section C_ARTICLE {fprintf(salida,"</article>\n");}
 ;
 
 infocontent:
@@ -73,7 +76,7 @@ infocontent:
 ;
 
 info: 
-    A_INFO {printf("<info> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} infocontent C_INFO {printf("</info>\n");}
+    A_INFO {fprintf(salida,"<div> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} infocontent C_INFO {fprintf(salida,"</p>\n</div>\n");}
 ;
 
 authorcontent:
@@ -83,41 +86,41 @@ authorcontent:
 ;
 
 author:
-    A_AUTHOR {printf("<author>\n");} authorcontent C_AUTHOR {printf("</author>\n");}
+    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}
 ;
 
 sharedcontent:
-    TEXTO {printf("%s",yylval);}  sharedcontent         | TEXTO {printf("%s",yylval);} 
+    TEXTO {fprintf(salida,"%s",yylval);}  sharedcontent         | TEXTO {fprintf(salida,"%s",yylval);} 
 ;
 
 firstname:
-    A_FIRSTNAME {printf("<firstname>");} sharedcontent C_FIRSTNAME {printf("</firstname>\n");}
+    A_FIRSTNAME {fprintf(salida,"<p>");} sharedcontent C_FIRSTNAME {fprintf(salida,"</p>\n");}
 ;
 
 surname:
-    A_SURNAME {printf("<surname>");} sharedcontent C_SURNAME {printf("</surname>\n");}
+    A_SURNAME {fprintf(salida,"<p>");} sharedcontent C_SURNAME {fprintf(salida,"</p>\n");}
 ;
 
 
 paracontent:
-    TEXTO
+    TEXTO {fprintf(salida,"%s", yylval);}
 ;
 
 para:
-    A_PARA {printf("<p>");}  para paracontent {printf("%s", yylval);}     C_PARA {printf("</p>\n");} 
-|   A_PARA {printf("<p>");}  paracontent {printf("%s", yylval);}          C_PARA {printf("</p>\n");} 
+    A_PARA {fprintf(salida,"<p>");}  para paracontent      C_PARA {fprintf(salida,"</p>\n");} 
+|   A_PARA {fprintf(salida,"<p>");}  paracontent           C_PARA {fprintf(salida,"</p>\n");} 
 ;
 
 titlesec:
-        A_TITLE {printf("<h2>");} titlecontent C_TITLE {printf("</h2>\n");}
+        A_TITLE {fprintf(salida,"<h2>");} titlecontent C_TITLE {fprintf(salida,"</h2>\n");}
 ;
 
 titlecontent: 
-        TEXTO {printf("%s", yylval);} titlecontent   | TEXTO  {printf("%s", yylval);}
+        TEXTO {fprintf(salida,"%s", yylval);} titlecontent   | TEXTO  {fprintf(salida,"%s", yylval);}
 ;
 
 section: 
-    A_SECTION {printf("<section>\n");} titlesec     content     C_SECTION {printf("</section>\n");}
+    A_SECTION {fprintf(salida,"<section>\n");} titlesec     content     C_SECTION {fprintf(salida,"</section>\n");}
 ;
 
 %%
@@ -131,7 +134,7 @@ void printWelcome(){
 }
 
 void yyerror(const char *str) {
-    printf("Analisis Sintactico 'INTERRUMPIDO' -  Error: caracter '%s' no reconocido",  str);
+    printf("Analisis Sintactico 'INTERRUMPIDO' -  Error: '%s' ",  str);
     exit(1);
 }
 
@@ -139,6 +142,7 @@ int main(int argc, char **argv) {
     if (errorControl(argc, argv))
         return 1;
 
+    salida = fopen("salida.html", "w");
     printWelcome();
     printf("\n");
     printf("Codigo HTML\n"); 
@@ -146,6 +150,7 @@ int main(int argc, char **argv) {
     //yydebug = 1;
 
     if (!yyparse()){printf("\n Analisis Sintactico 'CORRECTO' \n");}    
+    fclose(salida);
     return 0;
 }
 

@@ -1710,7 +1710,7 @@ YY_RULE_SETUP
 case 91:
 YY_RULE_SETUP
 #line 109 "./scanner.l"
-{ printf("hola!"); exit(1); }
+{ yyerror("Caracter desconocido"); exit(1); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP

@@ -1,23 +1,18 @@
 <!DOCTYPE article>
 <article>
 <info>
-
 <title>Titulo 1</title>
-
 <author>
 <firstname>Ivan</firstname>
 <surname>Niveyro</surname>
 </author>
-
 </info>
-
 <para>
 Parrafo de prueba
 </para>
-
 <section>
 <title>Titulo 2</title>
 <para>Otro Parrafo de prueba</para>
 </section>
-
 </article>
+

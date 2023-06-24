@@ -106,7 +106,7 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 {texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return TEXTO;}
 \n                      { ; }
 [ \t]+                  { ;/* Ignorar espacios y tabuladores */}
-.                       { printf("hola!"); exit(1); }
+.                       { yyerror("Caracter desconocido"); exit(1); }
 %%
 
 const char* getExtension(const char* filename) {
