@@ -101,8 +101,8 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</entrytbl>"           { return C_ENTRYTBL;         }
 "<link xlink:href:"     { return XLINK;              }
 "/>"                    { return C_REF;              }
-{url}                   { return URL;                }
-{ruta}                  { return RUTA;               }
+{url}                   { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return URL;  }
+{ruta}                  { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return RUTA; }
 {texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return TEXTO;}
 \n                      { ; }
 [ \t]+                  { ;/* Ignorar espacios y tabuladores */}
