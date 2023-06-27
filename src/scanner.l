@@ -1,6 +1,8 @@
 %option noyywrap nodefault yylineno
 %{
     #include "grammarPrueba.tab.h"
+    extern YYSTYPE yylval;
+    void yyerror(const char *str);
 %}
 
 
@@ -39,8 +41,8 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</date>"               { return C_DATE;             }
 "<section>"             { return A_SECTION;          }
 "</section>"            { return C_SECTION;          } 
-"<simplesect>"          { return A_SIMSECTION;       } 
-"</simplesect>"         { return C_SIMSECTION;       }
+"<simplesect>"          { return A_SECTION;          } 
+"</simplesect>"         { return C_SECTION;          }
 "<copyright>"           { return A_COPYRIGHT;        }
 "</copyright>"          { return C_COPYRIGHT;        }
 "<address>"             { return A_ADDRESS;          }
@@ -108,7 +110,7 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 [ \t]+                  { ;/* Ignorar espacios y tabuladores */}
 .                       { yyerror("Caracter desconocido"); exit(1); }
 %%
-
+/*
 const char* getExtension(const char* filename) {
     const char* extension = strrchr(filename, '.');
     if (extension && extension != filename) return extension + 1;;
@@ -117,7 +119,6 @@ const char* getExtension(const char* filename) {
 
 int errorControl (int argc, char **argv) {
     if(argc > 1) {
-
         if(!(yyin = fopen(argv[1], "r"))) {
             fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
             return 1;
@@ -132,3 +133,4 @@ int errorControl (int argc, char **argv) {
     }
     return 0;
 }
+*/

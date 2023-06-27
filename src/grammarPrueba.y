@@ -1,20 +1,18 @@
 %{   
-    #include <string.h>
-    #include <stdlib.h>
     #include <stdio.h>
     //#define YYDEBUG 1
     void yyerror(const char *str);
-    const char* getExtension(const char* filename);
-    int errorControl (int argc, char **argv);
     FILE *salida;
-    extern int yylineno;
 %}
 
-%union{char* text;}
+%union{
+    char* text;
+}
 
 %token <text> TEXTO 
 %token <text> RUTA 
-%token <text> URL 
+%token <text> URL
+
 %token XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
@@ -27,7 +25,7 @@
 %token A_SURNAME        C_SURNAME
 %token A_DATE           C_DATE
 %token A_SECTION        C_SECTION
-%token A_SIMSECTION     C_SIMSECTION
+//%token A_SIMSECTION     C_SIMSECTION
 %token A_COPYRIGHT      C_COPYRIGHT
 %token A_ADDRESS        C_ADDRESS
 %token A_CITY           C_CITY
@@ -65,9 +63,48 @@ sigma:
      DOCTYPE {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n");} article {fprintf(salida,"</body>\n</html>\n");}
 ;
 /*---------------------------------PRODUCCIONES PRINCIPALES---------------------------------*/
+section: 
+    %empty
+|   A_SECTION {fprintf(salida,"<section>\n");} section info titlesec content C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} info titlesec content simsection     C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} info titlesec content                C_SECTION {fprintf(salida,"</section>\n");}
+|   A_SECTION {fprintf(salida,"<section>\n");} section titlesec content C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} titlesec content simsection          C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} titlesec content                     C_SECTION {fprintf(salida,"</section>\n");}
+|   A_SECTION {fprintf(salida,"<section>\n");} section info content C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} info content simsection              C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} info content                         C_SECTION {fprintf(salida,"</section>\n");}
+|   A_SECTION {fprintf(salida,"<section>\n");} section content C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} content simsection                   C_SECTION {fprintf(salida,"</section>\n");}
+//|   A_SECTION {fprintf(salida,"<section>\n");} content                              C_SECTION {fprintf(salida,"</section>\n");}
+;
 
-article: 
+
+articlecontent:
+    info titledoc content section
+//|   info titledoc content simsection
+//|   info titledoc content
+|   info content section
+//|   info content simsection
+//|   info content 
+|   titledoc content section
+//|   titledoc content simsection
+//|   titledoc content
+;
+
+article:
+    %empty
 |   A_ARTICLE {fprintf(salida,"<article>\n");} articlecontent C_ARTICLE {fprintf(salida,"</article>\n");}
+;
+
+infocontent:
+    titlesec    infocontent | titlesec
+|   author  infocontent | author
+|   date  infocontent | date
+|   copyright  infocontent | copyright
+|   abstract  infocontent | abstract
+|   address  infocontent | address
+|   mediaobject  infocontent | mediaobject
 ;
 
 info: 
@@ -81,33 +118,13 @@ titlesec:
     A_TITLE {fprintf(salida,"<h2>");} titlecontent C_TITLE {fprintf(salida,"</h2>\n");}
 ;
 
-section: 
-    A_SECTION {fprintf(salida,"<section>\n");} info titlesec content section C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} info titlesec content simsection C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} info titlesec content C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} titlesec content section C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} titlesec content simsection C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} titlesec content C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} info content section C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} info content simsection C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} info content C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} content section C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} content simsection C_SECTION {fprintf(salida,"</section>\n");}
-|   A_SECTION {fprintf(salida,"<section>\n");} content C_SECTION {fprintf(salida,"</section>\n");}
-;
 
-simsection: 
-    A_SIMSECTION {fprintf(salida,"<section>\n");} info titlesec content C_SIMSECTION {fprintf(salida,"</section>\n");}
-    A_SIMSECTION {fprintf(salida,"<section>\n");} info content C_SIMSECTION {fprintf(salida,"</section>\n");}
-    A_SIMSECTION {fprintf(salida,"<section>\n");} titlesec content C_SIMSECTION {fprintf(salida,"</section>\n");}
-    A_SIMSECTION {fprintf(salida,"<section>\n");} content C_SIMSECTION {fprintf(salida,"</section>\n");}
-;
 
 /*---------------------------------PRODUCCIONES SECUNDARIAS---------------------------------*/
 
 author:
-    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}
-|   A_AUTHOR {fprintf(salida,"<address>\n");} personname C_AUTHOR {fprintf(salida,"</address>\n");}
+    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent     C_AUTHOR {fprintf(salida,"</address>\n");}
+|   A_AUTHOR {fprintf(salida,"<address>\n");} personname        C_AUTHOR {fprintf(salida,"</address>\n");}
 ;
 
 para:
@@ -171,13 +188,21 @@ comment: /*VER ETIQUETAS EN HTML*/
     A_COMMENT {fprintf(salida,"<p>");} seclcontent C_COMMENT {fprintf(salida,"</p>\n");} 
 ;
 
+seclcontent: /*Contenido de simpara, link, emphasis y commment*/
+    TEXTO {fprintf(salida,"%s", $1);} seclcontent | TEXTO {fprintf(salida,"%s", $1);}
+|   emphasis seclcontent | emphasis
+|   comment seclcontent | comment
+|   email seclcontent | email
+|   author seclcontent | author
+;
+
 emphasis:   /*VER ETIQUETAS EN HTML*/
     A_EMPHASIS {fprintf(salida,"<p>");} seclcontent C_EMPHASIS {fprintf(salida,"</p>\n");} 
 ;
 
 link:   /*VER ETIQUETAS EN HTML*/
     A_LINK {fprintf(salida,"<p>");} seclcontent C_LINK {fprintf(salida,"</p>\n");} 
-    XLINK {fprintf(salida,"html:a href=\"");} URL {fprintf(salida,"%s", yylval);} C_REF {fprintf(salida,"\">\n");} 
+|   XLINK {fprintf(salida,"html:a href=\"");} URL {fprintf(salida,"%s", yylval);} C_REF {fprintf(salida,"\">\n");} 
 ;
 
 personname:/*VER ETIQUETAS EN HTML aunque no creo que sea para personname sea el caso*/
@@ -221,7 +246,7 @@ listitem:/*VER ETIQUETAS EN HTML*/
 
 informaltable:/*VER ETIQUETAS EN HTML*/
     A_INFORMALTABLE informalcontent C_INFORMALTABLE
-    A_TABLE informalcontent C_TABLE
+|   A_TABLE informalcontent C_TABLE
 ;
 
 tgroup:/*VER ETIQUETAS EN HTML*/
@@ -269,28 +294,6 @@ content:
 |  abstract content     | abstract
 ;
 
-articlecontent:
-|   info titledoc content section
-|   info titledoc content simsection
-|   info titledoc content
-|   info content section
-|   info content simsection
-|   info content 
-|   titledoc content section
-|   titledoc content simsection
-|   titledoc content
-;
-
-infocontent:
-    titlesec    infocontent | titlesec
-|   author  infocontent | author
-|   date  infocontent | date
-|   copyright  infocontent | copyright
-|   abstract  infocontent | abstract
-|   address  infocontent | address
-|   mediaobject  infocontent | mediaobject
-;
-
 abstractcontent:
     para abstractcontent | para
 |   simpara abstractcontent | simpara
@@ -305,7 +308,7 @@ holders:
 ;
 
 addresscontent:
-    TEXTO {fprintf(salida,"%s",yylval);} addresscontent | TEXTO {fprintf(salida,"%s",yylval);}
+    TEXTO {fprintf(salida,"%s",$1);} addresscontent | TEXTO {fprintf(salida,"%s",$1);}
 |   street addresscontent | street
 |   city addresscontent    | street
 |   state addresscontent    | state
@@ -315,7 +318,7 @@ addresscontent:
 ;
 
 titlecontent: 
-    TEXTO {fprintf(salida,"%s", yylval);} titlecontent   | TEXTO  {fprintf(salida,"%s", yylval);}
+    TEXTO {fprintf(salida,"%s", $1);} titlecontent   | TEXTO  {fprintf(salida,"%s", $1);}
 |   emphasis titlecontent | emphasis
 |   email    titlecontent | emphasis
 |   link     titlecontent | link   
@@ -328,14 +331,14 @@ authorcontent:
 ;
 
 sharedcontent:
-    TEXTO {fprintf(salida,"%s",yylval);} sharedcontent | TEXTO {fprintf(salida,"%s",yylval);} 
+    TEXTO {fprintf(salida,"%s",$1);} sharedcontent | TEXTO {fprintf(salida,"%s",$1);} 
 |   link sharedcontent                                 | link
 |   emphasis sharedcontent                             | emphasis
 |   comment sharedcontent                              | comment
 ;
 
 paracontent:
-    TEXTO {fprintf(salida,"%s", yylval);} paracontent | TEXTO {fprintf(salida,"%s", yylval);}
+    TEXTO {fprintf(salida,"%s", $1);} paracontent | TEXTO {fprintf(salida,"%s", $1);}
 |   emphasis    paracontent | emphasis
 |   link    paracontent | link
 |   email    paracontent | email
@@ -349,7 +352,7 @@ paracontent:
 ;
 
 entrycontent:
-    TEXTO {fprintf(salida,"%s", yylval);} entrycontent | TEXTO {fprintf(salida,"%s", yylval);}
+    TEXTO {fprintf(salida,"%s", $1);} entrycontent | TEXTO {fprintf(salida,"%s", $1);}
 |   comment    entrycontent | comment
 |   itemizedlist    entrycontent | itemizedlist
 |   important    entrycontent | important
@@ -359,13 +362,7 @@ entrycontent:
 |   simpara    entrycontent | simpara
 ;
 
-seclcontent: /*Contenido de simpara, link, emphasis y commment*/
-    TEXTO {fprintf(salida,"%s", yylval);} seclcontent | TEXTO {fprintf(salida,"%s", yylval);}
-|   emphasis seclcontent | emphasis
-|   comment seclcontent | comment
-|   email seclcontent | email
-|   author seclcontent | author
-;
+
 
 mediaobjectcontent:
     videoobject mediaobject | videoobject
@@ -397,36 +394,7 @@ variosrow:
 
 rowcontent:
     entry | entry rowcontent
-    entrytbl | entrytbl rowcontent
+|   entrytbl | entrytbl rowcontent
 ;
 
 %%
-
-void printWelcome(){
-    printf("\n\t ANALIZADOR SINTACTICO  -  Grupo N°19\n");
-    printf("\n\t Ultima modificación 25-06-23\n");
-    printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
-    printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
-    printf("\t");    
-}
-
-void yyerror(const char *str) {
-    printf("Analisis Sintactico 'INTERRUMPIDO' -  Error: '%s' en la linea '%d'.",  str, yylineno);
-    exit(1);
-}
-
-int main(int argc, char **argv) {
-    if (errorControl(argc, argv))
-        return 1;
-
-    salida = fopen("salida.html", "w");
-    printWelcome();
-    printf("\n");
-
-    //yydebug = 1;
-
-    if (!yyparse()){printf("\n Analisis Sintactico 'CORRECTO' \n");}    
-    fclose(salida);
-    return 0;
-}
-

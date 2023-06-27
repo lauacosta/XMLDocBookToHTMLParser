@@ -56,12 +56,12 @@ sigma:
 ;
 
 article: 
-    A_ARTICLE info      titledoc content section C_ARTICLE
+    A_ARTICLE info      titledoc content section                C_ARTICLE
 |   A_ARTICLE info      titledoc       content     simsection   C_ARTICLE 
 |   A_ARTICLE info      titledoc       content                  C_ARTICLE 
 |   A_ARTICLE info      content     section                     C_ARTICLE 
 |   A_ARTICLE info      content     simsection                  C_ARTICLE 
-|   A_ARTICLE {printf("<article>");} info      content     C_ARTICLE {printf("</article>\n");}
+|   A_ARTICLE {printf("<article>");} info      content          C_ARTICLE {printf("</article>\n");}
 |   A_ARTICLE titledoc     content     section                  C_ARTICLE 
 |   A_ARTICLE titledoc     content     simsection               C_ARTICLE 
 |   A_ARTICLE titledoc     content                              C_ARTICLE 
