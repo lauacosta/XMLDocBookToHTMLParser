@@ -17,10 +17,13 @@ int main(int argc, char **argv) {
         return 1;
 
     salida = fopen("salida.html", "w");
+    if (salida == NULL) {
+        fprintf(stderr, "salida.html no ha podido ser abierto");
+        return 1;
+    }
+
     printWelcome();
     printf("\n");
-
-    //yydebug = 1;
 
     if (!yyparse()){printf("\n Analisis Sintactico 'CORRECTO' \n");}   
     /* fclose(yyin); */
@@ -41,7 +44,7 @@ const char* getExtension(const char* filename) {
 int errorControl (int argc, char **argv) {
     if(argc > 1) {
         if(!(yyin = fopen(argv[1], "r"))) {
-            fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
+            fprintf(stderr, "El archivo %s no ha sido encontrado o no existe.", argv[1]);
             return 1;
         }
 
@@ -57,7 +60,7 @@ int errorControl (int argc, char **argv) {
 
 void printWelcome(){
     printf("\n\t ANALIZADOR SINTACTICO  -  Grupo N°19\n");
-    printf("\n\t Ultima modificación 25-06-23\n");
+    printf("\n\t Ultima modificación 27-06-23\n");
     printf("\n\t Ivan Niveyro, Lautaro Acosta Quintana, Martín Galeano, Francisco Morel\n");
     printf("\n\t Github repo: https://github.com/LautaroAcosta/LexerParser\n");
     printf("\t");    
