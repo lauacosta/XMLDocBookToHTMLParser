@@ -24,6 +24,8 @@ int main(int argc, char **argv) {
 
     printWelcome();
     printf("\n");
+    
+    yydebug = 1;
 
     if (!yyparse()){printf("\n Analisis Sintactico 'CORRECTO' \n");}   
     /* fclose(yyin); */

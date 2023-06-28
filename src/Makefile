@@ -3,7 +3,7 @@ CC = gcc
 FLEX = flex	
 BISON = bison	
 
-BisonFlags = -d -t -Wother -Wcounterexamples
+BisonFlags = -d -t -Wother -Wcounterexamples -v 
 CCFlags = -Wall -Wextra -pedantic
 
 TARGETBISON = grammarPrueba.y

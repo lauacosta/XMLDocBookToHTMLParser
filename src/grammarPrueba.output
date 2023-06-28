@@ -1,0 +1,5684 @@
+Rules useless in parser due to conflicts
+
+    5 $@3: ε
+
+    7 $@4: ε
+
+    9 $@5: ε
+
+   15 $@8: ε
+
+  158 addresscontent: street
+
+
+State 84 conflicts: 4 reduce/reduce
+State 137 conflicts: 5 reduce/reduce
+State 144 conflicts: 7 reduce/reduce
+State 293 conflicts: 6 shift/reduce
+
+
+Grammar
+
+    0 $accept: sigma $end
+
+    1 $@1: ε
+
+    2 sigma: DOCTYPE $@1 article
+
+    3 $@2: ε
+
+    4 section: A_SECTION $@2 section info titlesec content C_SECTION
+
+    5 $@3: ε
+
+    6 section: A_SECTION $@3 section titlesec content C_SECTION
+
+    7 $@4: ε
+
+    8 section: A_SECTION $@4 section info content C_SECTION
+
+    9 $@5: ε
+
+   10 section: A_SECTION $@5 section content C_SECTION
+
+   11 $@6: ε
+
+   12 section: A_SECTION $@6 info titlesec content C_SECTION
+
+   13 $@7: ε
+
+   14 section: A_SECTION $@7 titlesec content C_SECTION
+
+   15 $@8: ε
+
+   16 section: A_SECTION $@8 info content C_SECTION
+
+   17 $@9: ε
+
+   18 section: A_SECTION $@9 content C_SECTION
+
+   19 articlecontent: ε
+   20               | info titledoc content section
+   21               | info content section
+   22               | titledoc content section
+
+   23 $@10: ε
+
+   24 article: A_ARTICLE $@10 articlecontent C_ARTICLE
+
+   25 infocontent: infocontent titlesec
+   26            | titlesec
+   27            | infocontent author
+   28            | author
+   29            | infocontent date
+   30            | date
+   31            | infocontent copyright
+   32            | copyright
+   33            | infocontent abstract
+   34            | abstract
+   35            | infocontent address
+   36            | address
+   37            | infocontent mediaobject
+   38            | mediaobject
+
+   39 $@11: ε
+
+   40 info: A_INFO $@11 infocontent C_INFO
+
+   41 $@12: ε
+
+   42 titledoc: A_TITLE $@12 titlecontent C_TITLE
+
+   43 $@13: ε
+
+   44 titlesec: A_TITLE $@13 titlecontent C_TITLE
+
+   45 $@14: ε
+
+   46 author: A_AUTHOR $@14 authorcontent C_AUTHOR
+
+   47 $@15: ε
+
+   48 author: A_AUTHOR $@15 personname C_AUTHOR
+
+   49 $@16: ε
+
+   50 para: A_PARA $@16 para paracontent C_PARA
+
+   51 $@17: ε
+
+   52 para: A_PARA $@17 paracontent C_PARA
+
+   53 $@18: ε
+
+   54 simpara: A_SIMPARA $@18 seclcontent C_SIMPARA
+
+   55 $@19: ε
+
+   56 address: A_ADDRESS $@19 addresscontent C_ADDRESS
+
+   57 $@20: ε
+
+   58 firstname: A_FIRSTNAME $@20 sharedcontent C_FIRSTNAME
+
+   59 $@21: ε
+
+   60 surname: A_SURNAME $@21 sharedcontent C_SURNAME
+
+   61 $@22: ε
+
+   62 email: A_EMAIL $@22 sharedcontent C_EMAIL
+
+   63 $@23: ε
+
+   64 postcode: A_POSTCODE $@23 sharedcontent C_POSTCODE
+
+   65 $@24: ε
+
+   66 street: A_STREET $@24 sharedcontent C_STREET
+
+   67 $@25: ε
+
+   68 city: A_CITY $@25 sharedcontent C_CITY
+
+   69 $@26: ε
+
+   70 state: A_STATE $@26 sharedcontent C_STATE
+
+   71 $@27: ε
+
+   72 phone: A_PHONE $@27 sharedcontent C_PHONE
+
+   73 $@28: ε
+
+   74 date: A_DATE $@28 sharedcontent C_DATE
+
+   75 $@29: ε
+
+   76 year: A_YEAR $@29 sharedcontent C_YEAR
+
+   77 $@30: ε
+
+   78 holder: A_HOLDER $@30 sharedcontent C_HOLDER
+
+   79 $@31: ε
+
+   80 comment: A_COMMENT $@31 seclcontent C_COMMENT
+
+   81 seclcontent: seclcontent TEXTO
+   82            | TEXTO
+   83            | seclcontent emphasis
+   84            | emphasis
+   85            | seclcontent comment
+   86            | comment
+   87            | seclcontent email
+   88            | email
+   89            | seclcontent author
+   90            | author
+
+   91 $@32: ε
+
+   92 emphasis: A_EMPHASIS $@32 seclcontent C_EMPHASIS
+
+   93 $@33: ε
+
+   94 link: A_LINK $@33 seclcontent C_LINK
+
+   95 $@34: ε
+
+   96 $@35: ε
+
+   97 link: XLINK $@34 URL $@35 C_REF
+
+   98 personname: A_PERSONNAME authorcontent C_PERSONNAME
+
+   99 $@36: ε
+
+  100 important: A_IMPORTANT $@36 titlesec content C_IMPORTANT
+
+  101 $@37: ε
+
+  102 important: A_IMPORTANT $@37 content C_IMPORTANT
+
+  103 copyright: A_COPYRIGHT copyrightcontent C_COPYRIGHT
+
+  104 abstract: A_ABSTRACT titlesec abstractcontent C_ABSTRACT
+  105         | A_ABSTRACT abstractcontent C_ABSTRACT
+
+  106 mediaobject: A_MEDIAOBJECT mediaobjectcontent C_MEDIAOBJECT
+  107            | A_MEDIAOBJECT info mediaobjectcontent C_MEDIAOBJECT
+
+  108 videoobject: A_VIDEOOBJECT videocontent C_VIDEOOBJECT
+
+  109 imageobject: A_IMAGEOBJECT imagecontent C_IMAGEOBJECT
+
+  110 itemizedlist: A_ITEMIZEDLIST listitem C_ITEMIZEDLIST
+
+  111 listitem: A_LISTITEM content C_LISTITEM
+
+  112 informaltable: A_INFORMALTABLE informalcontent C_INFORMALTABLE
+  113              | A_TABLE informalcontent C_TABLE
+
+  114 tgroup: A_TGROUP thead tfoot tbody C_TGROUP
+  115       | A_TGROUP thead tbody C_TGROUP
+  116       | A_TGROUP tfoot tbody C_TGROUP
+  117       | A_TGROUP tbody C_TGROUP
+
+  118 thead: A_THEAD variosrow C_THEAD
+
+  119 tfoot: A_TFOOT variosrow C_TFOOT
+
+  120 tbody: A_TBODY variosrow C_TBODY
+
+  121 row: A_ROW rowcontent C_ROW
+
+  122 entry: A_ENTRY entrycontent C_ENTRY
+
+  123 entrytbl: A_ENTRYTBL thead tbody C_ENTRYTBL
+  124         | A_ENTRYTBL tbody C_ENTRYTBL
+
+  125 content: content para
+  126        | para
+  127        | content itemizedlist
+  128        | itemizedlist
+  129        | content important
+  130        | important
+  131        | content simpara
+  132        | simpara
+  133        | content address
+  134        | address
+  135        | content mediaobject
+  136        | mediaobject
+  137        | content informaltable
+  138        | informaltable
+  139        | content comment
+  140        | comment
+  141        | content abstract
+  142        | abstract
+
+  143 abstractcontent: abstractcontent para
+  144                | para
+  145                | abstractcontent simpara
+  146                | simpara
+
+  147 copyrightcontent: copyrightcontent year
+  148                 | year
+  149                 | year holders
+
+  150 holders: holders holder
+  151        | holder
+
+  152 $@38: ε
+
+  153 addresscontent: TEXTO $@38 addresscontent
+  154               | TEXTO
+  155               | addresscontent street
+  156               | street
+  157               | addresscontent city
+  158               | street
+  159               | addresscontent state
+  160               | state
+  161               | addresscontent phone
+  162               | phone
+  163               | addresscontent email
+  164               | email
+  165               | addresscontent postcode
+  166               | postcode
+
+  167 titlecontent: titlecontent TEXTO
+  168             | TEXTO
+  169             | titlecontent emphasis
+  170             | emphasis
+  171             | titlecontent email
+  172             | email
+  173             | titlecontent link
+  174             | link
+
+  175 authorcontent: authorcontent firstname
+  176              | authorcontent surname
+  177              | surname
+
+  178 sharedcontent: sharedcontent TEXTO
+  179              | TEXTO
+  180              | sharedcontent link
+  181              | link
+  182              | sharedcontent emphasis
+  183              | emphasis
+  184              | sharedcontent comment
+  185              | comment
+
+  186 paracontent: paracontent TEXTO
+  187            | TEXTO
+  188            | paracontent emphasis
+  189            | emphasis
+  190            | paracontent link
+  191            | link
+  192            | paracontent email
+  193            | email
+  194            | paracontent author
+  195            | author
+  196            | paracontent comment
+  197            | comment
+  198            | paracontent itemizedlist
+  199            | itemizedlist
+  200            | paracontent important
+  201            | important
+  202            | paracontent address
+  203            | address
+  204            | paracontent mediaobject
+  205            | mediaobject
+  206            | paracontent informaltable
+  207            | informaltable
+
+  208 entrycontent: entrycontent TEXTO
+  209             | TEXTO
+  210             | entrycontent comment
+  211             | comment
+  212             | entrycontent itemizedlist
+  213             | itemizedlist
+  214             | entrycontent important
+  215             | important
+  216             | entrycontent mediaobject
+  217             | mediaobject
+  218             | entrycontent abstract
+  219             | abstract
+  220             | entrycontent para
+  221             | para
+  222             | entrycontent simpara
+  223             | simpara
+
+  224 mediaobjectcontent: videoobject mediaobject
+  225                   | videoobject
+  226                   | imageobject mediaobject
+  227                   | imageobject
+
+  228 $@39: ε
+
+  229 $@40: ε
+
+  230 videocontent: info VIDEODATA $@39 URL $@40 C_REF
+
+  231 $@41: ε
+
+  232 $@42: ε
+
+  233 videocontent: VIDEODATA $@41 URL $@42 C_REF
+
+  234 $@43: ε
+
+  235 $@44: ε
+
+  236 videocontent: info VIDEODATA $@43 RUTA $@44 C_REF
+
+  237 $@45: ε
+
+  238 $@46: ε
+
+  239 videocontent: VIDEODATA $@45 RUTA $@46 C_REF
+
+  240 $@47: ε
+
+  241 $@48: ε
+
+  242 imagecontent: info IMAGEDATA $@47 URL $@48 C_REF
+
+  243 $@49: ε
+
+  244 $@50: ε
+
+  245 imagecontent: IMAGEDATA $@49 URL $@50 C_REF
+
+  246 $@51: ε
+
+  247 $@52: ε
+
+  248 imagecontent: info IMAGEDATA $@51 RUTA $@52 C_REF
+
+  249 $@53: ε
+
+  250 $@54: ε
+
+  251 imagecontent: IMAGEDATA $@53 RUTA $@54 C_REF
+
+  252 informalcontent: informalcontent mediaobject
+  253                | mediaobject
+  254                | informalcontent tgroup
+  255                | tgroup
+
+  256 variosrow: row
+  257          | variosrow row
+
+  258 rowcontent: entry
+  259           | rowcontent entry
+  260           | entrytbl
+  261           | rowcontent entrytbl
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    TEXTO <text> (258) 81 82 153 154 167 168 178 179 186 187 208 209
+    RUTA <text> (259) 236 239 248 251
+    URL <text> (260) 97 230 233 242 245
+    XLINK (261) 97
+    VIDEODATA (262) 230 233 236 239
+    IMAGEDATA (263) 242 245 248 251
+    DOCTYPE (264) 2
+    C_REF (265) 97 230 233 236 239 242 245 248 251
+    A_ARTICLE (266) 24
+    C_ARTICLE (267) 24
+    A_INFO (268) 40
+    C_INFO (269) 40
+    A_TITLE (270) 42 44
+    C_TITLE (271) 42 44
+    A_ABSTRACT (272) 104 105
+    C_ABSTRACT (273) 104 105
+    A_PARA (274) 50 52
+    C_PARA (275) 50 52
+    A_AUTHOR (276) 46 48
+    C_AUTHOR (277) 46 48
+    A_PERSONNAME (278) 98
+    C_PERSONNAME (279) 98
+    A_FIRSTNAME (280) 58
+    C_FIRSTNAME (281) 58
+    A_SURNAME (282) 60
+    C_SURNAME (283) 60
+    A_DATE (284) 74
+    C_DATE (285) 74
+    A_SECTION (286) 4 6 8 10 12 14 16 18
+    C_SECTION (287) 4 6 8 10 12 14 16 18
+    A_COPYRIGHT (288) 103
+    C_COPYRIGHT (289) 103
+    A_ADDRESS (290) 56
+    C_ADDRESS (291) 56
+    A_CITY (292) 68
+    C_CITY (293) 68
+    A_STATE (294) 70
+    C_STATE (295) 70
+    A_POSTCODE (296) 64
+    C_POSTCODE (297) 64
+    A_STREET (298) 66
+    C_STREET (299) 66
+    A_EMAIL (300) 62
+    C_EMAIL (301) 62
+    A_PHONE (302) 72
+    C_PHONE (303) 72
+    A_ITEMIZEDLIST (304) 110
+    C_ITEMIZEDLIST (305) 110
+    A_LISTITEM (306) 111
+    C_LISTITEM (307) 111
+    A_EMPHASIS (308) 92
+    C_EMPHASIS (309) 92
+    A_HOLDER (310) 78
+    C_HOLDER (311) 78
+    A_SIMPARA (312) 54
+    C_SIMPARA (313) 54
+    A_YEAR (314) 76
+    C_YEAR (315) 76
+    A_COMMENT (316) 80
+    C_COMMENT (317) 80
+    A_IMPORTANT (318) 100 102
+    C_IMPORTANT (319) 100 102
+    A_LINK (320) 94
+    C_LINK (321) 94
+    A_MEDIAOBJECT (322) 106 107
+    C_MEDIAOBJECT (323) 106 107
+    A_VIDEOOBJECT (324) 108
+    C_VIDEOOBJECT (325) 108
+    A_IMAGEOBJECT (326) 109
+    C_IMAGEOBJECT (327) 109
+    A_INFORMALTABLE (328) 112
+    C_INFORMALTABLE (329) 112
+    A_TGROUP (330) 114 115 116 117
+    C_TGROUP (331) 114 115 116 117
+    A_ROW (332) 121
+    C_ROW (333) 121
+    A_TABLE (334) 113
+    C_TABLE (335) 113
+    A_THEAD (336) 118
+    C_THEAD (337) 118
+    A_TFOOT (338) 119
+    C_TFOOT (339) 119
+    A_TBODY (340) 120
+    C_TBODY (341) 120
+    A_ENTRYTBL (342) 123 124
+    C_ENTRYTBL (343) 123 124
+    A_ENTRY (344) 122
+    C_ENTRY (345) 122
+
+
+Nonterminals, with rules where they appear
+
+    $accept (91)
+        on left: 0
+    sigma (92)
+        on left: 2
+        on right: 0
+    $@1 (93)
+        on left: 1
+        on right: 2
+    section (94)
+        on left: 4 6 8 10 12 14 16 18
+        on right: 4 6 8 10 20 21 22
+    $@2 (95)
+        on left: 3
+        on right: 4
+    $@3 (96)
+        on left: 5
+        on right: 6
+    $@4 (97)
+        on left: 7
+        on right: 8
+    $@5 (98)
+        on left: 9
+        on right: 10
+    $@6 (99)
+        on left: 11
+        on right: 12
+    $@7 (100)
+        on left: 13
+        on right: 14
+    $@8 (101)
+        on left: 15
+        on right: 16
+    $@9 (102)
+        on left: 17
+        on right: 18
+    articlecontent (103)
+        on left: 19 20 21 22
+        on right: 24
+    article (104)
+        on left: 24
+        on right: 2
+    $@10 (105)
+        on left: 23
+        on right: 24
+    infocontent (106)
+        on left: 25 26 27 28 29 30 31 32 33 34 35 36 37 38
+        on right: 25 27 29 31 33 35 37 40
+    info (107)
+        on left: 40
+        on right: 4 8 12 16 20 21 107 230 236 242 248
+    $@11 (108)
+        on left: 39
+        on right: 40
+    titledoc (109)
+        on left: 42
+        on right: 20 22
+    $@12 (110)
+        on left: 41
+        on right: 42
+    titlesec (111)
+        on left: 44
+        on right: 4 6 12 14 25 26 100 104
+    $@13 (112)
+        on left: 43
+        on right: 44
+    author (113)
+        on left: 46 48
+        on right: 27 28 89 90 194 195
+    $@14 (114)
+        on left: 45
+        on right: 46
+    $@15 (115)
+        on left: 47
+        on right: 48
+    para (116)
+        on left: 50 52
+        on right: 50 125 126 143 144 220 221
+    $@16 (117)
+        on left: 49
+        on right: 50
+    $@17 (118)
+        on left: 51
+        on right: 52
+    simpara (119)
+        on left: 54
+        on right: 131 132 145 146 222 223
+    $@18 (120)
+        on left: 53
+        on right: 54
+    address (121)
+        on left: 56
+        on right: 35 36 133 134 202 203
+    $@19 (122)
+        on left: 55
+        on right: 56
+    firstname (123)
+        on left: 58
+        on right: 175
+    $@20 (124)
+        on left: 57
+        on right: 58
+    surname (125)
+        on left: 60
+        on right: 176 177
+    $@21 (126)
+        on left: 59
+        on right: 60
+    email (127)
+        on left: 62
+        on right: 87 88 163 164 171 172 192 193
+    $@22 (128)
+        on left: 61
+        on right: 62
+    postcode (129)
+        on left: 64
+        on right: 165 166
+    $@23 (130)
+        on left: 63
+        on right: 64
+    street (131)
+        on left: 66
+        on right: 155 156 158
+    $@24 (132)
+        on left: 65
+        on right: 66
+    city (133)
+        on left: 68
+        on right: 157
+    $@25 (134)
+        on left: 67
+        on right: 68
+    state (135)
+        on left: 70
+        on right: 159 160
+    $@26 (136)
+        on left: 69
+        on right: 70
+    phone (137)
+        on left: 72
+        on right: 161 162
+    $@27 (138)
+        on left: 71
+        on right: 72
+    date (139)
+        on left: 74
+        on right: 29 30
+    $@28 (140)
+        on left: 73
+        on right: 74
+    year (141)
+        on left: 76
+        on right: 147 148 149
+    $@29 (142)
+        on left: 75
+        on right: 76
+    holder (143)
+        on left: 78
+        on right: 150 151
+    $@30 (144)
+        on left: 77
+        on right: 78
+    comment (145)
+        on left: 80
+        on right: 85 86 139 140 184 185 196 197 210 211
+    $@31 (146)
+        on left: 79
+        on right: 80
+    seclcontent (147)
+        on left: 81 82 83 84 85 86 87 88 89 90
+        on right: 54 80 81 83 85 87 89 92 94
+    emphasis (148)
+        on left: 92
+        on right: 83 84 169 170 182 183 188 189
+    $@32 (149)
+        on left: 91
+        on right: 92
+    link (150)
+        on left: 94 97
+        on right: 173 174 180 181 190 191
+    $@33 (151)
+        on left: 93
+        on right: 94
+    $@34 (152)
+        on left: 95
+        on right: 97
+    $@35 (153)
+        on left: 96
+        on right: 97
+    personname (154)
+        on left: 98
+        on right: 48
+    important (155)
+        on left: 100 102
+        on right: 129 130 200 201 214 215
+    $@36 (156)
+        on left: 99
+        on right: 100
+    $@37 (157)
+        on left: 101
+        on right: 102
+    copyright (158)
+        on left: 103
+        on right: 31 32
+    abstract (159)
+        on left: 104 105
+        on right: 33 34 141 142 218 219
+    mediaobject (160)
+        on left: 106 107
+        on right: 37 38 135 136 204 205 216 217 224 226 252 253
+    videoobject (161)
+        on left: 108
+        on right: 224 225
+    imageobject (162)
+        on left: 109
+        on right: 226 227
+    itemizedlist (163)
+        on left: 110
+        on right: 127 128 198 199 212 213
+    listitem (164)
+        on left: 111
+        on right: 110
+    informaltable (165)
+        on left: 112 113
+        on right: 137 138 206 207
+    tgroup (166)
+        on left: 114 115 116 117
+        on right: 254 255
+    thead (167)
+        on left: 118
+        on right: 114 115 123
+    tfoot (168)
+        on left: 119
+        on right: 114 116
+    tbody (169)
+        on left: 120
+        on right: 114 115 116 117 123 124
+    row (170)
+        on left: 121
+        on right: 256 257
+    entry (171)
+        on left: 122
+        on right: 258 259
+    entrytbl (172)
+        on left: 123 124
+        on right: 260 261
+    content (173)
+        on left: 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142
+        on right: 4 6 8 10 12 14 16 18 20 21 22 100 102 111 125 127 129 131 133 135 137 139 141
+    abstractcontent (174)
+        on left: 143 144 145 146
+        on right: 104 105 143 145
+    copyrightcontent (175)
+        on left: 147 148 149
+        on right: 103 147
+    holders (176)
+        on left: 150 151
+        on right: 149 150
+    addresscontent (177)
+        on left: 153 154 155 156 157 158 159 160 161 162 163 164 165 166
+        on right: 56 153 155 157 159 161 163 165
+    $@38 (178)
+        on left: 152
+        on right: 153
+    titlecontent (179)
+        on left: 167 168 169 170 171 172 173 174
+        on right: 42 44 167 169 171 173
+    authorcontent (180)
+        on left: 175 176 177
+        on right: 46 98 175 176
+    sharedcontent (181)
+        on left: 178 179 180 181 182 183 184 185
+        on right: 58 60 62 64 66 68 70 72 74 76 78 178 180 182 184
+    paracontent (182)
+        on left: 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207
+        on right: 50 52 186 188 190 192 194 196 198 200 202 204 206
+    entrycontent (183)
+        on left: 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223
+        on right: 122 208 210 212 214 216 218 220 222
+    mediaobjectcontent (184)
+        on left: 224 225 226 227
+        on right: 106 107
+    videocontent (185)
+        on left: 230 233 236 239
+        on right: 108
+    $@39 (186)
+        on left: 228
+        on right: 230
+    $@40 (187)
+        on left: 229
+        on right: 230
+    $@41 (188)
+        on left: 231
+        on right: 233
+    $@42 (189)
+        on left: 232
+        on right: 233
+    $@43 (190)
+        on left: 234
+        on right: 236
+    $@44 (191)
+        on left: 235
+        on right: 236
+    $@45 (192)
+        on left: 237
+        on right: 239
+    $@46 (193)
+        on left: 238
+        on right: 239
+    imagecontent (194)
+        on left: 242 245 248 251
+        on right: 109
+    $@47 (195)
+        on left: 240
+        on right: 242
+    $@48 (196)
+        on left: 241
+        on right: 242
+    $@49 (197)
+        on left: 243
+        on right: 245
+    $@50 (198)
+        on left: 244
+        on right: 245
+    $@51 (199)
+        on left: 246
+        on right: 248
+    $@52 (200)
+        on left: 247
+        on right: 248
+    $@53 (201)
+        on left: 249
+        on right: 251
+    $@54 (202)
+        on left: 250
+        on right: 251
+    informalcontent (203)
+        on left: 252 253 254 255
+        on right: 112 113 252 254
+    variosrow (204)
+        on left: 256 257
+        on right: 118 119 120 257
+    rowcontent (205)
+        on left: 258 259 260 261
+        on right: 121 259 261
+
+
+State 0
+
+    0 $accept: • sigma $end
+
+    DOCTYPE  shift, and go to state 1
+
+    sigma  go to state 2
+
+
+State 1
+
+    2 sigma: DOCTYPE • $@1 article
+
+    $default  reduce using rule 1 ($@1)
+
+    $@1  go to state 3
+
+
+State 2
+
+    0 $accept: sigma • $end
+
+    $end  shift, and go to state 4
+
+
+State 3
+
+    2 sigma: DOCTYPE $@1 • article
+
+    A_ARTICLE  shift, and go to state 5
+
+    article  go to state 6
+
+
+State 4
+
+    0 $accept: sigma $end •
+
+    $default  accept
+
+
+State 5
+
+   24 article: A_ARTICLE • $@10 articlecontent C_ARTICLE
+
+    $default  reduce using rule 23 ($@10)
+
+    $@10  go to state 7
+
+
+State 6
+
+    2 sigma: DOCTYPE $@1 article •
+
+    $default  reduce using rule 2 (sigma)
+
+
+State 7
+
+   24 article: A_ARTICLE $@10 • articlecontent C_ARTICLE
+
+    A_INFO   shift, and go to state 8
+    A_TITLE  shift, and go to state 9
+
+    $default  reduce using rule 19 (articlecontent)
+
+    articlecontent  go to state 10
+    info            go to state 11
+    titledoc        go to state 12
+
+
+State 8
+
+   40 info: A_INFO • $@11 infocontent C_INFO
+
+    $default  reduce using rule 39 ($@11)
+
+    $@11  go to state 13
+
+
+State 9
+
+   42 titledoc: A_TITLE • $@12 titlecontent C_TITLE
+
+    $default  reduce using rule 41 ($@12)
+
+    $@12  go to state 14
+
+
+State 10
+
+   24 article: A_ARTICLE $@10 articlecontent • C_ARTICLE
+
+    C_ARTICLE  shift, and go to state 15
+
+
+State 11
+
+   20 articlecontent: info • titledoc content section
+   21               | info • content section
+
+    A_TITLE          shift, and go to state 9
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    titledoc       go to state 26
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 36
+
+
+State 12
+
+   22 articlecontent: titledoc • content section
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 37
+
+
+State 13
+
+   40 info: A_INFO $@11 • infocontent C_INFO
+
+    A_TITLE        shift, and go to state 38
+    A_ABSTRACT     shift, and go to state 16
+    A_AUTHOR       shift, and go to state 39
+    A_DATE         shift, and go to state 40
+    A_COPYRIGHT    shift, and go to state 41
+    A_ADDRESS      shift, and go to state 18
+    A_MEDIAOBJECT  shift, and go to state 23
+
+    infocontent  go to state 42
+    titlesec     go to state 43
+    author       go to state 44
+    address      go to state 45
+    date         go to state 46
+    copyright    go to state 47
+    abstract     go to state 48
+    mediaobject  go to state 49
+
+
+State 14
+
+   42 titledoc: A_TITLE $@12 • titlecontent C_TITLE
+
+    TEXTO       shift, and go to state 50
+    XLINK       shift, and go to state 51
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_LINK      shift, and go to state 54
+
+    email         go to state 55
+    emphasis      go to state 56
+    link          go to state 57
+    titlecontent  go to state 58
+
+
+State 15
+
+   24 article: A_ARTICLE $@10 articlecontent C_ARTICLE •
+
+    $default  reduce using rule 24 (article)
+
+
+State 16
+
+  104 abstract: A_ABSTRACT • titlesec abstractcontent C_ABSTRACT
+  105         | A_ABSTRACT • abstractcontent C_ABSTRACT
+
+    A_TITLE    shift, and go to state 38
+    A_PARA     shift, and go to state 17
+    A_SIMPARA  shift, and go to state 20
+
+    titlesec         go to state 59
+    para             go to state 60
+    simpara          go to state 61
+    abstractcontent  go to state 62
+
+
+State 17
+
+   50 para: A_PARA • $@16 para paracontent C_PARA
+   52     | A_PARA • $@17 paracontent C_PARA
+
+    A_PARA    reduce using rule 49 ($@16)
+    $default  reduce using rule 51 ($@17)
+
+    $@16  go to state 63
+    $@17  go to state 64
+
+
+State 18
+
+   56 address: A_ADDRESS • $@19 addresscontent C_ADDRESS
+
+    $default  reduce using rule 55 ($@19)
+
+    $@19  go to state 65
+
+
+State 19
+
+  110 itemizedlist: A_ITEMIZEDLIST • listitem C_ITEMIZEDLIST
+
+    A_LISTITEM  shift, and go to state 66
+
+    listitem  go to state 67
+
+
+State 20
+
+   54 simpara: A_SIMPARA • $@18 seclcontent C_SIMPARA
+
+    $default  reduce using rule 53 ($@18)
+
+    $@18  go to state 68
+
+
+State 21
+
+   80 comment: A_COMMENT • $@31 seclcontent C_COMMENT
+
+    $default  reduce using rule 79 ($@31)
+
+    $@31  go to state 69
+
+
+State 22
+
+  100 important: A_IMPORTANT • $@36 titlesec content C_IMPORTANT
+  102          | A_IMPORTANT • $@37 content C_IMPORTANT
+
+    A_TITLE   reduce using rule 99 ($@36)
+    $default  reduce using rule 101 ($@37)
+
+    $@36  go to state 70
+    $@37  go to state 71
+
+
+State 23
+
+  106 mediaobject: A_MEDIAOBJECT • mediaobjectcontent C_MEDIAOBJECT
+  107            | A_MEDIAOBJECT • info mediaobjectcontent C_MEDIAOBJECT
+
+    A_INFO         shift, and go to state 8
+    A_VIDEOOBJECT  shift, and go to state 72
+    A_IMAGEOBJECT  shift, and go to state 73
+
+    info                go to state 74
+    videoobject         go to state 75
+    imageobject         go to state 76
+    mediaobjectcontent  go to state 77
+
+
+State 24
+
+  112 informaltable: A_INFORMALTABLE • informalcontent C_INFORMALTABLE
+
+    A_MEDIAOBJECT  shift, and go to state 23
+    A_TGROUP       shift, and go to state 78
+
+    mediaobject      go to state 79
+    tgroup           go to state 80
+    informalcontent  go to state 81
+
+
+State 25
+
+  113 informaltable: A_TABLE • informalcontent C_TABLE
+
+    A_MEDIAOBJECT  shift, and go to state 23
+    A_TGROUP       shift, and go to state 78
+
+    mediaobject      go to state 79
+    tgroup           go to state 80
+    informalcontent  go to state 82
+
+
+State 26
+
+   20 articlecontent: info titledoc • content section
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 83
+
+
+State 27
+
+  126 content: para •
+
+    $default  reduce using rule 126 (content)
+
+
+State 28
+
+  132 content: simpara •
+
+    $default  reduce using rule 132 (content)
+
+
+State 29
+
+  134 content: address •
+
+    $default  reduce using rule 134 (content)
+
+
+State 30
+
+  140 content: comment •
+
+    $default  reduce using rule 140 (content)
+
+
+State 31
+
+  130 content: important •
+
+    $default  reduce using rule 130 (content)
+
+
+State 32
+
+  142 content: abstract •
+
+    $default  reduce using rule 142 (content)
+
+
+State 33
+
+  136 content: mediaobject •
+
+    $default  reduce using rule 136 (content)
+
+
+State 34
+
+  128 content: itemizedlist •
+
+    $default  reduce using rule 128 (content)
+
+
+State 35
+
+  138 content: informaltable •
+
+    $default  reduce using rule 138 (content)
+
+
+State 36
+
+   21 articlecontent: info content • section
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_SECTION        shift, and go to state 84
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    section        go to state 85
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 37
+
+   22 articlecontent: titledoc content • section
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_SECTION        shift, and go to state 84
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    section        go to state 95
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 38
+
+   44 titlesec: A_TITLE • $@13 titlecontent C_TITLE
+
+    $default  reduce using rule 43 ($@13)
+
+    $@13  go to state 96
+
+
+State 39
+
+   46 author: A_AUTHOR • $@14 authorcontent C_AUTHOR
+   48       | A_AUTHOR • $@15 personname C_AUTHOR
+
+    A_PERSONNAME  reduce using rule 47 ($@15)
+    $default      reduce using rule 45 ($@14)
+
+    $@14  go to state 97
+    $@15  go to state 98
+
+
+State 40
+
+   74 date: A_DATE • $@28 sharedcontent C_DATE
+
+    $default  reduce using rule 73 ($@28)
+
+    $@28  go to state 99
+
+
+State 41
+
+  103 copyright: A_COPYRIGHT • copyrightcontent C_COPYRIGHT
+
+    A_YEAR  shift, and go to state 100
+
+    year              go to state 101
+    copyrightcontent  go to state 102
+
+
+State 42
+
+   25 infocontent: infocontent • titlesec
+   27            | infocontent • author
+   29            | infocontent • date
+   31            | infocontent • copyright
+   33            | infocontent • abstract
+   35            | infocontent • address
+   37            | infocontent • mediaobject
+   40 info: A_INFO $@11 infocontent • C_INFO
+
+    C_INFO         shift, and go to state 103
+    A_TITLE        shift, and go to state 38
+    A_ABSTRACT     shift, and go to state 16
+    A_AUTHOR       shift, and go to state 39
+    A_DATE         shift, and go to state 40
+    A_COPYRIGHT    shift, and go to state 41
+    A_ADDRESS      shift, and go to state 18
+    A_MEDIAOBJECT  shift, and go to state 23
+
+    titlesec     go to state 104
+    author       go to state 105
+    address      go to state 106
+    date         go to state 107
+    copyright    go to state 108
+    abstract     go to state 109
+    mediaobject  go to state 110
+
+
+State 43
+
+   26 infocontent: titlesec •
+
+    $default  reduce using rule 26 (infocontent)
+
+
+State 44
+
+   28 infocontent: author •
+
+    $default  reduce using rule 28 (infocontent)
+
+
+State 45
+
+   36 infocontent: address •
+
+    $default  reduce using rule 36 (infocontent)
+
+
+State 46
+
+   30 infocontent: date •
+
+    $default  reduce using rule 30 (infocontent)
+
+
+State 47
+
+   32 infocontent: copyright •
+
+    $default  reduce using rule 32 (infocontent)
+
+
+State 48
+
+   34 infocontent: abstract •
+
+    $default  reduce using rule 34 (infocontent)
+
+
+State 49
+
+   38 infocontent: mediaobject •
+
+    $default  reduce using rule 38 (infocontent)
+
+
+State 50
+
+  168 titlecontent: TEXTO •
+
+    $default  reduce using rule 168 (titlecontent)
+
+
+State 51
+
+   97 link: XLINK • $@34 URL $@35 C_REF
+
+    $default  reduce using rule 95 ($@34)
+
+    $@34  go to state 111
+
+
+State 52
+
+   62 email: A_EMAIL • $@22 sharedcontent C_EMAIL
+
+    $default  reduce using rule 61 ($@22)
+
+    $@22  go to state 112
+
+
+State 53
+
+   92 emphasis: A_EMPHASIS • $@32 seclcontent C_EMPHASIS
+
+    $default  reduce using rule 91 ($@32)
+
+    $@32  go to state 113
+
+
+State 54
+
+   94 link: A_LINK • $@33 seclcontent C_LINK
+
+    $default  reduce using rule 93 ($@33)
+
+    $@33  go to state 114
+
+
+State 55
+
+  172 titlecontent: email •
+
+    $default  reduce using rule 172 (titlecontent)
+
+
+State 56
+
+  170 titlecontent: emphasis •
+
+    $default  reduce using rule 170 (titlecontent)
+
+
+State 57
+
+  174 titlecontent: link •
+
+    $default  reduce using rule 174 (titlecontent)
+
+
+State 58
+
+   42 titledoc: A_TITLE $@12 titlecontent • C_TITLE
+  167 titlecontent: titlecontent • TEXTO
+  169             | titlecontent • emphasis
+  171             | titlecontent • email
+  173             | titlecontent • link
+
+    TEXTO       shift, and go to state 115
+    XLINK       shift, and go to state 51
+    C_TITLE     shift, and go to state 116
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_LINK      shift, and go to state 54
+
+    email     go to state 117
+    emphasis  go to state 118
+    link      go to state 119
+
+
+State 59
+
+  104 abstract: A_ABSTRACT titlesec • abstractcontent C_ABSTRACT
+
+    A_PARA     shift, and go to state 17
+    A_SIMPARA  shift, and go to state 20
+
+    para             go to state 60
+    simpara          go to state 61
+    abstractcontent  go to state 120
+
+
+State 60
+
+  144 abstractcontent: para •
+
+    $default  reduce using rule 144 (abstractcontent)
+
+
+State 61
+
+  146 abstractcontent: simpara •
+
+    $default  reduce using rule 146 (abstractcontent)
+
+
+State 62
+
+  105 abstract: A_ABSTRACT abstractcontent • C_ABSTRACT
+  143 abstractcontent: abstractcontent • para
+  145                | abstractcontent • simpara
+
+    C_ABSTRACT  shift, and go to state 121
+    A_PARA      shift, and go to state 17
+    A_SIMPARA   shift, and go to state 20
+
+    para     go to state 122
+    simpara  go to state 123
+
+
+State 63
+
+   50 para: A_PARA $@16 • para paracontent C_PARA
+
+    A_PARA  shift, and go to state 17
+
+    para  go to state 124
+
+
+State 64
+
+   52 para: A_PARA $@17 • paracontent C_PARA
+
+    TEXTO            shift, and go to state 125
+    XLINK            shift, and go to state 51
+    A_AUTHOR         shift, and go to state 39
+    A_ADDRESS        shift, and go to state 18
+    A_EMAIL          shift, and go to state 52
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_EMPHASIS       shift, and go to state 53
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_LINK           shift, and go to state 54
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    author         go to state 126
+    address        go to state 127
+    email          go to state 128
+    comment        go to state 129
+    emphasis       go to state 130
+    link           go to state 131
+    important      go to state 132
+    mediaobject    go to state 133
+    itemizedlist   go to state 134
+    informaltable  go to state 135
+    paracontent    go to state 136
+
+
+State 65
+
+   56 address: A_ADDRESS $@19 • addresscontent C_ADDRESS
+
+    TEXTO       shift, and go to state 137
+    A_STATE     shift, and go to state 138
+    A_POSTCODE  shift, and go to state 139
+    A_STREET    shift, and go to state 140
+    A_EMAIL     shift, and go to state 52
+    A_PHONE     shift, and go to state 141
+
+    email           go to state 142
+    postcode        go to state 143
+    street          go to state 144
+    state           go to state 145
+    phone           go to state 146
+    addresscontent  go to state 147
+
+
+State 66
+
+  111 listitem: A_LISTITEM • content C_LISTITEM
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 148
+
+
+State 67
+
+  110 itemizedlist: A_ITEMIZEDLIST listitem • C_ITEMIZEDLIST
+
+    C_ITEMIZEDLIST  shift, and go to state 149
+
+
+State 68
+
+   54 simpara: A_SIMPARA $@18 • seclcontent C_SIMPARA
+
+    TEXTO       shift, and go to state 150
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+
+    author       go to state 151
+    email        go to state 152
+    comment      go to state 153
+    seclcontent  go to state 154
+    emphasis     go to state 155
+
+
+State 69
+
+   80 comment: A_COMMENT $@31 • seclcontent C_COMMENT
+
+    TEXTO       shift, and go to state 150
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+
+    author       go to state 151
+    email        go to state 152
+    comment      go to state 153
+    seclcontent  go to state 156
+    emphasis     go to state 155
+
+
+State 70
+
+  100 important: A_IMPORTANT $@36 • titlesec content C_IMPORTANT
+
+    A_TITLE  shift, and go to state 38
+
+    titlesec  go to state 157
+
+
+State 71
+
+  102 important: A_IMPORTANT $@37 • content C_IMPORTANT
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 158
+
+
+State 72
+
+  108 videoobject: A_VIDEOOBJECT • videocontent C_VIDEOOBJECT
+
+    VIDEODATA  shift, and go to state 159
+    A_INFO     shift, and go to state 8
+
+    info          go to state 160
+    videocontent  go to state 161
+
+
+State 73
+
+  109 imageobject: A_IMAGEOBJECT • imagecontent C_IMAGEOBJECT
+
+    IMAGEDATA  shift, and go to state 162
+    A_INFO     shift, and go to state 8
+
+    info          go to state 163
+    imagecontent  go to state 164
+
+
+State 74
+
+  107 mediaobject: A_MEDIAOBJECT info • mediaobjectcontent C_MEDIAOBJECT
+
+    A_VIDEOOBJECT  shift, and go to state 72
+    A_IMAGEOBJECT  shift, and go to state 73
+
+    videoobject         go to state 75
+    imageobject         go to state 76
+    mediaobjectcontent  go to state 165
+
+
+State 75
+
+  224 mediaobjectcontent: videoobject • mediaobject
+  225                   | videoobject •
+
+    A_MEDIAOBJECT  shift, and go to state 23
+
+    $default  reduce using rule 225 (mediaobjectcontent)
+
+    mediaobject  go to state 166
+
+
+State 76
+
+  226 mediaobjectcontent: imageobject • mediaobject
+  227                   | imageobject •
+
+    A_MEDIAOBJECT  shift, and go to state 23
+
+    $default  reduce using rule 227 (mediaobjectcontent)
+
+    mediaobject  go to state 167
+
+
+State 77
+
+  106 mediaobject: A_MEDIAOBJECT mediaobjectcontent • C_MEDIAOBJECT
+
+    C_MEDIAOBJECT  shift, and go to state 168
+
+
+State 78
+
+  114 tgroup: A_TGROUP • thead tfoot tbody C_TGROUP
+  115       | A_TGROUP • thead tbody C_TGROUP
+  116       | A_TGROUP • tfoot tbody C_TGROUP
+  117       | A_TGROUP • tbody C_TGROUP
+
+    A_THEAD  shift, and go to state 169
+    A_TFOOT  shift, and go to state 170
+    A_TBODY  shift, and go to state 171
+
+    thead  go to state 172
+    tfoot  go to state 173
+    tbody  go to state 174
+
+
+State 79
+
+  253 informalcontent: mediaobject •
+
+    $default  reduce using rule 253 (informalcontent)
+
+
+State 80
+
+  255 informalcontent: tgroup •
+
+    $default  reduce using rule 255 (informalcontent)
+
+
+State 81
+
+  112 informaltable: A_INFORMALTABLE informalcontent • C_INFORMALTABLE
+  252 informalcontent: informalcontent • mediaobject
+  254                | informalcontent • tgroup
+
+    A_MEDIAOBJECT    shift, and go to state 23
+    C_INFORMALTABLE  shift, and go to state 175
+    A_TGROUP         shift, and go to state 78
+
+    mediaobject  go to state 176
+    tgroup       go to state 177
+
+
+State 82
+
+  113 informaltable: A_TABLE informalcontent • C_TABLE
+  252 informalcontent: informalcontent • mediaobject
+  254                | informalcontent • tgroup
+
+    A_MEDIAOBJECT  shift, and go to state 23
+    A_TGROUP       shift, and go to state 78
+    C_TABLE        shift, and go to state 178
+
+    mediaobject  go to state 176
+    tgroup       go to state 177
+
+
+State 83
+
+   20 articlecontent: info titledoc content • section
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_SECTION        shift, and go to state 84
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    section        go to state 179
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 84
+
+    4 section: A_SECTION • $@2 section info titlesec content C_SECTION
+    6        | A_SECTION • $@3 section titlesec content C_SECTION
+    8        | A_SECTION • $@4 section info content C_SECTION
+   10        | A_SECTION • $@5 section content C_SECTION
+   12        | A_SECTION • $@6 info titlesec content C_SECTION
+   14        | A_SECTION • $@7 titlesec content C_SECTION
+   16        | A_SECTION • $@8 info content C_SECTION
+   18        | A_SECTION • $@9 content C_SECTION
+
+    A_INFO     reduce using rule 11 ($@6)
+    A_INFO     [reduce using rule 15 ($@8)]
+    A_TITLE    reduce using rule 13 ($@7)
+    A_SECTION  reduce using rule 3 ($@2)
+    A_SECTION  [reduce using rule 5 ($@3)]
+    A_SECTION  [reduce using rule 7 ($@4)]
+    A_SECTION  [reduce using rule 9 ($@5)]
+    $default   reduce using rule 17 ($@9)
+
+    $@2  go to state 180
+    $@3  go to state 181
+    $@4  go to state 182
+    $@5  go to state 183
+    $@6  go to state 184
+    $@7  go to state 185
+    $@8  go to state 186
+    $@9  go to state 187
+
+    reduce/reduce conflict on token A_SECTION:
+        3 $@2: ε •
+        5 $@3: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                                 $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                        C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 4: A_SECTION $@2      section                                                    info titlesec content C_SECTION
+                                                                                     ↳ 3: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION titlesec content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                            $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                   C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 6: A_SECTION $@3      section                                                    titlesec content C_SECTION
+                                                                                     ↳ 5: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_SECTION:
+        3 $@2: ε •
+        7 $@4: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                                 $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                        C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 4: A_SECTION $@2      section                                                    info titlesec content C_SECTION
+                                                                                     ↳ 3: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                        $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                               C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 8: A_SECTION $@4      section                                                    info content C_SECTION
+                                                                                     ↳ 7: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_SECTION:
+        3 $@2: ε •
+        9 $@5: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                                 $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                        C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 4: A_SECTION $@2      section                                                    info titlesec content C_SECTION
+                                                                                     ↳ 3: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                    $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                           C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 10: A_SECTION $@5      section                                                    content C_SECTION
+                                                                                      ↳ 9: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_SECTION:
+        5 $@3: ε •
+        7 $@4: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                            $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                   C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 6: A_SECTION $@3      section                                                    titlesec content C_SECTION
+                                                                                     ↳ 5: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                        $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                               C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 8: A_SECTION $@4      section                                                    info content C_SECTION
+                                                                                     ↳ 7: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_SECTION:
+        5 $@3: ε •
+        9 $@5: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                            $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                   C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 6: A_SECTION $@3      section                                                    titlesec content C_SECTION
+                                                                                     ↳ 5: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                    $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                           C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 10: A_SECTION $@5      section                                                    content C_SECTION
+                                                                                      ↳ 9: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_SECTION:
+        7 $@4: ε •
+        9 $@5: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION info content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                        $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                               C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 8: A_SECTION $@4      section                                                    info content C_SECTION
+                                                                                     ↳ 7: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_SECTION $@2 section info titlesec content C_SECTION content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                    $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                           C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 10: A_SECTION $@5      section                                                    content C_SECTION
+                                                                                      ↳ 9: ε • ↳ 4: A_SECTION $@2 section info titlesec content C_SECTION
+
+    reduce/reduce conflict on token A_INFO:
+       11 $@6: ε •
+       15 $@8: ε •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_INFO $@11 infocontent C_INFO titlesec content C_SECTION C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                        $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                               C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 12: A_SECTION $@6       info                                 titlesec content C_SECTION
+                                                                                      ↳ 11: ε • ↳ 40: A_INFO $@11 infocontent C_INFO
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info content A_SECTION • A_INFO $@11 infocontent C_INFO content C_SECTION C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                               $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                      C_ARTICLE
+                                                   ↳ 21: info content section
+                                                                      ↳ 16: A_SECTION $@8       info                                 content C_SECTION
+                                                                                      ↳ 15: ε • ↳ 40: A_INFO $@11 infocontent C_INFO
+
+
+
+State 85
+
+   21 articlecontent: info content section •
+
+    $default  reduce using rule 21 (articlecontent)
+
+
+State 86
+
+  125 content: content para •
+
+    $default  reduce using rule 125 (content)
+
+
+State 87
+
+  131 content: content simpara •
+
+    $default  reduce using rule 131 (content)
+
+
+State 88
+
+  133 content: content address •
+
+    $default  reduce using rule 133 (content)
+
+
+State 89
+
+  139 content: content comment •
+
+    $default  reduce using rule 139 (content)
+
+
+State 90
+
+  129 content: content important •
+
+    $default  reduce using rule 129 (content)
+
+
+State 91
+
+  141 content: content abstract •
+
+    $default  reduce using rule 141 (content)
+
+
+State 92
+
+  135 content: content mediaobject •
+
+    $default  reduce using rule 135 (content)
+
+
+State 93
+
+  127 content: content itemizedlist •
+
+    $default  reduce using rule 127 (content)
+
+
+State 94
+
+  137 content: content informaltable •
+
+    $default  reduce using rule 137 (content)
+
+
+State 95
+
+   22 articlecontent: titledoc content section •
+
+    $default  reduce using rule 22 (articlecontent)
+
+
+State 96
+
+   44 titlesec: A_TITLE $@13 • titlecontent C_TITLE
+
+    TEXTO       shift, and go to state 50
+    XLINK       shift, and go to state 51
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_LINK      shift, and go to state 54
+
+    email         go to state 55
+    emphasis      go to state 56
+    link          go to state 57
+    titlecontent  go to state 188
+
+
+State 97
+
+   46 author: A_AUTHOR $@14 • authorcontent C_AUTHOR
+
+    A_SURNAME  shift, and go to state 189
+
+    surname        go to state 190
+    authorcontent  go to state 191
+
+
+State 98
+
+   48 author: A_AUTHOR $@15 • personname C_AUTHOR
+
+    A_PERSONNAME  shift, and go to state 192
+
+    personname  go to state 193
+
+
+State 99
+
+   74 date: A_DATE $@28 • sharedcontent C_DATE
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 198
+
+
+State 100
+
+   76 year: A_YEAR • $@29 sharedcontent C_YEAR
+
+    $default  reduce using rule 75 ($@29)
+
+    $@29  go to state 199
+
+
+State 101
+
+  148 copyrightcontent: year •
+  149                 | year • holders
+
+    A_HOLDER  shift, and go to state 200
+
+    $default  reduce using rule 148 (copyrightcontent)
+
+    holder   go to state 201
+    holders  go to state 202
+
+
+State 102
+
+  103 copyright: A_COPYRIGHT copyrightcontent • C_COPYRIGHT
+  147 copyrightcontent: copyrightcontent • year
+
+    C_COPYRIGHT  shift, and go to state 203
+    A_YEAR       shift, and go to state 100
+
+    year  go to state 204
+
+
+State 103
+
+   40 info: A_INFO $@11 infocontent C_INFO •
+
+    $default  reduce using rule 40 (info)
+
+
+State 104
+
+   25 infocontent: infocontent titlesec •
+
+    $default  reduce using rule 25 (infocontent)
+
+
+State 105
+
+   27 infocontent: infocontent author •
+
+    $default  reduce using rule 27 (infocontent)
+
+
+State 106
+
+   35 infocontent: infocontent address •
+
+    $default  reduce using rule 35 (infocontent)
+
+
+State 107
+
+   29 infocontent: infocontent date •
+
+    $default  reduce using rule 29 (infocontent)
+
+
+State 108
+
+   31 infocontent: infocontent copyright •
+
+    $default  reduce using rule 31 (infocontent)
+
+
+State 109
+
+   33 infocontent: infocontent abstract •
+
+    $default  reduce using rule 33 (infocontent)
+
+
+State 110
+
+   37 infocontent: infocontent mediaobject •
+
+    $default  reduce using rule 37 (infocontent)
+
+
+State 111
+
+   97 link: XLINK $@34 • URL $@35 C_REF
+
+    URL  shift, and go to state 205
+
+
+State 112
+
+   62 email: A_EMAIL $@22 • sharedcontent C_EMAIL
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 206
+
+
+State 113
+
+   92 emphasis: A_EMPHASIS $@32 • seclcontent C_EMPHASIS
+
+    TEXTO       shift, and go to state 150
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+
+    author       go to state 151
+    email        go to state 152
+    comment      go to state 153
+    seclcontent  go to state 207
+    emphasis     go to state 155
+
+
+State 114
+
+   94 link: A_LINK $@33 • seclcontent C_LINK
+
+    TEXTO       shift, and go to state 150
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+
+    author       go to state 151
+    email        go to state 152
+    comment      go to state 153
+    seclcontent  go to state 208
+    emphasis     go to state 155
+
+
+State 115
+
+  167 titlecontent: titlecontent TEXTO •
+
+    $default  reduce using rule 167 (titlecontent)
+
+
+State 116
+
+   42 titledoc: A_TITLE $@12 titlecontent C_TITLE •
+
+    $default  reduce using rule 42 (titledoc)
+
+
+State 117
+
+  171 titlecontent: titlecontent email •
+
+    $default  reduce using rule 171 (titlecontent)
+
+
+State 118
+
+  169 titlecontent: titlecontent emphasis •
+
+    $default  reduce using rule 169 (titlecontent)
+
+
+State 119
+
+  173 titlecontent: titlecontent link •
+
+    $default  reduce using rule 173 (titlecontent)
+
+
+State 120
+
+  104 abstract: A_ABSTRACT titlesec abstractcontent • C_ABSTRACT
+  143 abstractcontent: abstractcontent • para
+  145                | abstractcontent • simpara
+
+    C_ABSTRACT  shift, and go to state 209
+    A_PARA      shift, and go to state 17
+    A_SIMPARA   shift, and go to state 20
+
+    para     go to state 122
+    simpara  go to state 123
+
+
+State 121
+
+  105 abstract: A_ABSTRACT abstractcontent C_ABSTRACT •
+
+    $default  reduce using rule 105 (abstract)
+
+
+State 122
+
+  143 abstractcontent: abstractcontent para •
+
+    $default  reduce using rule 143 (abstractcontent)
+
+
+State 123
+
+  145 abstractcontent: abstractcontent simpara •
+
+    $default  reduce using rule 145 (abstractcontent)
+
+
+State 124
+
+   50 para: A_PARA $@16 para • paracontent C_PARA
+
+    TEXTO            shift, and go to state 125
+    XLINK            shift, and go to state 51
+    A_AUTHOR         shift, and go to state 39
+    A_ADDRESS        shift, and go to state 18
+    A_EMAIL          shift, and go to state 52
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_EMPHASIS       shift, and go to state 53
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_LINK           shift, and go to state 54
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    author         go to state 126
+    address        go to state 127
+    email          go to state 128
+    comment        go to state 129
+    emphasis       go to state 130
+    link           go to state 131
+    important      go to state 132
+    mediaobject    go to state 133
+    itemizedlist   go to state 134
+    informaltable  go to state 135
+    paracontent    go to state 210
+
+
+State 125
+
+  187 paracontent: TEXTO •
+
+    $default  reduce using rule 187 (paracontent)
+
+
+State 126
+
+  195 paracontent: author •
+
+    $default  reduce using rule 195 (paracontent)
+
+
+State 127
+
+  203 paracontent: address •
+
+    $default  reduce using rule 203 (paracontent)
+
+
+State 128
+
+  193 paracontent: email •
+
+    $default  reduce using rule 193 (paracontent)
+
+
+State 129
+
+  197 paracontent: comment •
+
+    $default  reduce using rule 197 (paracontent)
+
+
+State 130
+
+  189 paracontent: emphasis •
+
+    $default  reduce using rule 189 (paracontent)
+
+
+State 131
+
+  191 paracontent: link •
+
+    $default  reduce using rule 191 (paracontent)
+
+
+State 132
+
+  201 paracontent: important •
+
+    $default  reduce using rule 201 (paracontent)
+
+
+State 133
+
+  205 paracontent: mediaobject •
+
+    $default  reduce using rule 205 (paracontent)
+
+
+State 134
+
+  199 paracontent: itemizedlist •
+
+    $default  reduce using rule 199 (paracontent)
+
+
+State 135
+
+  207 paracontent: informaltable •
+
+    $default  reduce using rule 207 (paracontent)
+
+
+State 136
+
+   52 para: A_PARA $@17 paracontent • C_PARA
+  186 paracontent: paracontent • TEXTO
+  188            | paracontent • emphasis
+  190            | paracontent • link
+  192            | paracontent • email
+  194            | paracontent • author
+  196            | paracontent • comment
+  198            | paracontent • itemizedlist
+  200            | paracontent • important
+  202            | paracontent • address
+  204            | paracontent • mediaobject
+  206            | paracontent • informaltable
+
+    TEXTO            shift, and go to state 211
+    XLINK            shift, and go to state 51
+    C_PARA           shift, and go to state 212
+    A_AUTHOR         shift, and go to state 39
+    A_ADDRESS        shift, and go to state 18
+    A_EMAIL          shift, and go to state 52
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_EMPHASIS       shift, and go to state 53
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_LINK           shift, and go to state 54
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    author         go to state 213
+    address        go to state 214
+    email          go to state 215
+    comment        go to state 216
+    emphasis       go to state 217
+    link           go to state 218
+    important      go to state 219
+    mediaobject    go to state 220
+    itemizedlist   go to state 221
+    informaltable  go to state 222
+
+
+State 137
+
+  153 addresscontent: TEXTO • $@38 addresscontent
+  154               | TEXTO •
+
+    C_ADDRESS   reduce using rule 154 (addresscontent)
+    A_CITY      reduce using rule 154 (addresscontent)
+    A_STATE     reduce using rule 152 ($@38)
+    A_STATE     [reduce using rule 154 (addresscontent)]
+    A_POSTCODE  reduce using rule 152 ($@38)
+    A_POSTCODE  [reduce using rule 154 (addresscontent)]
+    A_STREET    reduce using rule 152 ($@38)
+    A_STREET    [reduce using rule 154 (addresscontent)]
+    A_EMAIL     reduce using rule 152 ($@38)
+    A_EMAIL     [reduce using rule 154 (addresscontent)]
+    A_PHONE     reduce using rule 152 ($@38)
+    A_PHONE     [reduce using rule 154 (addresscontent)]
+    $default    reduce using rule 152 ($@38)
+
+    $@38  go to state 223
+
+    reduce/reduce conflict on tokens A_STATE, A_POSTCODE, A_STREET, A_EMAIL, A_PHONE:
+      152 $@38: ε •
+      154 addresscontent: TEXTO •
+      First example: DOCTYPE $@1 A_ARTICLE $@10 info A_ADDRESS $@19 TEXTO • A_STATE $@26 sharedcontent C_STATE C_ADDRESS section C_ARTICLE $end
+      First reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                            $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                                   C_ARTICLE
+                                                   ↳ 21: info content                                                                                                       section
+                                                              ↳ 134: address
+                                                                     ↳ 56: A_ADDRESS $@19 addresscontent                                                          C_ADDRESS
+                                                                                          ↳ 153: TEXTO $@38       addresscontent
+                                                                                                       ↳ 152: ε • ↳ 160: state
+                                                                                                                         ↳ 70: A_STATE $@26 sharedcontent C_STATE
+      Second example: DOCTYPE $@1 A_ARTICLE $@10 info A_ADDRESS $@19 TEXTO • A_STATE $@26 sharedcontent C_STATE C_ADDRESS section C_ARTICLE $end
+      Second reduce derivation
+        $accept
+        ↳ 0: sigma                                                                                                                                                                   $end
+             ↳ 2: DOCTYPE $@1 article
+                              ↳ 24: A_ARTICLE $@10 articlecontent                                                                                                          C_ARTICLE
+                                                   ↳ 21: info content                                                                                              section
+                                                              ↳ 134: address
+                                                                     ↳ 56: A_ADDRESS $@19 addresscontent                                                 C_ADDRESS
+                                                                                          ↳ 159: addresscontent state
+                                                                                                 ↳ 154: TEXTO • ↳ 70: A_STATE $@26 sharedcontent C_STATE
+
+
+
+State 138
+
+   70 state: A_STATE • $@26 sharedcontent C_STATE
+
+    $default  reduce using rule 69 ($@26)
+
+    $@26  go to state 224
+
+
+State 139
+
+   64 postcode: A_POSTCODE • $@23 sharedcontent C_POSTCODE
+
+    $default  reduce using rule 63 ($@23)
+
+    $@23  go to state 225
+
+
+State 140
+
+   66 street: A_STREET • $@24 sharedcontent C_STREET
+
+    $default  reduce using rule 65 ($@24)
+
+    $@24  go to state 226
+
+
+State 141
+
+   72 phone: A_PHONE • $@27 sharedcontent C_PHONE
+
+    $default  reduce using rule 71 ($@27)
+
+    $@27  go to state 227
+
+
+State 142
+
+  164 addresscontent: email •
+
+    $default  reduce using rule 164 (addresscontent)
+
+
+State 143
+
+  166 addresscontent: postcode •
+
+    $default  reduce using rule 166 (addresscontent)
+
+
+State 144
+
+  156 addresscontent: street •
+  158               | street •
+
+    C_ADDRESS   reduce using rule 156 (addresscontent)
+    C_ADDRESS   [reduce using rule 158 (addresscontent)]
+    A_CITY      reduce using rule 156 (addresscontent)
+    A_CITY      [reduce using rule 158 (addresscontent)]
+    A_STATE     reduce using rule 156 (addresscontent)
+    A_STATE     [reduce using rule 158 (addresscontent)]
+    A_POSTCODE  reduce using rule 156 (addresscontent)
+    A_POSTCODE  [reduce using rule 158 (addresscontent)]
+    A_STREET    reduce using rule 156 (addresscontent)
+    A_STREET    [reduce using rule 158 (addresscontent)]
+    A_EMAIL     reduce using rule 156 (addresscontent)
+    A_EMAIL     [reduce using rule 158 (addresscontent)]
+    A_PHONE     reduce using rule 156 (addresscontent)
+    A_PHONE     [reduce using rule 158 (addresscontent)]
+    $default    reduce using rule 156 (addresscontent)
+
+    reduce/reduce conflict on tokens C_ADDRESS, A_CITY, A_STATE, A_POSTCODE, A_STREET, A_EMAIL, A_PHONE:
+      156 addresscontent: street •
+      158 addresscontent: street •
+      Example: street •
+      First reduce derivation
+        addresscontent
+        ↳ 156: street •
+      Second reduce derivation
+        addresscontent
+        ↳ 158: street •
+
+
+
+State 145
+
+  160 addresscontent: state •
+
+    $default  reduce using rule 160 (addresscontent)
+
+
+State 146
+
+  162 addresscontent: phone •
+
+    $default  reduce using rule 162 (addresscontent)
+
+
+State 147
+
+   56 address: A_ADDRESS $@19 addresscontent • C_ADDRESS
+  155 addresscontent: addresscontent • street
+  157               | addresscontent • city
+  159               | addresscontent • state
+  161               | addresscontent • phone
+  163               | addresscontent • email
+  165               | addresscontent • postcode
+
+    C_ADDRESS   shift, and go to state 228
+    A_CITY      shift, and go to state 229
+    A_STATE     shift, and go to state 138
+    A_POSTCODE  shift, and go to state 139
+    A_STREET    shift, and go to state 140
+    A_EMAIL     shift, and go to state 52
+    A_PHONE     shift, and go to state 141
+
+    email     go to state 230
+    postcode  go to state 231
+    street    go to state 232
+    city      go to state 233
+    state     go to state 234
+    phone     go to state 235
+
+
+State 148
+
+  111 listitem: A_LISTITEM content • C_LISTITEM
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    C_LISTITEM       shift, and go to state 236
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 149
+
+  110 itemizedlist: A_ITEMIZEDLIST listitem C_ITEMIZEDLIST •
+
+    $default  reduce using rule 110 (itemizedlist)
+
+
+State 150
+
+   82 seclcontent: TEXTO •
+
+    $default  reduce using rule 82 (seclcontent)
+
+
+State 151
+
+   90 seclcontent: author •
+
+    $default  reduce using rule 90 (seclcontent)
+
+
+State 152
+
+   88 seclcontent: email •
+
+    $default  reduce using rule 88 (seclcontent)
+
+
+State 153
+
+   86 seclcontent: comment •
+
+    $default  reduce using rule 86 (seclcontent)
+
+
+State 154
+
+   54 simpara: A_SIMPARA $@18 seclcontent • C_SIMPARA
+   81 seclcontent: seclcontent • TEXTO
+   83            | seclcontent • emphasis
+   85            | seclcontent • comment
+   87            | seclcontent • email
+   89            | seclcontent • author
+
+    TEXTO       shift, and go to state 237
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    C_SIMPARA   shift, and go to state 238
+    A_COMMENT   shift, and go to state 21
+
+    author    go to state 239
+    email     go to state 240
+    comment   go to state 241
+    emphasis  go to state 242
+
+
+State 155
+
+   84 seclcontent: emphasis •
+
+    $default  reduce using rule 84 (seclcontent)
+
+
+State 156
+
+   80 comment: A_COMMENT $@31 seclcontent • C_COMMENT
+   81 seclcontent: seclcontent • TEXTO
+   83            | seclcontent • emphasis
+   85            | seclcontent • comment
+   87            | seclcontent • email
+   89            | seclcontent • author
+
+    TEXTO       shift, and go to state 237
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    C_COMMENT   shift, and go to state 243
+
+    author    go to state 239
+    email     go to state 240
+    comment   go to state 241
+    emphasis  go to state 242
+
+
+State 157
+
+  100 important: A_IMPORTANT $@36 titlesec • content C_IMPORTANT
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 244
+
+
+State 158
+
+  102 important: A_IMPORTANT $@37 content • C_IMPORTANT
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    C_IMPORTANT      shift, and go to state 245
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 159
+
+  233 videocontent: VIDEODATA • $@41 URL $@42 C_REF
+  239             | VIDEODATA • $@45 RUTA $@46 C_REF
+
+    RUTA      reduce using rule 237 ($@45)
+    $default  reduce using rule 231 ($@41)
+
+    $@41  go to state 246
+    $@45  go to state 247
+
+
+State 160
+
+  230 videocontent: info • VIDEODATA $@39 URL $@40 C_REF
+  236             | info • VIDEODATA $@43 RUTA $@44 C_REF
+
+    VIDEODATA  shift, and go to state 248
+
+
+State 161
+
+  108 videoobject: A_VIDEOOBJECT videocontent • C_VIDEOOBJECT
+
+    C_VIDEOOBJECT  shift, and go to state 249
+
+
+State 162
+
+  245 imagecontent: IMAGEDATA • $@49 URL $@50 C_REF
+  251             | IMAGEDATA • $@53 RUTA $@54 C_REF
+
+    RUTA      reduce using rule 249 ($@53)
+    $default  reduce using rule 243 ($@49)
+
+    $@49  go to state 250
+    $@53  go to state 251
+
+
+State 163
+
+  242 imagecontent: info • IMAGEDATA $@47 URL $@48 C_REF
+  248             | info • IMAGEDATA $@51 RUTA $@52 C_REF
+
+    IMAGEDATA  shift, and go to state 252
+
+
+State 164
+
+  109 imageobject: A_IMAGEOBJECT imagecontent • C_IMAGEOBJECT
+
+    C_IMAGEOBJECT  shift, and go to state 253
+
+
+State 165
+
+  107 mediaobject: A_MEDIAOBJECT info mediaobjectcontent • C_MEDIAOBJECT
+
+    C_MEDIAOBJECT  shift, and go to state 254
+
+
+State 166
+
+  224 mediaobjectcontent: videoobject mediaobject •
+
+    $default  reduce using rule 224 (mediaobjectcontent)
+
+
+State 167
+
+  226 mediaobjectcontent: imageobject mediaobject •
+
+    $default  reduce using rule 226 (mediaobjectcontent)
+
+
+State 168
+
+  106 mediaobject: A_MEDIAOBJECT mediaobjectcontent C_MEDIAOBJECT •
+
+    $default  reduce using rule 106 (mediaobject)
+
+
+State 169
+
+  118 thead: A_THEAD • variosrow C_THEAD
+
+    A_ROW  shift, and go to state 255
+
+    row        go to state 256
+    variosrow  go to state 257
+
+
+State 170
+
+  119 tfoot: A_TFOOT • variosrow C_TFOOT
+
+    A_ROW  shift, and go to state 255
+
+    row        go to state 256
+    variosrow  go to state 258
+
+
+State 171
+
+  120 tbody: A_TBODY • variosrow C_TBODY
+
+    A_ROW  shift, and go to state 255
+
+    row        go to state 256
+    variosrow  go to state 259
+
+
+State 172
+
+  114 tgroup: A_TGROUP thead • tfoot tbody C_TGROUP
+  115       | A_TGROUP thead • tbody C_TGROUP
+
+    A_TFOOT  shift, and go to state 170
+    A_TBODY  shift, and go to state 171
+
+    tfoot  go to state 260
+    tbody  go to state 261
+
+
+State 173
+
+  116 tgroup: A_TGROUP tfoot • tbody C_TGROUP
+
+    A_TBODY  shift, and go to state 171
+
+    tbody  go to state 262
+
+
+State 174
+
+  117 tgroup: A_TGROUP tbody • C_TGROUP
+
+    C_TGROUP  shift, and go to state 263
+
+
+State 175
+
+  112 informaltable: A_INFORMALTABLE informalcontent C_INFORMALTABLE •
+
+    $default  reduce using rule 112 (informaltable)
+
+
+State 176
+
+  252 informalcontent: informalcontent mediaobject •
+
+    $default  reduce using rule 252 (informalcontent)
+
+
+State 177
+
+  254 informalcontent: informalcontent tgroup •
+
+    $default  reduce using rule 254 (informalcontent)
+
+
+State 178
+
+  113 informaltable: A_TABLE informalcontent C_TABLE •
+
+    $default  reduce using rule 113 (informaltable)
+
+
+State 179
+
+   20 articlecontent: info titledoc content section •
+
+    $default  reduce using rule 20 (articlecontent)
+
+
+State 180
+
+    4 section: A_SECTION $@2 • section info titlesec content C_SECTION
+
+    A_SECTION  shift, and go to state 84
+
+    section  go to state 264
+
+
+State 181
+
+    6 section: A_SECTION $@3 • section titlesec content C_SECTION
+
+    A_SECTION  shift, and go to state 84
+
+    section  go to state 265
+
+
+State 182
+
+    8 section: A_SECTION $@4 • section info content C_SECTION
+
+    A_SECTION  shift, and go to state 84
+
+    section  go to state 266
+
+
+State 183
+
+   10 section: A_SECTION $@5 • section content C_SECTION
+
+    A_SECTION  shift, and go to state 84
+
+    section  go to state 267
+
+
+State 184
+
+   12 section: A_SECTION $@6 • info titlesec content C_SECTION
+
+    A_INFO  shift, and go to state 8
+
+    info  go to state 268
+
+
+State 185
+
+   14 section: A_SECTION $@7 • titlesec content C_SECTION
+
+    A_TITLE  shift, and go to state 38
+
+    titlesec  go to state 269
+
+
+State 186
+
+   16 section: A_SECTION $@8 • info content C_SECTION
+
+    A_INFO  shift, and go to state 8
+
+    info  go to state 270
+
+
+State 187
+
+   18 section: A_SECTION $@9 • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 271
+
+
+State 188
+
+   44 titlesec: A_TITLE $@13 titlecontent • C_TITLE
+  167 titlecontent: titlecontent • TEXTO
+  169             | titlecontent • emphasis
+  171             | titlecontent • email
+  173             | titlecontent • link
+
+    TEXTO       shift, and go to state 115
+    XLINK       shift, and go to state 51
+    C_TITLE     shift, and go to state 272
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_LINK      shift, and go to state 54
+
+    email     go to state 117
+    emphasis  go to state 118
+    link      go to state 119
+
+
+State 189
+
+   60 surname: A_SURNAME • $@21 sharedcontent C_SURNAME
+
+    $default  reduce using rule 59 ($@21)
+
+    $@21  go to state 273
+
+
+State 190
+
+  177 authorcontent: surname •
+
+    $default  reduce using rule 177 (authorcontent)
+
+
+State 191
+
+   46 author: A_AUTHOR $@14 authorcontent • C_AUTHOR
+  175 authorcontent: authorcontent • firstname
+  176              | authorcontent • surname
+
+    C_AUTHOR     shift, and go to state 274
+    A_FIRSTNAME  shift, and go to state 275
+    A_SURNAME    shift, and go to state 189
+
+    firstname  go to state 276
+    surname    go to state 277
+
+
+State 192
+
+   98 personname: A_PERSONNAME • authorcontent C_PERSONNAME
+
+    A_SURNAME  shift, and go to state 189
+
+    surname        go to state 190
+    authorcontent  go to state 278
+
+
+State 193
+
+   48 author: A_AUTHOR $@15 personname • C_AUTHOR
+
+    C_AUTHOR  shift, and go to state 279
+
+
+State 194
+
+  179 sharedcontent: TEXTO •
+
+    $default  reduce using rule 179 (sharedcontent)
+
+
+State 195
+
+  185 sharedcontent: comment •
+
+    $default  reduce using rule 185 (sharedcontent)
+
+
+State 196
+
+  183 sharedcontent: emphasis •
+
+    $default  reduce using rule 183 (sharedcontent)
+
+
+State 197
+
+  181 sharedcontent: link •
+
+    $default  reduce using rule 181 (sharedcontent)
+
+
+State 198
+
+   74 date: A_DATE $@28 sharedcontent • C_DATE
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_DATE      shift, and go to state 281
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 199
+
+   76 year: A_YEAR $@29 • sharedcontent C_YEAR
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 285
+
+
+State 200
+
+   78 holder: A_HOLDER • $@30 sharedcontent C_HOLDER
+
+    $default  reduce using rule 77 ($@30)
+
+    $@30  go to state 286
+
+
+State 201
+
+  151 holders: holder •
+
+    $default  reduce using rule 151 (holders)
+
+
+State 202
+
+  149 copyrightcontent: year holders •
+  150 holders: holders • holder
+
+    A_HOLDER  shift, and go to state 200
+
+    $default  reduce using rule 149 (copyrightcontent)
+
+    holder  go to state 287
+
+
+State 203
+
+  103 copyright: A_COPYRIGHT copyrightcontent C_COPYRIGHT •
+
+    $default  reduce using rule 103 (copyright)
+
+
+State 204
+
+  147 copyrightcontent: copyrightcontent year •
+
+    $default  reduce using rule 147 (copyrightcontent)
+
+
+State 205
+
+   97 link: XLINK $@34 URL • $@35 C_REF
+
+    $default  reduce using rule 96 ($@35)
+
+    $@35  go to state 288
+
+
+State 206
+
+   62 email: A_EMAIL $@22 sharedcontent • C_EMAIL
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_EMAIL     shift, and go to state 289
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 207
+
+   81 seclcontent: seclcontent • TEXTO
+   83            | seclcontent • emphasis
+   85            | seclcontent • comment
+   87            | seclcontent • email
+   89            | seclcontent • author
+   92 emphasis: A_EMPHASIS $@32 seclcontent • C_EMPHASIS
+
+    TEXTO       shift, and go to state 237
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    C_EMPHASIS  shift, and go to state 290
+    A_COMMENT   shift, and go to state 21
+
+    author    go to state 239
+    email     go to state 240
+    comment   go to state 241
+    emphasis  go to state 242
+
+
+State 208
+
+   81 seclcontent: seclcontent • TEXTO
+   83            | seclcontent • emphasis
+   85            | seclcontent • comment
+   87            | seclcontent • email
+   89            | seclcontent • author
+   94 link: A_LINK $@33 seclcontent • C_LINK
+
+    TEXTO       shift, and go to state 237
+    A_AUTHOR    shift, and go to state 39
+    A_EMAIL     shift, and go to state 52
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    C_LINK      shift, and go to state 291
+
+    author    go to state 239
+    email     go to state 240
+    comment   go to state 241
+    emphasis  go to state 242
+
+
+State 209
+
+  104 abstract: A_ABSTRACT titlesec abstractcontent C_ABSTRACT •
+
+    $default  reduce using rule 104 (abstract)
+
+
+State 210
+
+   50 para: A_PARA $@16 para paracontent • C_PARA
+  186 paracontent: paracontent • TEXTO
+  188            | paracontent • emphasis
+  190            | paracontent • link
+  192            | paracontent • email
+  194            | paracontent • author
+  196            | paracontent • comment
+  198            | paracontent • itemizedlist
+  200            | paracontent • important
+  202            | paracontent • address
+  204            | paracontent • mediaobject
+  206            | paracontent • informaltable
+
+    TEXTO            shift, and go to state 211
+    XLINK            shift, and go to state 51
+    C_PARA           shift, and go to state 292
+    A_AUTHOR         shift, and go to state 39
+    A_ADDRESS        shift, and go to state 18
+    A_EMAIL          shift, and go to state 52
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_EMPHASIS       shift, and go to state 53
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_LINK           shift, and go to state 54
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    author         go to state 213
+    address        go to state 214
+    email          go to state 215
+    comment        go to state 216
+    emphasis       go to state 217
+    link           go to state 218
+    important      go to state 219
+    mediaobject    go to state 220
+    itemizedlist   go to state 221
+    informaltable  go to state 222
+
+
+State 211
+
+  186 paracontent: paracontent TEXTO •
+
+    $default  reduce using rule 186 (paracontent)
+
+
+State 212
+
+   52 para: A_PARA $@17 paracontent C_PARA •
+
+    $default  reduce using rule 52 (para)
+
+
+State 213
+
+  194 paracontent: paracontent author •
+
+    $default  reduce using rule 194 (paracontent)
+
+
+State 214
+
+  202 paracontent: paracontent address •
+
+    $default  reduce using rule 202 (paracontent)
+
+
+State 215
+
+  192 paracontent: paracontent email •
+
+    $default  reduce using rule 192 (paracontent)
+
+
+State 216
+
+  196 paracontent: paracontent comment •
+
+    $default  reduce using rule 196 (paracontent)
+
+
+State 217
+
+  188 paracontent: paracontent emphasis •
+
+    $default  reduce using rule 188 (paracontent)
+
+
+State 218
+
+  190 paracontent: paracontent link •
+
+    $default  reduce using rule 190 (paracontent)
+
+
+State 219
+
+  200 paracontent: paracontent important •
+
+    $default  reduce using rule 200 (paracontent)
+
+
+State 220
+
+  204 paracontent: paracontent mediaobject •
+
+    $default  reduce using rule 204 (paracontent)
+
+
+State 221
+
+  198 paracontent: paracontent itemizedlist •
+
+    $default  reduce using rule 198 (paracontent)
+
+
+State 222
+
+  206 paracontent: paracontent informaltable •
+
+    $default  reduce using rule 206 (paracontent)
+
+
+State 223
+
+  153 addresscontent: TEXTO $@38 • addresscontent
+
+    TEXTO       shift, and go to state 137
+    A_STATE     shift, and go to state 138
+    A_POSTCODE  shift, and go to state 139
+    A_STREET    shift, and go to state 140
+    A_EMAIL     shift, and go to state 52
+    A_PHONE     shift, and go to state 141
+
+    email           go to state 142
+    postcode        go to state 143
+    street          go to state 144
+    state           go to state 145
+    phone           go to state 146
+    addresscontent  go to state 293
+
+
+State 224
+
+   70 state: A_STATE $@26 • sharedcontent C_STATE
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 294
+
+
+State 225
+
+   64 postcode: A_POSTCODE $@23 • sharedcontent C_POSTCODE
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 295
+
+
+State 226
+
+   66 street: A_STREET $@24 • sharedcontent C_STREET
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 296
+
+
+State 227
+
+   72 phone: A_PHONE $@27 • sharedcontent C_PHONE
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 297
+
+
+State 228
+
+   56 address: A_ADDRESS $@19 addresscontent C_ADDRESS •
+
+    $default  reduce using rule 56 (address)
+
+
+State 229
+
+   68 city: A_CITY • $@25 sharedcontent C_CITY
+
+    $default  reduce using rule 67 ($@25)
+
+    $@25  go to state 298
+
+
+State 230
+
+  163 addresscontent: addresscontent email •
+
+    $default  reduce using rule 163 (addresscontent)
+
+
+State 231
+
+  165 addresscontent: addresscontent postcode •
+
+    $default  reduce using rule 165 (addresscontent)
+
+
+State 232
+
+  155 addresscontent: addresscontent street •
+
+    $default  reduce using rule 155 (addresscontent)
+
+
+State 233
+
+  157 addresscontent: addresscontent city •
+
+    $default  reduce using rule 157 (addresscontent)
+
+
+State 234
+
+  159 addresscontent: addresscontent state •
+
+    $default  reduce using rule 159 (addresscontent)
+
+
+State 235
+
+  161 addresscontent: addresscontent phone •
+
+    $default  reduce using rule 161 (addresscontent)
+
+
+State 236
+
+  111 listitem: A_LISTITEM content C_LISTITEM •
+
+    $default  reduce using rule 111 (listitem)
+
+
+State 237
+
+   81 seclcontent: seclcontent TEXTO •
+
+    $default  reduce using rule 81 (seclcontent)
+
+
+State 238
+
+   54 simpara: A_SIMPARA $@18 seclcontent C_SIMPARA •
+
+    $default  reduce using rule 54 (simpara)
+
+
+State 239
+
+   89 seclcontent: seclcontent author •
+
+    $default  reduce using rule 89 (seclcontent)
+
+
+State 240
+
+   87 seclcontent: seclcontent email •
+
+    $default  reduce using rule 87 (seclcontent)
+
+
+State 241
+
+   85 seclcontent: seclcontent comment •
+
+    $default  reduce using rule 85 (seclcontent)
+
+
+State 242
+
+   83 seclcontent: seclcontent emphasis •
+
+    $default  reduce using rule 83 (seclcontent)
+
+
+State 243
+
+   80 comment: A_COMMENT $@31 seclcontent C_COMMENT •
+
+    $default  reduce using rule 80 (comment)
+
+
+State 244
+
+  100 important: A_IMPORTANT $@36 titlesec content • C_IMPORTANT
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    C_IMPORTANT      shift, and go to state 299
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 245
+
+  102 important: A_IMPORTANT $@37 content C_IMPORTANT •
+
+    $default  reduce using rule 102 (important)
+
+
+State 246
+
+  233 videocontent: VIDEODATA $@41 • URL $@42 C_REF
+
+    URL  shift, and go to state 300
+
+
+State 247
+
+  239 videocontent: VIDEODATA $@45 • RUTA $@46 C_REF
+
+    RUTA  shift, and go to state 301
+
+
+State 248
+
+  230 videocontent: info VIDEODATA • $@39 URL $@40 C_REF
+  236             | info VIDEODATA • $@43 RUTA $@44 C_REF
+
+    RUTA      reduce using rule 234 ($@43)
+    $default  reduce using rule 228 ($@39)
+
+    $@39  go to state 302
+    $@43  go to state 303
+
+
+State 249
+
+  108 videoobject: A_VIDEOOBJECT videocontent C_VIDEOOBJECT •
+
+    $default  reduce using rule 108 (videoobject)
+
+
+State 250
+
+  245 imagecontent: IMAGEDATA $@49 • URL $@50 C_REF
+
+    URL  shift, and go to state 304
+
+
+State 251
+
+  251 imagecontent: IMAGEDATA $@53 • RUTA $@54 C_REF
+
+    RUTA  shift, and go to state 305
+
+
+State 252
+
+  242 imagecontent: info IMAGEDATA • $@47 URL $@48 C_REF
+  248             | info IMAGEDATA • $@51 RUTA $@52 C_REF
+
+    RUTA      reduce using rule 246 ($@51)
+    $default  reduce using rule 240 ($@47)
+
+    $@47  go to state 306
+    $@51  go to state 307
+
+
+State 253
+
+  109 imageobject: A_IMAGEOBJECT imagecontent C_IMAGEOBJECT •
+
+    $default  reduce using rule 109 (imageobject)
+
+
+State 254
+
+  107 mediaobject: A_MEDIAOBJECT info mediaobjectcontent C_MEDIAOBJECT •
+
+    $default  reduce using rule 107 (mediaobject)
+
+
+State 255
+
+  121 row: A_ROW • rowcontent C_ROW
+
+    A_ENTRYTBL  shift, and go to state 308
+    A_ENTRY     shift, and go to state 309
+
+    entry       go to state 310
+    entrytbl    go to state 311
+    rowcontent  go to state 312
+
+
+State 256
+
+  256 variosrow: row •
+
+    $default  reduce using rule 256 (variosrow)
+
+
+State 257
+
+  118 thead: A_THEAD variosrow • C_THEAD
+  257 variosrow: variosrow • row
+
+    A_ROW    shift, and go to state 255
+    C_THEAD  shift, and go to state 313
+
+    row  go to state 314
+
+
+State 258
+
+  119 tfoot: A_TFOOT variosrow • C_TFOOT
+  257 variosrow: variosrow • row
+
+    A_ROW    shift, and go to state 255
+    C_TFOOT  shift, and go to state 315
+
+    row  go to state 314
+
+
+State 259
+
+  120 tbody: A_TBODY variosrow • C_TBODY
+  257 variosrow: variosrow • row
+
+    A_ROW    shift, and go to state 255
+    C_TBODY  shift, and go to state 316
+
+    row  go to state 314
+
+
+State 260
+
+  114 tgroup: A_TGROUP thead tfoot • tbody C_TGROUP
+
+    A_TBODY  shift, and go to state 171
+
+    tbody  go to state 317
+
+
+State 261
+
+  115 tgroup: A_TGROUP thead tbody • C_TGROUP
+
+    C_TGROUP  shift, and go to state 318
+
+
+State 262
+
+  116 tgroup: A_TGROUP tfoot tbody • C_TGROUP
+
+    C_TGROUP  shift, and go to state 319
+
+
+State 263
+
+  117 tgroup: A_TGROUP tbody C_TGROUP •
+
+    $default  reduce using rule 117 (tgroup)
+
+
+State 264
+
+    4 section: A_SECTION $@2 section • info titlesec content C_SECTION
+
+    A_INFO  shift, and go to state 8
+
+    info  go to state 320
+
+
+State 265
+
+    6 section: A_SECTION $@3 section • titlesec content C_SECTION
+
+    A_TITLE  shift, and go to state 38
+
+    titlesec  go to state 321
+
+
+State 266
+
+    8 section: A_SECTION $@4 section • info content C_SECTION
+
+    A_INFO  shift, and go to state 8
+
+    info  go to state 322
+
+
+State 267
+
+   10 section: A_SECTION $@5 section • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 323
+
+
+State 268
+
+   12 section: A_SECTION $@6 info • titlesec content C_SECTION
+
+    A_TITLE  shift, and go to state 38
+
+    titlesec  go to state 324
+
+
+State 269
+
+   14 section: A_SECTION $@7 titlesec • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 325
+
+
+State 270
+
+   16 section: A_SECTION $@8 info • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 326
+
+
+State 271
+
+   18 section: A_SECTION $@9 content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 327
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 272
+
+   44 titlesec: A_TITLE $@13 titlecontent C_TITLE •
+
+    $default  reduce using rule 44 (titlesec)
+
+
+State 273
+
+   60 surname: A_SURNAME $@21 • sharedcontent C_SURNAME
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 328
+
+
+State 274
+
+   46 author: A_AUTHOR $@14 authorcontent C_AUTHOR •
+
+    $default  reduce using rule 46 (author)
+
+
+State 275
+
+   58 firstname: A_FIRSTNAME • $@20 sharedcontent C_FIRSTNAME
+
+    $default  reduce using rule 57 ($@20)
+
+    $@20  go to state 329
+
+
+State 276
+
+  175 authorcontent: authorcontent firstname •
+
+    $default  reduce using rule 175 (authorcontent)
+
+
+State 277
+
+  176 authorcontent: authorcontent surname •
+
+    $default  reduce using rule 176 (authorcontent)
+
+
+State 278
+
+   98 personname: A_PERSONNAME authorcontent • C_PERSONNAME
+  175 authorcontent: authorcontent • firstname
+  176              | authorcontent • surname
+
+    C_PERSONNAME  shift, and go to state 330
+    A_FIRSTNAME   shift, and go to state 275
+    A_SURNAME     shift, and go to state 189
+
+    firstname  go to state 276
+    surname    go to state 277
+
+
+State 279
+
+   48 author: A_AUTHOR $@15 personname C_AUTHOR •
+
+    $default  reduce using rule 48 (author)
+
+
+State 280
+
+  178 sharedcontent: sharedcontent TEXTO •
+
+    $default  reduce using rule 178 (sharedcontent)
+
+
+State 281
+
+   74 date: A_DATE $@28 sharedcontent C_DATE •
+
+    $default  reduce using rule 74 (date)
+
+
+State 282
+
+  184 sharedcontent: sharedcontent comment •
+
+    $default  reduce using rule 184 (sharedcontent)
+
+
+State 283
+
+  182 sharedcontent: sharedcontent emphasis •
+
+    $default  reduce using rule 182 (sharedcontent)
+
+
+State 284
+
+  180 sharedcontent: sharedcontent link •
+
+    $default  reduce using rule 180 (sharedcontent)
+
+
+State 285
+
+   76 year: A_YEAR $@29 sharedcontent • C_YEAR
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    C_YEAR      shift, and go to state 331
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 286
+
+   78 holder: A_HOLDER $@30 • sharedcontent C_HOLDER
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 332
+
+
+State 287
+
+  150 holders: holders holder •
+
+    $default  reduce using rule 150 (holders)
+
+
+State 288
+
+   97 link: XLINK $@34 URL $@35 • C_REF
+
+    C_REF  shift, and go to state 333
+
+
+State 289
+
+   62 email: A_EMAIL $@22 sharedcontent C_EMAIL •
+
+    $default  reduce using rule 62 (email)
+
+
+State 290
+
+   92 emphasis: A_EMPHASIS $@32 seclcontent C_EMPHASIS •
+
+    $default  reduce using rule 92 (emphasis)
+
+
+State 291
+
+   94 link: A_LINK $@33 seclcontent C_LINK •
+
+    $default  reduce using rule 94 (link)
+
+
+State 292
+
+   50 para: A_PARA $@16 para paracontent C_PARA •
+
+    $default  reduce using rule 50 (para)
+
+
+State 293
+
+  153 addresscontent: TEXTO $@38 addresscontent •
+  155               | addresscontent • street
+  157               | addresscontent • city
+  159               | addresscontent • state
+  161               | addresscontent • phone
+  163               | addresscontent • email
+  165               | addresscontent • postcode
+
+    A_CITY      shift, and go to state 229
+    A_STATE     shift, and go to state 138
+    A_POSTCODE  shift, and go to state 139
+    A_STREET    shift, and go to state 140
+    A_EMAIL     shift, and go to state 52
+    A_PHONE     shift, and go to state 141
+
+    A_CITY      [reduce using rule 153 (addresscontent)]
+    A_STATE     [reduce using rule 153 (addresscontent)]
+    A_POSTCODE  [reduce using rule 153 (addresscontent)]
+    A_STREET    [reduce using rule 153 (addresscontent)]
+    A_EMAIL     [reduce using rule 153 (addresscontent)]
+    A_PHONE     [reduce using rule 153 (addresscontent)]
+    $default    reduce using rule 153 (addresscontent)
+
+    email     go to state 230
+    postcode  go to state 231
+    street    go to state 232
+    city      go to state 233
+    state     go to state 234
+    phone     go to state 235
+
+    shift/reduce conflict on token A_EMAIL:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       62 email: • A_EMAIL $@22 sharedcontent C_EMAIL
+      Example: TEXTO $@38 addresscontent • A_EMAIL sharedcontent C_EMAIL
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 163: addresscontent email
+                                                ↳ 62: • A_EMAIL $@22    sharedcontent C_EMAIL
+                                                                ↳ 62: ε
+      Reduce derivation
+        addresscontent
+        ↳ 163: addresscontent                     email
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 62: A_EMAIL $@22    sharedcontent C_EMAIL
+                                                                ↳ 62: ε
+
+    shift/reduce conflict on token A_POSTCODE:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       64 postcode: • A_POSTCODE $@23 sharedcontent C_POSTCODE
+      Example: TEXTO $@38 addresscontent • A_POSTCODE sharedcontent C_POSTCODE
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 165: addresscontent postcode
+                                                ↳ 64: • A_POSTCODE $@23    sharedcontent C_POSTCODE
+                                                                   ↳ 64: ε
+      Reduce derivation
+        addresscontent
+        ↳ 165: addresscontent                     postcode
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 64: A_POSTCODE $@23    sharedcontent C_POSTCODE
+                                                                   ↳ 64: ε
+
+    shift/reduce conflict on token A_STREET:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       66 street: • A_STREET $@24 sharedcontent C_STREET
+      Example: TEXTO $@38 addresscontent • A_STREET sharedcontent C_STREET
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 155: addresscontent street
+                                                ↳ 66: • A_STREET $@24    sharedcontent C_STREET
+                                                                 ↳ 66: ε
+      Reduce derivation
+        addresscontent
+        ↳ 155: addresscontent                     street
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 66: A_STREET $@24    sharedcontent C_STREET
+                                                                 ↳ 66: ε
+
+    shift/reduce conflict on token A_CITY:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       68 city: • A_CITY $@25 sharedcontent C_CITY
+      Example: TEXTO $@38 addresscontent • A_CITY sharedcontent C_CITY
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 157: addresscontent city
+                                                ↳ 68: • A_CITY $@25    sharedcontent C_CITY
+                                                               ↳ 68: ε
+      Reduce derivation
+        addresscontent
+        ↳ 157: addresscontent                     city
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 68: A_CITY $@25    sharedcontent C_CITY
+                                                               ↳ 68: ε
+
+    shift/reduce conflict on token A_STATE:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       70 state: • A_STATE $@26 sharedcontent C_STATE
+      Example: TEXTO $@38 addresscontent • A_STATE sharedcontent C_STATE
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 159: addresscontent state
+                                                ↳ 70: • A_STATE $@26    sharedcontent C_STATE
+                                                                ↳ 70: ε
+      Reduce derivation
+        addresscontent
+        ↳ 159: addresscontent                     state
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 70: A_STATE $@26    sharedcontent C_STATE
+                                                                ↳ 70: ε
+
+    shift/reduce conflict on token A_PHONE:
+      153 addresscontent: TEXTO $@38 addresscontent •
+       72 phone: • A_PHONE $@27 sharedcontent C_PHONE
+      Example: TEXTO $@38 addresscontent • A_PHONE sharedcontent C_PHONE
+      Shift derivation
+        addresscontent
+        ↳ 153: TEXTO $@38 addresscontent
+                          ↳ 161: addresscontent phone
+                                                ↳ 72: • A_PHONE $@27    sharedcontent C_PHONE
+                                                                ↳ 72: ε
+      Reduce derivation
+        addresscontent
+        ↳ 161: addresscontent                     phone
+               ↳ 153: TEXTO $@38 addresscontent • ↳ 72: A_PHONE $@27    sharedcontent C_PHONE
+                                                                ↳ 72: ε
+
+
+
+State 294
+
+   70 state: A_STATE $@26 sharedcontent • C_STATE
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_STATE     shift, and go to state 334
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 295
+
+   64 postcode: A_POSTCODE $@23 sharedcontent • C_POSTCODE
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_POSTCODE  shift, and go to state 335
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 296
+
+   66 street: A_STREET $@24 sharedcontent • C_STREET
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_STREET    shift, and go to state 336
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 297
+
+   72 phone: A_PHONE $@27 sharedcontent • C_PHONE
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_PHONE     shift, and go to state 337
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 298
+
+   68 city: A_CITY $@25 • sharedcontent C_CITY
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 338
+
+
+State 299
+
+  100 important: A_IMPORTANT $@36 titlesec content C_IMPORTANT •
+
+    $default  reduce using rule 100 (important)
+
+
+State 300
+
+  233 videocontent: VIDEODATA $@41 URL • $@42 C_REF
+
+    $default  reduce using rule 232 ($@42)
+
+    $@42  go to state 339
+
+
+State 301
+
+  239 videocontent: VIDEODATA $@45 RUTA • $@46 C_REF
+
+    $default  reduce using rule 238 ($@46)
+
+    $@46  go to state 340
+
+
+State 302
+
+  230 videocontent: info VIDEODATA $@39 • URL $@40 C_REF
+
+    URL  shift, and go to state 341
+
+
+State 303
+
+  236 videocontent: info VIDEODATA $@43 • RUTA $@44 C_REF
+
+    RUTA  shift, and go to state 342
+
+
+State 304
+
+  245 imagecontent: IMAGEDATA $@49 URL • $@50 C_REF
+
+    $default  reduce using rule 244 ($@50)
+
+    $@50  go to state 343
+
+
+State 305
+
+  251 imagecontent: IMAGEDATA $@53 RUTA • $@54 C_REF
+
+    $default  reduce using rule 250 ($@54)
+
+    $@54  go to state 344
+
+
+State 306
+
+  242 imagecontent: info IMAGEDATA $@47 • URL $@48 C_REF
+
+    URL  shift, and go to state 345
+
+
+State 307
+
+  248 imagecontent: info IMAGEDATA $@51 • RUTA $@52 C_REF
+
+    RUTA  shift, and go to state 346
+
+
+State 308
+
+  123 entrytbl: A_ENTRYTBL • thead tbody C_ENTRYTBL
+  124         | A_ENTRYTBL • tbody C_ENTRYTBL
+
+    A_THEAD  shift, and go to state 169
+    A_TBODY  shift, and go to state 171
+
+    thead  go to state 347
+    tbody  go to state 348
+
+
+State 309
+
+  122 entry: A_ENTRY • entrycontent C_ENTRY
+
+    TEXTO           shift, and go to state 349
+    A_ABSTRACT      shift, and go to state 16
+    A_PARA          shift, and go to state 17
+    A_ITEMIZEDLIST  shift, and go to state 19
+    A_SIMPARA       shift, and go to state 20
+    A_COMMENT       shift, and go to state 21
+    A_IMPORTANT     shift, and go to state 22
+    A_MEDIAOBJECT   shift, and go to state 23
+
+    para          go to state 350
+    simpara       go to state 351
+    comment       go to state 352
+    important     go to state 353
+    abstract      go to state 354
+    mediaobject   go to state 355
+    itemizedlist  go to state 356
+    entrycontent  go to state 357
+
+
+State 310
+
+  258 rowcontent: entry •
+
+    $default  reduce using rule 258 (rowcontent)
+
+
+State 311
+
+  260 rowcontent: entrytbl •
+
+    $default  reduce using rule 260 (rowcontent)
+
+
+State 312
+
+  121 row: A_ROW rowcontent • C_ROW
+  259 rowcontent: rowcontent • entry
+  261           | rowcontent • entrytbl
+
+    C_ROW       shift, and go to state 358
+    A_ENTRYTBL  shift, and go to state 308
+    A_ENTRY     shift, and go to state 309
+
+    entry     go to state 359
+    entrytbl  go to state 360
+
+
+State 313
+
+  118 thead: A_THEAD variosrow C_THEAD •
+
+    $default  reduce using rule 118 (thead)
+
+
+State 314
+
+  257 variosrow: variosrow row •
+
+    $default  reduce using rule 257 (variosrow)
+
+
+State 315
+
+  119 tfoot: A_TFOOT variosrow C_TFOOT •
+
+    $default  reduce using rule 119 (tfoot)
+
+
+State 316
+
+  120 tbody: A_TBODY variosrow C_TBODY •
+
+    $default  reduce using rule 120 (tbody)
+
+
+State 317
+
+  114 tgroup: A_TGROUP thead tfoot tbody • C_TGROUP
+
+    C_TGROUP  shift, and go to state 361
+
+
+State 318
+
+  115 tgroup: A_TGROUP thead tbody C_TGROUP •
+
+    $default  reduce using rule 115 (tgroup)
+
+
+State 319
+
+  116 tgroup: A_TGROUP tfoot tbody C_TGROUP •
+
+    $default  reduce using rule 116 (tgroup)
+
+
+State 320
+
+    4 section: A_SECTION $@2 section info • titlesec content C_SECTION
+
+    A_TITLE  shift, and go to state 38
+
+    titlesec  go to state 362
+
+
+State 321
+
+    6 section: A_SECTION $@3 section titlesec • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 363
+
+
+State 322
+
+    8 section: A_SECTION $@4 section info • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 364
+
+
+State 323
+
+   10 section: A_SECTION $@5 section content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 365
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 324
+
+   12 section: A_SECTION $@6 info titlesec • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 366
+
+
+State 325
+
+   14 section: A_SECTION $@7 titlesec content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 367
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 326
+
+   16 section: A_SECTION $@8 info content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 368
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 327
+
+   18 section: A_SECTION $@9 content C_SECTION •
+
+    $default  reduce using rule 18 (section)
+
+
+State 328
+
+   60 surname: A_SURNAME $@21 sharedcontent • C_SURNAME
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_SURNAME   shift, and go to state 369
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 329
+
+   58 firstname: A_FIRSTNAME $@20 • sharedcontent C_FIRSTNAME
+
+    TEXTO       shift, and go to state 194
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment        go to state 195
+    emphasis       go to state 196
+    link           go to state 197
+    sharedcontent  go to state 370
+
+
+State 330
+
+   98 personname: A_PERSONNAME authorcontent C_PERSONNAME •
+
+    $default  reduce using rule 98 (personname)
+
+
+State 331
+
+   76 year: A_YEAR $@29 sharedcontent C_YEAR •
+
+    $default  reduce using rule 76 (year)
+
+
+State 332
+
+   78 holder: A_HOLDER $@30 sharedcontent • C_HOLDER
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    A_EMPHASIS  shift, and go to state 53
+    C_HOLDER    shift, and go to state 371
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 333
+
+   97 link: XLINK $@34 URL $@35 C_REF •
+
+    $default  reduce using rule 97 (link)
+
+
+State 334
+
+   70 state: A_STATE $@26 sharedcontent C_STATE •
+
+    $default  reduce using rule 70 (state)
+
+
+State 335
+
+   64 postcode: A_POSTCODE $@23 sharedcontent C_POSTCODE •
+
+    $default  reduce using rule 64 (postcode)
+
+
+State 336
+
+   66 street: A_STREET $@24 sharedcontent C_STREET •
+
+    $default  reduce using rule 66 (street)
+
+
+State 337
+
+   72 phone: A_PHONE $@27 sharedcontent C_PHONE •
+
+    $default  reduce using rule 72 (phone)
+
+
+State 338
+
+   68 city: A_CITY $@25 sharedcontent • C_CITY
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO       shift, and go to state 280
+    XLINK       shift, and go to state 51
+    C_CITY      shift, and go to state 372
+    A_EMPHASIS  shift, and go to state 53
+    A_COMMENT   shift, and go to state 21
+    A_LINK      shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 339
+
+  233 videocontent: VIDEODATA $@41 URL $@42 • C_REF
+
+    C_REF  shift, and go to state 373
+
+
+State 340
+
+  239 videocontent: VIDEODATA $@45 RUTA $@46 • C_REF
+
+    C_REF  shift, and go to state 374
+
+
+State 341
+
+  230 videocontent: info VIDEODATA $@39 URL • $@40 C_REF
+
+    $default  reduce using rule 229 ($@40)
+
+    $@40  go to state 375
+
+
+State 342
+
+  236 videocontent: info VIDEODATA $@43 RUTA • $@44 C_REF
+
+    $default  reduce using rule 235 ($@44)
+
+    $@44  go to state 376
+
+
+State 343
+
+  245 imagecontent: IMAGEDATA $@49 URL $@50 • C_REF
+
+    C_REF  shift, and go to state 377
+
+
+State 344
+
+  251 imagecontent: IMAGEDATA $@53 RUTA $@54 • C_REF
+
+    C_REF  shift, and go to state 378
+
+
+State 345
+
+  242 imagecontent: info IMAGEDATA $@47 URL • $@48 C_REF
+
+    $default  reduce using rule 241 ($@48)
+
+    $@48  go to state 379
+
+
+State 346
+
+  248 imagecontent: info IMAGEDATA $@51 RUTA • $@52 C_REF
+
+    $default  reduce using rule 247 ($@52)
+
+    $@52  go to state 380
+
+
+State 347
+
+  123 entrytbl: A_ENTRYTBL thead • tbody C_ENTRYTBL
+
+    A_TBODY  shift, and go to state 171
+
+    tbody  go to state 381
+
+
+State 348
+
+  124 entrytbl: A_ENTRYTBL tbody • C_ENTRYTBL
+
+    C_ENTRYTBL  shift, and go to state 382
+
+
+State 349
+
+  209 entrycontent: TEXTO •
+
+    $default  reduce using rule 209 (entrycontent)
+
+
+State 350
+
+  221 entrycontent: para •
+
+    $default  reduce using rule 221 (entrycontent)
+
+
+State 351
+
+  223 entrycontent: simpara •
+
+    $default  reduce using rule 223 (entrycontent)
+
+
+State 352
+
+  211 entrycontent: comment •
+
+    $default  reduce using rule 211 (entrycontent)
+
+
+State 353
+
+  215 entrycontent: important •
+
+    $default  reduce using rule 215 (entrycontent)
+
+
+State 354
+
+  219 entrycontent: abstract •
+
+    $default  reduce using rule 219 (entrycontent)
+
+
+State 355
+
+  217 entrycontent: mediaobject •
+
+    $default  reduce using rule 217 (entrycontent)
+
+
+State 356
+
+  213 entrycontent: itemizedlist •
+
+    $default  reduce using rule 213 (entrycontent)
+
+
+State 357
+
+  122 entry: A_ENTRY entrycontent • C_ENTRY
+  208 entrycontent: entrycontent • TEXTO
+  210             | entrycontent • comment
+  212             | entrycontent • itemizedlist
+  214             | entrycontent • important
+  216             | entrycontent • mediaobject
+  218             | entrycontent • abstract
+  220             | entrycontent • para
+  222             | entrycontent • simpara
+
+    TEXTO           shift, and go to state 383
+    A_ABSTRACT      shift, and go to state 16
+    A_PARA          shift, and go to state 17
+    A_ITEMIZEDLIST  shift, and go to state 19
+    A_SIMPARA       shift, and go to state 20
+    A_COMMENT       shift, and go to state 21
+    A_IMPORTANT     shift, and go to state 22
+    A_MEDIAOBJECT   shift, and go to state 23
+    C_ENTRY         shift, and go to state 384
+
+    para          go to state 385
+    simpara       go to state 386
+    comment       go to state 387
+    important     go to state 388
+    abstract      go to state 389
+    mediaobject   go to state 390
+    itemizedlist  go to state 391
+
+
+State 358
+
+  121 row: A_ROW rowcontent C_ROW •
+
+    $default  reduce using rule 121 (row)
+
+
+State 359
+
+  259 rowcontent: rowcontent entry •
+
+    $default  reduce using rule 259 (rowcontent)
+
+
+State 360
+
+  261 rowcontent: rowcontent entrytbl •
+
+    $default  reduce using rule 261 (rowcontent)
+
+
+State 361
+
+  114 tgroup: A_TGROUP thead tfoot tbody C_TGROUP •
+
+    $default  reduce using rule 114 (tgroup)
+
+
+State 362
+
+    4 section: A_SECTION $@2 section info titlesec • content C_SECTION
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 27
+    simpara        go to state 28
+    address        go to state 29
+    comment        go to state 30
+    important      go to state 31
+    abstract       go to state 32
+    mediaobject    go to state 33
+    itemizedlist   go to state 34
+    informaltable  go to state 35
+    content        go to state 392
+
+
+State 363
+
+    6 section: A_SECTION $@3 section titlesec content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 393
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 364
+
+    8 section: A_SECTION $@4 section info content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 394
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 365
+
+   10 section: A_SECTION $@5 section content C_SECTION •
+
+    $default  reduce using rule 10 (section)
+
+
+State 366
+
+   12 section: A_SECTION $@6 info titlesec content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 395
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 367
+
+   14 section: A_SECTION $@7 titlesec content C_SECTION •
+
+    $default  reduce using rule 14 (section)
+
+
+State 368
+
+   16 section: A_SECTION $@8 info content C_SECTION •
+
+    $default  reduce using rule 16 (section)
+
+
+State 369
+
+   60 surname: A_SURNAME $@21 sharedcontent C_SURNAME •
+
+    $default  reduce using rule 60 (surname)
+
+
+State 370
+
+   58 firstname: A_FIRSTNAME $@20 sharedcontent • C_FIRSTNAME
+  178 sharedcontent: sharedcontent • TEXTO
+  180              | sharedcontent • link
+  182              | sharedcontent • emphasis
+  184              | sharedcontent • comment
+
+    TEXTO        shift, and go to state 280
+    XLINK        shift, and go to state 51
+    C_FIRSTNAME  shift, and go to state 396
+    A_EMPHASIS   shift, and go to state 53
+    A_COMMENT    shift, and go to state 21
+    A_LINK       shift, and go to state 54
+
+    comment   go to state 282
+    emphasis  go to state 283
+    link      go to state 284
+
+
+State 371
+
+   78 holder: A_HOLDER $@30 sharedcontent C_HOLDER •
+
+    $default  reduce using rule 78 (holder)
+
+
+State 372
+
+   68 city: A_CITY $@25 sharedcontent C_CITY •
+
+    $default  reduce using rule 68 (city)
+
+
+State 373
+
+  233 videocontent: VIDEODATA $@41 URL $@42 C_REF •
+
+    $default  reduce using rule 233 (videocontent)
+
+
+State 374
+
+  239 videocontent: VIDEODATA $@45 RUTA $@46 C_REF •
+
+    $default  reduce using rule 239 (videocontent)
+
+
+State 375
+
+  230 videocontent: info VIDEODATA $@39 URL $@40 • C_REF
+
+    C_REF  shift, and go to state 397
+
+
+State 376
+
+  236 videocontent: info VIDEODATA $@43 RUTA $@44 • C_REF
+
+    C_REF  shift, and go to state 398
+
+
+State 377
+
+  245 imagecontent: IMAGEDATA $@49 URL $@50 C_REF •
+
+    $default  reduce using rule 245 (imagecontent)
+
+
+State 378
+
+  251 imagecontent: IMAGEDATA $@53 RUTA $@54 C_REF •
+
+    $default  reduce using rule 251 (imagecontent)
+
+
+State 379
+
+  242 imagecontent: info IMAGEDATA $@47 URL $@48 • C_REF
+
+    C_REF  shift, and go to state 399
+
+
+State 380
+
+  248 imagecontent: info IMAGEDATA $@51 RUTA $@52 • C_REF
+
+    C_REF  shift, and go to state 400
+
+
+State 381
+
+  123 entrytbl: A_ENTRYTBL thead tbody • C_ENTRYTBL
+
+    C_ENTRYTBL  shift, and go to state 401
+
+
+State 382
+
+  124 entrytbl: A_ENTRYTBL tbody C_ENTRYTBL •
+
+    $default  reduce using rule 124 (entrytbl)
+
+
+State 383
+
+  208 entrycontent: entrycontent TEXTO •
+
+    $default  reduce using rule 208 (entrycontent)
+
+
+State 384
+
+  122 entry: A_ENTRY entrycontent C_ENTRY •
+
+    $default  reduce using rule 122 (entry)
+
+
+State 385
+
+  220 entrycontent: entrycontent para •
+
+    $default  reduce using rule 220 (entrycontent)
+
+
+State 386
+
+  222 entrycontent: entrycontent simpara •
+
+    $default  reduce using rule 222 (entrycontent)
+
+
+State 387
+
+  210 entrycontent: entrycontent comment •
+
+    $default  reduce using rule 210 (entrycontent)
+
+
+State 388
+
+  214 entrycontent: entrycontent important •
+
+    $default  reduce using rule 214 (entrycontent)
+
+
+State 389
+
+  218 entrycontent: entrycontent abstract •
+
+    $default  reduce using rule 218 (entrycontent)
+
+
+State 390
+
+  216 entrycontent: entrycontent mediaobject •
+
+    $default  reduce using rule 216 (entrycontent)
+
+
+State 391
+
+  212 entrycontent: entrycontent itemizedlist •
+
+    $default  reduce using rule 212 (entrycontent)
+
+
+State 392
+
+    4 section: A_SECTION $@2 section info titlesec content • C_SECTION
+  125 content: content • para
+  127        | content • itemizedlist
+  129        | content • important
+  131        | content • simpara
+  133        | content • address
+  135        | content • mediaobject
+  137        | content • informaltable
+  139        | content • comment
+  141        | content • abstract
+
+    A_ABSTRACT       shift, and go to state 16
+    A_PARA           shift, and go to state 17
+    C_SECTION        shift, and go to state 402
+    A_ADDRESS        shift, and go to state 18
+    A_ITEMIZEDLIST   shift, and go to state 19
+    A_SIMPARA        shift, and go to state 20
+    A_COMMENT        shift, and go to state 21
+    A_IMPORTANT      shift, and go to state 22
+    A_MEDIAOBJECT    shift, and go to state 23
+    A_INFORMALTABLE  shift, and go to state 24
+    A_TABLE          shift, and go to state 25
+
+    para           go to state 86
+    simpara        go to state 87
+    address        go to state 88
+    comment        go to state 89
+    important      go to state 90
+    abstract       go to state 91
+    mediaobject    go to state 92
+    itemizedlist   go to state 93
+    informaltable  go to state 94
+
+
+State 393
+
+    6 section: A_SECTION $@3 section titlesec content C_SECTION •
+
+    $default  reduce using rule 6 (section)
+
+
+State 394
+
+    8 section: A_SECTION $@4 section info content C_SECTION •
+
+    $default  reduce using rule 8 (section)
+
+
+State 395
+
+   12 section: A_SECTION $@6 info titlesec content C_SECTION •
+
+    $default  reduce using rule 12 (section)
+
+
+State 396
+
+   58 firstname: A_FIRSTNAME $@20 sharedcontent C_FIRSTNAME •
+
+    $default  reduce using rule 58 (firstname)
+
+
+State 397
+
+  230 videocontent: info VIDEODATA $@39 URL $@40 C_REF •
+
+    $default  reduce using rule 230 (videocontent)
+
+
+State 398
+
+  236 videocontent: info VIDEODATA $@43 RUTA $@44 C_REF •
+
+    $default  reduce using rule 236 (videocontent)
+
+
+State 399
+
+  242 imagecontent: info IMAGEDATA $@47 URL $@48 C_REF •
+
+    $default  reduce using rule 242 (imagecontent)
+
+
+State 400
+
+  248 imagecontent: info IMAGEDATA $@51 RUTA $@52 C_REF •
+
+    $default  reduce using rule 248 (imagecontent)
+
+
+State 401
+
+  123 entrytbl: A_ENTRYTBL thead tbody C_ENTRYTBL •
+
+    $default  reduce using rule 123 (entrytbl)
+
+
+State 402
+
+    4 section: A_SECTION $@2 section info titlesec content C_SECTION •
+
+    $default  reduce using rule 4 (section)
