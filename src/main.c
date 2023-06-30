@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "grammarPrueba.tab.h"
+#include "grammar.tab.h"
 extern FILE* yyin;
 extern FILE *salida;
 extern int yylineno;
@@ -25,17 +25,13 @@ int main(int argc, char **argv) {
     printWelcome();
     printf("\n");
     
-    yydebug = 1;
+    //yydebug = 1;
 
     if (!yyparse()){printf("\n Analisis Sintactico 'CORRECTO' \n");}   
     /* fclose(yyin); */
     fclose(salida);
     return 0;
 }
-
-
-
-
 
 const char* getExtension(const char* filename) {
     const char* extension = strrchr(filename, '.');

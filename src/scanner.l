@@ -1,6 +1,6 @@
 %option noyywrap nodefault yylineno
 %{
-    #include "grammarPrueba.tab.h"
+    #include "grammar.tab.h"
     extern YYSTYPE yylval;
     void yyerror(const char *str);
 %}

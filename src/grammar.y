@@ -1,5 +1,10 @@
 %{   
+    #include <stdio.h>
+    #include <stdlib.h>
     #include <string.h>
+    #define YYDEBUG 1
+    void yyerror(const char *str);
+    FILE *salida;
 %}
 %union{char* text;}
 
@@ -52,22 +57,17 @@
 %%
 
 sigma:
-     DOCTYPE {printf("<!DOCTYPE html>\n<html>\n");} article {printf("</html>\n");}
+     DOCTYPE  article 
 ;
 
 article: 
-    A_ARTICLE info      titledoc content section                C_ARTICLE
-|   A_ARTICLE info      titledoc       content     simsection   C_ARTICLE 
-|   A_ARTICLE info      titledoc       content                  C_ARTICLE 
-|   A_ARTICLE info      content     section                     C_ARTICLE 
-|   A_ARTICLE info      content     simsection                  C_ARTICLE 
-|   A_ARTICLE {printf("<article>");} info      content          C_ARTICLE {printf("</article>\n");}
-|   A_ARTICLE titledoc     content     section                  C_ARTICLE 
-|   A_ARTICLE titledoc     content     simsection               C_ARTICLE 
-|   A_ARTICLE titledoc     content                              C_ARTICLE 
-|   A_ARTICLE content   section                                 C_ARTICLE 
-|   A_ARTICLE content   simsection                              C_ARTICLE 
-|   A_ARTICLE content                                           C_ARTICLE 
+    A_ARTICLE info titledoc content recusection C_ARTICLE 
+;
+
+recusection:
+    %empty
+|    section recusection 
+|   simsection recusection 
 ;
 
 content:
@@ -78,34 +78,21 @@ content:
 |   address         content | address
 |   mediaobject     content | mediaobject
 |   informaltable   content | informaltable
+|   table           content | table
 |   comment         content | comment
 |   abstract        content | abstract
 ;
 
 section: 
-    A_SECTION info      titlesec     content     section     C_SECTION
-|   A_SECTION info      titlesec     content     simsection  C_SECTION
-|   A_SECTION info      content     section                 C_SECTION
-|   A_SECTION info      content     simsection              C_SECTION
-|   A_SECTION info      content                             C_SECTION
-|   A_SECTION titlesec     content     section                 C_SECTION
-|   A_SECTION titlesec     content     simsection              C_SECTION
-|   A_SECTION {printf("<section>\n");} titlesec     content                             C_SECTION {printf("</section>\n");}
-|   A_SECTION content   section                             C_SECTION
-|   A_SECTION content   simsection                          C_SECTION
-|   A_SECTION content                                       C_SECTION
+    A_SECTION { printf("<section>"); } info titlesec content recusection C_SECTION
 ;
 
 simsection:
-    A_SIMSECTION info  {printf("<h2>\n");} titlesec  {printf("</h2>\n");} content     C_SIMSECTION
-|   A_SIMSECTION info   content             C_SIMSECTION
-|   A_SIMSECTION {printf("<h2>\n");} titlesec {printf("</h2>\n");} content             C_SIMSECTION
-|   A_SIMSECTION content                    C_SIMSECTION
+    A_SIMSECTION info titlesec content C_SIMSECTION
 ;
 
-
 infocontent:
-    titlesec    infocontent | titlesec
+    titlesec    infocontent
 |   mediaobject infocontent | mediaobject
 |   abstract    infocontent | abstract
 |   address     infocontent | address
@@ -115,7 +102,8 @@ infocontent:
 ;
 
 info: 
-    A_INFO {printf("<info>\n<p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} infocontent C_INFO {printf("</info>\n");}
+    %empty
+|    A_INFO  infocontent C_INFO 
 ;
 
 abstractcontent:
@@ -125,7 +113,6 @@ abstractcontent:
 
 abstract:
     A_ABSTRACT titlesec abstractcontent    C_ABSTRACT
-|   A_ABSTRACT abstractcontent          C_ABSTRACT
 ;
 
 addresscontent:
@@ -151,7 +138,7 @@ authorcontent:
 ;
 
 author:
-    A_AUTHOR {printf("<author>\n");} authorcontent C_AUTHOR {printf("</author>\n");}
+    A_AUTHOR  authorcontent C_AUTHOR
 ;
 
 copyrightyearcontent:
@@ -177,11 +164,13 @@ titlecontent:
 ;
 
 titledoc:
-    A_TITLE {printf("<h1>\n");} titlecontent C_TITLE {printf("</h1>\n");}
+    %empty
+|    A_TITLE  titlecontent C_TITLE 
 ;
 
 titlesec:
-    A_TITLE {printf("<h2>\n");} titlecontent C_TITLE {printf("</h2>\n");}
+    %empty
+|    A_TITLE  titlecontent C_TITLE 
 ;
 
 simparacontent:
@@ -208,6 +197,7 @@ comment:
 link:
     A_LINK link simparacontent C_LINK
 |   A_LINK simparacontent C_LINK
+|   A_LINK xlink C_LINK
 ;
 
 paracontent:
@@ -217,13 +207,12 @@ paracontent:
 ;
 
 para:
-    A_PARA {printf("<p>\n");}  para paracontent C_PARA {printf("</p>\n");} 
-|   A_PARA {printf("<p>\n");}  paracontent C_PARA {printf("</p>\n");} 
+    A_PARA   para paracontent C_PARA  
+|   A_PARA   paracontent C_PARA 
 ;
 
 important:
     A_IMPORTANT titlesec content C_IMPORTANT
-|   A_IMPORTANT content C_IMPORTANT
 ;
 
 sharedcontent:
@@ -234,16 +223,16 @@ sharedcontent:
 ;
 
 personame:
-    A_PERSONNAME {printf("<personname>");} firstname surname C_PERSONNAME {printf("</personname>\n");}
+    A_PERSONNAME  firstname surname C_PERSONNAME 
 ;
 
 
 firstname:
-    A_FIRSTNAME {printf("<firstname>");} sharedcontent C_FIRSTNAME {printf("</firstname>\n");}
+    A_FIRSTNAME  sharedcontent C_FIRSTNAME 
 ;
 
 surname:
-    A_SURNAME {printf("<surname>");} sharedcontent C_SURNAME {printf("</surname>\n");}
+    A_SURNAME  sharedcontent C_SURNAME 
 ;
 
 street:
@@ -307,11 +296,13 @@ videoobject:
 ;
 
 videodata:
+   VIDEODATA URL C_REF    
     VIDEODATA RUTA C_REF
 ;
 
 imagedata:
-    IMAGEDATA RUTA C_REF
+   IMAGEDATA URL C_REF  
+|    IMAGEDATA RUTA C_REF
 ;
 
 itemizedlist:
