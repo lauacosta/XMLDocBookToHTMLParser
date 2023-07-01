@@ -41,8 +41,8 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</date>"               { return C_DATE;             }
 "<section>"             { return A_SECTION;          }
 "</section>"            { return C_SECTION;          } 
-"<simplesect>"          { return A_SECTION;          } 
-"</simplesect>"         { return C_SECTION;          }
+"<simplesect>"          { return A_SIMSECTION;       } 
+"</simplesect>"         { return C_SIMSECTION;       }
 "<copyright>"           { return A_COPYRIGHT;        }
 "</copyright>"          { return C_COPYRIGHT;        }
 "<address>"             { return A_ADDRESS;          }
@@ -103,11 +103,11 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</entrytbl>"           { return C_ENTRYTBL;         }
 "<link xlink:href:"     { return XLINK;              }
 "/>"                    { return C_REF;              }
+[ \t]+                  { ;/* Ignorar espacios y tabuladores */}
 {url}                   { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return URL;  }
 {ruta}                  { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return RUTA; }
 {texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return TEXTO;}
 \n                      { ; }
-[ \t]+                  { ;/* Ignorar espacios y tabuladores */}
 .                       { yyerror("Caracter desconocido"); exit(1); }
 %%
 /*

@@ -10,6 +10,7 @@
 <para>Parrafo de prueba</para>
 <section>
 <title>Titulo 2</title>
-<para>Otro Parrafo de prueba</para>
+<para><emphasis>Otro Parrafo de prueba</emphasis></para>
+<para><comment>hola</comment></para>
 </section>
 </article>

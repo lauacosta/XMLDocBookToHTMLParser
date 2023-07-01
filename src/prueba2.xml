@@ -5,8 +5,7 @@
 <abstract>
 <title>Explorando el universo</title>
 <para>El viaje espacial ha sido una fascinante aventura para la humanidad.</para>
-<simpara>En esta página encontrarás información sobre los logros alcanzados en la exploración espacial,
-desde los primeros vuelos tripulados hasta las misiones a otros planetas.</simpara>
+<simpara>En esta página encontrarás información sobre los logros alcanzados en la exploración espacial,desde los primeros vuelos tripulados hasta las misiones a otros planetas.</simpara>
 </abstract>
 <author>
 <personname>
@@ -26,7 +25,7 @@ desde los primeros vuelos tripulados hasta las misiones a otros planetas.</simpa
 <link>https://www.nasa.gov</link>
 <image>
 <caption>Imagen del telescopio espacial</caption>
-<imagedata fileref="telescopio.jpg" />
+<imagedata fileref="telescopio.jpg"/>
 </image>
 </info>
 <title>Los descubrimientos</title>

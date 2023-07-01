@@ -4,12 +4,16 @@
     #include <string.h>
     #define YYDEBUG 1
     void yyerror(const char *str);
+    extern int yylex();
     FILE *salida;
 %}
 %union{char* text;}
 
 %token <text> TEXTO 
-%token RUTA URL XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
+%token <text> URL
+%token <text> RUTA
+
+%token XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
 %token A_TITLE          C_TITLE
@@ -57,16 +61,16 @@
 %%
 
 sigma:
-     DOCTYPE  article 
+    DOCTYPE {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n\t");} article {fprintf(salida,"</body>\n</html>\n");}
 ;
 
 article: 
-    A_ARTICLE info titledoc content recusection C_ARTICLE 
+    A_ARTICLE {fprintf(salida,"<article>\n");}info titledoc content recusection C_ARTICLE {fprintf(salida,"</article>\n");}
 ;
 
 recusection:
     %empty
-|    section recusection 
+|   section recusection 
 |   simsection recusection 
 ;
 
@@ -84,16 +88,15 @@ content:
 ;
 
 section: 
-    A_SECTION { printf("<section>"); } info titlesec content recusection C_SECTION
+    A_SECTION {fprintf(salida,"<section>\n");} info titlesec content recusection C_SECTION {fprintf(salida,"</section>\n");}
 ;
 
 simsection:
-    A_SIMSECTION info titlesec content C_SIMSECTION
+    A_SIMSECTION {fprintf(salida,"<section>\n");} info titlesec content C_SIMSECTION {fprintf(salida,"</section>\n");}
 ;
 
 infocontent:
-    titlesec    infocontent
-|   mediaobject infocontent | mediaobject
+    mediaobject infocontent | mediaobject
 |   abstract    infocontent | abstract
 |   address     infocontent | address
 |   author      infocontent | author
@@ -103,7 +106,7 @@ infocontent:
 
 info: 
     %empty
-|    A_INFO  infocontent C_INFO 
+|    A_INFO  {fprintf(salida,"<div> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} titlesec infocontent C_INFO {fprintf(salida,"</p>\n</div>\n");}
 ;
 
 abstractcontent:
@@ -112,11 +115,11 @@ abstractcontent:
 ;
 
 abstract:
-    A_ABSTRACT titlesec abstractcontent    C_ABSTRACT
+    A_ABSTRACT titlesec abstractcontent C_ABSTRACT
 ;
 
 addresscontent:
-    TEXTO {printf("%s",yylval);}  addresscontent    | TEXTO {printf("%s",yylval);} 
+    TEXTO {fprintf(salida, "%s",$1);}  addresscontent    | TEXTO {fprintf(salida, "%s",$1);} 
 |   street addresscontent   | street
 |   city addresscontent     | city
 |   state addresscontent    | state
@@ -126,7 +129,7 @@ addresscontent:
 ;
 
 address: 
-    A_ADDRESS addresscontent C_ADDRESS
+    A_ADDRESS {fprintf(salida,"<address>\n");} addresscontent C_ADDRESS {fprintf(salida,"</address>\n");}
 ;
 
 authorcontent:
@@ -138,7 +141,7 @@ authorcontent:
 ;
 
 author:
-    A_AUTHOR  authorcontent C_AUTHOR
+    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}
 ;
 
 copyrightyearcontent:
@@ -152,46 +155,44 @@ copyrightholdercontent:
 ;
 
 copyright:
-    A_COPYRIGHT copyrightyearcontent C_COPYRIGHT
-|   A_COPYRIGHT TEXTO C_COPYRIGHT
+    A_COPYRIGHT {fprintf(salida,"<div>\n");} copyrightyearcontent C_COPYRIGHT {fprintf(salida,"</div>\n");}
+|   A_COPYRIGHT {fprintf(salida,"<div>\n");} TEXTO {fprintf(salida, "%s", $3);} C_COPYRIGHT {fprintf(salida,"</div>\n");}
 ;
 
 titlecontent: 
     emphasis titlecontent   | emphasis
 |   link titlecontent       | link
 |   email titlecontent      | email
-|   TEXTO {printf("%s",yylval);} titlecontent      | TEXTO {printf("%s",yylval);}
+|   TEXTO {fprintf(salida, "%s",$1);} titlecontent      | TEXTO {fprintf(salida, "%s",$1);}
 ;
 
 titledoc:
     %empty
-|    A_TITLE  titlecontent C_TITLE 
+|    A_TITLE  {fprintf(salida,"<h1>\n");} titlecontent C_TITLE {fprintf(salida,"</h1>\n");}
 ;
 
 titlesec:
     %empty
-|    A_TITLE  titlecontent C_TITLE 
+|    A_TITLE  {fprintf(salida,"<h2>");} titlecontent C_TITLE {fprintf(salida,"</h2>\n");}
 ;
 
 simparacontent:
-    emphasis | TEXTO {printf("%s",yylval);} |   personame
+    emphasis | TEXTO {fprintf(salida, "%s", $1);} |   personame
 |   link     | email
 |   author   | comment
 ;
 
 simpara:
-    A_SIMPARA simpara simparacontent C_SIMPARA
-|   A_SIMPARA simparacontent C_SIMPARA
+    A_SIMPARA {fprintf(salida,"<p>");} simpara simparacontent C_SIMPARA {fprintf(salida,"</p>\n");}
+|   A_SIMPARA {fprintf(salida,"<p>");} simparacontent C_SIMPARA {fprintf(salida,"</p>\n");}
 ;
 
 emphasis:
-    A_EMPHASIS emphasis simparacontent C_EMPHASIS
-|   A_EMPHASIS simparacontent C_EMPHASIS
+    A_EMPHASIS {fprintf(salida,"<div>\n<p><i>\n");} simparacontent C_EMPHASIS {fprintf(salida,"</i></p>\n</div>\n");}
 ;
 
 comment:
-    A_COMMENT comment simparacontent C_COMMENT
-|   A_COMMENT simparacontent C_COMMENT
+   A_COMMENT {fprintf(salida, "<div>\n");} simparacontent C_COMMENT {fprintf(salida, "</div>\n");}
 ;
 
 link:
@@ -203,12 +204,12 @@ link:
 paracontent:
     emphasis    | link          | email     | author
 |   comment     | itemizedlist  | important | address
-|   mediaobject | informaltable | TEXTO {printf("%s\n",yylval);}
+|   mediaobject | informaltable | TEXTO {fprintf(salida, "%s\n",$1);}
 ;
 
 para:
-    A_PARA   para paracontent C_PARA  
-|   A_PARA   paracontent C_PARA 
+    A_PARA {fprintf(salida,"<p>");} para paracontent C_PARA {fprintf(salida,"</p>\n");}
+|   A_PARA {fprintf(salida,"<p>");} paracontent C_PARA  {fprintf(salida,"</p>\n");}
 ;
 
 important:
@@ -219,7 +220,7 @@ sharedcontent:
     comment sharedcontent       | comment
 |   emphasis sharedcontent      | emphasis
 |   link sharedcontent          | link
-|   TEXTO {printf("%s",yylval);}  sharedcontent         | TEXTO {printf("%s",yylval);} 
+|   TEXTO {fprintf(salida, "%s",$1);}  sharedcontent         | TEXTO {fprintf(salida, "%s",$1);} 
 ;
 
 personame:
@@ -228,71 +229,72 @@ personame:
 
 
 firstname:
-    A_FIRSTNAME  sharedcontent C_FIRSTNAME 
+    A_FIRSTNAME {fprintf(salida,"<p>");} sharedcontent C_FIRSTNAME {fprintf(salida,"</p>\n");}
 ;
 
 surname:
-    A_SURNAME  sharedcontent C_SURNAME 
+    A_SURNAME {fprintf(salida,"<p>\n");} sharedcontent C_SURNAME {fprintf(salida,"</p>\n");}
 ;
 
 street:
-    A_STREET sharedcontent C_STREET
+    A_STREET {fprintf(salida,"<p>");}sharedcontent C_STREET{fprintf(salida,"</p>");}
 ;
 
 postcode:
-    A_POSTCODE TEXTO {printf("%s",yylval);}  C_POSTCODE
+    A_POSTCODE {fprintf(salida,"<p>");} TEXTO {fprintf(salida, "%s",$3);}  C_POSTCODE {fprintf(salida,"</p>");}
 ;
 
 city:
-    A_CITY sharedcontent C_CITY
+    A_CITY {fprintf(salida,"<p>");} sharedcontent C_CITY {fprintf(salida,"</p>");}
 ;
 
 phone:
-    A_PHONE sharedcontent C_PHONE
+    A_PHONE {fprintf(salida,"<p>");} sharedcontent C_PHONE {fprintf(salida,"</p>");}
 ;
 
 email:
-    A_EMAIL sharedcontent C_EMAIL
+    A_EMAIL {fprintf(salida,"</p>");} sharedcontent C_EMAIL{fprintf(salida,"</p>");}
 ;
 
 date:
-    A_DATE sharedcontent C_DATE
+    A_DATE {fprintf(salida,"<p>");} sharedcontent C_DATE{fprintf(salida,"</p>");}
 ;
 
 year:
-    A_YEAR sharedcontent C_YEAR
+    A_YEAR {fprintf(salida,"<p>");} sharedcontent C_YEAR {fprintf(salida,"</p>");}
 ;
 
 holder:
-    A_HOLDER sharedcontent C_HOLDER
+    A_HOLDER {fprintf(salida,"<p>");} sharedcontent C_HOLDER {fprintf(salida,"</p>");}
 ;
 
 state:
-    A_STATE sharedcontent C_STATE
+    A_STATE {fprintf(salida,"<p>");} sharedcontent C_STATE {fprintf(salida,"</p>");}
 ;
 
 mediaobjectcontent:
-    videoobject mediaobjectcontent  |   videoobject
-|   imageobject mediaobjectcontent  |   imageobject
+    %empty
+|   videoobject mediaobjectcontent 
+|   imageobject mediaobjectcontent
 ;
 
 mediaobject:
-    A_MEDIAOBJECT info          videoobject         mediaobjectcontent  C_MEDIAOBJECT
-|   A_MEDIAOBJECT info          imageobject         mediaobjectcontent  C_MEDIAOBJECT
-|   A_MEDIAOBJECT videoobject   mediaobjectcontent                      C_MEDIAOBJECT
-|   A_MEDIAOBJECT imageobject   mediaobjectcontent                      C_MEDIAOBJECT
-|   A_MEDIAOBJECT videoobject                                           C_MEDIAOBJECT
-|   A_MEDIAOBJECT imageobject                                           C_MEDIAOBJECT
+    A_MEDIAOBJECT info videoobject mediaobjectcontent  C_MEDIAOBJECT
+|   A_MEDIAOBJECT info imageobject mediaobjectcontent  C_MEDIAOBJECT
+//|   A_MEDIAOBJECT videoobject   mediaobjectcontent                      C_MEDIAOBJECT
+//|   A_MEDIAOBJECT imageobject   mediaobjectcontent                      C_MEDIAOBJECT
+//|   A_MEDIAOBJECT videoobject                                           C_MEDIAOBJECT
+//|   A_MEDIAOBJECT imageobject                                           C_MEDIAOBJECT
 ;
 
 imageobject:
     A_IMAGEOBJECT info      imagedata    C_IMAGEOBJECT
-|   A_IMAGEOBJECT imagedata              C_IMAGEOBJECT
+//|   A_IMAGEOBJECT imagedata              C_IMAGEOBJECT
 ;
 
 videoobject:
     A_VIDEOOBJECT info      videodata   C_VIDEOOBJECT
-|   A_VIDEOOBJECT videodata             C_VIDEOOBJECT
+//|   A_VIDEOOBJECT videodata             C_VIDEOOBJECT
 ;
 
 videodata:
@@ -361,7 +363,7 @@ row:
 ;
 
 entrycontent:
-    TEXTO {printf("%s\n",yylval);} entrycontent | TEXTO {printf("%s\n",yylval);} 
+    TEXTO {fprintf(salida, "%s\n",$1);} entrycontent | TEXTO {fprintf(salida, "%s\n",$1);} 
 |   itemizedlist    entrycontent | itemizedlist
 |   important       entrycontent | important
 |   para            entrycontent | para
