@@ -1,16 +1,27 @@
 <!DOCTYPE article>
 <article>
-<info>
-<title>Titulo 1</title>
-<author>
-<firstname>Ivan</firstname>
-<surname>Niveyro</surname>
-</author>
-</info>
-<para>Parrafo de prueba</para>
-<section>
-<title>Titulo 2</title>
-<para><emphasis>Otro Parrafo de prueba</emphasis></para>
-<para><comment>hola</comment></para>
-</section>
+    <info>
+        <title>Titulo 1</title>
+        <author>
+            <firstname>Ivan</firstname>
+            <surname>Niveyro</surname>
+        </author>
+    </info>
+    <itemizedlist>
+        <listitem>foo</listitem>
+        <listitem>bar</listitem>
+        <listitem>hola</listitem>
+    </itemizedlist>
+    <para>Parrafo de prueba</para>
+    <section>
+        <title>Titulo 2</title>
+        <para><emphasis>Otro Parrafo de prueba</emphasis></para>
+        <para><comment>hola</comment></para>
+        <para>
+            <important>
+                <title>Titulo Important</title>
+                <para>Hola soy Important</para>
+            </important>
+        </para>
+    </section>
 </article>

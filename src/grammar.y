@@ -196,9 +196,9 @@ comment:
 ;
 
 link:
-    A_LINK link simparacontent C_LINK
-|   A_LINK simparacontent C_LINK
-|   A_LINK xlink C_LINK
+    A_LINK {fprintf(salida, "<a>");} link simparacontent C_LINK {fprintf(salida, "</a>");}
+|   A_LINK {fprintf(salida, "<a>");} simparacontent C_LINK {fprintf(salida, "</a>");}
+|   A_LINK {fprintf(salida, "<a>");} xlink C_LINK {fprintf(salida, "</a>");}
 ;
 
 paracontent:
@@ -213,7 +213,7 @@ para:
 ;
 
 important:
-    A_IMPORTANT titlesec content C_IMPORTANT
+    A_IMPORTANT {fprintf(salida,"<div>\n<p><b>");} titlesec content C_IMPORTANT {fprintf(salida,"</b></p>\n</div>\n");}
 ;
 
 sharedcontent:
@@ -224,52 +224,51 @@ sharedcontent:
 ;
 
 personame:
-    A_PERSONNAME  firstname surname C_PERSONNAME 
+    A_PERSONNAME {fprintf(salida,"<p>");} firstname surname C_PERSONNAME {fprintf(salida,"</p>");}
 ;
-
 
 firstname:
     A_FIRSTNAME {fprintf(salida,"<p>");} sharedcontent C_FIRSTNAME {fprintf(salida,"</p>\n");}
 ;
 
 surname:
-    A_SURNAME {fprintf(salida,"<p>\n");} sharedcontent C_SURNAME {fprintf(salida,"</p>\n");}
+    A_SURNAME {fprintf(salida,"<p>");} sharedcontent C_SURNAME {fprintf(salida,"</p>\n");}
 ;
 
 street:
-    A_STREET {fprintf(salida,"<p>");}sharedcontent C_STREET{fprintf(salida,"</p>");}
+    A_STREET {fprintf(salida,"<p>");}sharedcontent C_STREET{fprintf(salida,"</p>\n");}
 ;
 
 postcode:
-    A_POSTCODE {fprintf(salida,"<p>");} TEXTO {fprintf(salida, "%s",$3);}  C_POSTCODE {fprintf(salida,"</p>");}
+    A_POSTCODE {fprintf(salida,"<p>");} TEXTO {fprintf(salida, "%s",$3);}  C_POSTCODE {fprintf(salida,"</p>\n");}
 ;
 
 city:
-    A_CITY {fprintf(salida,"<p>");} sharedcontent C_CITY {fprintf(salida,"</p>");}
+    A_CITY {fprintf(salida,"<p>");} sharedcontent C_CITY {fprintf(salida,"</p>\n");}
 ;
 
 phone:
-    A_PHONE {fprintf(salida,"<p>");} sharedcontent C_PHONE {fprintf(salida,"</p>");}
+    A_PHONE {fprintf(salida,"<p>");} sharedcontent C_PHONE {fprintf(salida,"</p>\n");}
 ;
 
 email:
-    A_EMAIL {fprintf(salida,"</p>");} sharedcontent C_EMAIL{fprintf(salida,"</p>");}
+    A_EMAIL {fprintf(salida,"</p>");} sharedcontent C_EMAIL{fprintf(salida,"</p>\n");}
 ;
 
 date:
-    A_DATE {fprintf(salida,"<p>");} sharedcontent C_DATE{fprintf(salida,"</p>");}
+    A_DATE {fprintf(salida,"<p>");} sharedcontent C_DATE{fprintf(salida,"</p>\n");}
 ;
 
 year:
-    A_YEAR {fprintf(salida,"<p>");} sharedcontent C_YEAR {fprintf(salida,"</p>");}
+    A_YEAR {fprintf(salida,"<p>");} sharedcontent C_YEAR {fprintf(salida,"</p>\n");}
 ;
 
 holder:
-    A_HOLDER {fprintf(salida,"<p>");} sharedcontent C_HOLDER {fprintf(salida,"</p>");}
+    A_HOLDER {fprintf(salida,"<p>");} sharedcontent C_HOLDER {fprintf(salida,"</p>\n");}
 ;
 
 state:
-    A_STATE {fprintf(salida,"<p>");} sharedcontent C_STATE {fprintf(salida,"</p>");}
+    A_STATE {fprintf(salida,"<p>");} sharedcontent C_STATE {fprintf(salida,"</p>\n");}
 ;
 
 mediaobjectcontent:
@@ -279,42 +278,36 @@ mediaobjectcontent:
 ;
 
 mediaobject:
-    A_MEDIAOBJECT info videoobject mediaobjectcontent  C_MEDIAOBJECT
-|   A_MEDIAOBJECT info imageobject mediaobjectcontent  C_MEDIAOBJECT
-//|   A_MEDIAOBJECT videoobject   mediaobjectcontent                      C_MEDIAOBJECT
-//|   A_MEDIAOBJECT imageobject   mediaobjectcontent                      C_MEDIAOBJECT
-//|   A_MEDIAOBJECT videoobject                                           C_MEDIAOBJECT
-//|   A_MEDIAOBJECT imageobject                                           C_MEDIAOBJECT
+    A_MEDIAOBJECT  info videoobject mediaobjectcontent  C_MEDIAOBJECT 
+|   A_MEDIAOBJECT  info imageobject mediaobjectcontent  C_MEDIAOBJECT 
 ;
 
 imageobject:
-    A_IMAGEOBJECT info      imagedata    C_IMAGEOBJECT
-//|   A_IMAGEOBJECT imagedata              C_IMAGEOBJECT
+    A_IMAGEOBJECT {fprintf(salida, "<div>\n");}info      imagedata    C_IMAGEOBJECT {fprintf(salida, "</div>\n");}
 ;
 
 videoobject:
-    A_VIDEOOBJECT info      videodata   C_VIDEOOBJECT
-//|   A_VIDEOOBJECT videodata             C_VIDEOOBJECT
+    A_VIDEOOBJECT {fprintf(salida, "<div>\n");}info      videodata   C_VIDEOOBJECT {fprintf(salida, "</div>\n");}
 ;
 
 videodata:
-   VIDEODATA URL C_REF    
-    VIDEODATA RUTA C_REF
+   VIDEODATA {fprintf(salida,"html:a href=\"");} URL C_REF {fprintf(salida,"\">");}   
+|  VIDEODATA {fprintf(salida,"html:a href=\"");} RUTA C_REF {fprintf(salida,"\">");}
 ;
 
 imagedata:
-   IMAGEDATA URL C_REF  
-|    IMAGEDATA RUTA C_REF
+   IMAGEDATA {fprintf(salida,"html:a href=\"");} URL C_REF  {fprintf(salida,"\">");}
+|  IMAGEDATA {fprintf(salida,"html:a href=\"");} RUTA C_REF {fprintf(salida,"\">");}
 ;
 
 itemizedlist:
-    A_ITEMIZEDLIST listitem itemizedlist C_ITEMIZEDLIST
-|   A_ITEMIZEDLIST listitem C_ITEMIZEDLIST
+ //   A_ITEMIZEDLIST {fprintf(salida, "<ul>\n");} listitem itemizedlist C_ITEMIZEDLIST {fprintf(salida, "</ul>\n");}
+   A_ITEMIZEDLIST {fprintf(salida, "<ul>\n");} listitem C_ITEMIZEDLIST {fprintf(salida, "</ul>\n");}
 ;
 
 listitem:
-    A_LISTITEM  content listitem C_LISTITEM
-|   A_LISTITEM  content C_LISTITEM
+    A_LISTITEM  {fprintf(salida, "<li>");} content listitem C_LISTITEM {fprintf(salida, "</li>\n");}
+//   A_LISTITEM  {fprintf(salida, "<li>");} content C_LISTITEM {fprintf(salida, "</li>\n");}
 ;
 
 informaltablecontent:
@@ -383,6 +376,6 @@ entrytbl:
 ;
 
 xlink:
-    XLINK URL C_REF
+    XLINK {fprintf(salida, "<a href=");} URL C_REF {fprintf(salida, "</a>\n");}
 ;
 %%

@@ -10,13 +10,6 @@ texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/
 url             (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
 ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 
-/*
-- protocolo: (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?
-- dominio: ([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+
-- puerto: (:[0-9]+)?
-- ruta: (\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
-*/
-
 %%
 "<!DOCTYPE article>"    { return DOCTYPE;            }
 "<article>"             { return A_ARTICLE;          }

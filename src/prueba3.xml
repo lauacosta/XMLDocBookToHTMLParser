@@ -1,0 +1,32 @@
+<!DOCTYPE article>
+<article>
+    <info>
+        <title>El viaje espacial</title>
+        <abstract>
+            <title>Explorando el universo</title>
+            <para>El viaje espacial ha sido una fascinante aventura para la humanidad.</para>
+            <simpara>En esta página encontrarás información sobre los logros alcanzados en la exploración espacial,desde los primeros vuelos tripulados hasta las misiones a otros planetas.</simpara>
+        </abstract>
+        <author>
+            <personname>
+                <firstname>John</firstname>
+                <surname>Doe</surname>
+            </personname>
+        </author>
+        <date>2023</date>
+        <address>
+            <city>Houston</city>
+            <state>Texas</state>
+            <street>Main Street</street>
+            <postcode>77001</postcode>
+            <email>johndoe@example.com</email>
+        </address>
+        <link>"https://www.nasa.gov/"</link>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="telescopio.jpg"/>
+            </imageobject>
+        </mediaobject>
+    </info>
+    <title>Los descubrimientos</title>
+</article>
