@@ -8,9 +8,9 @@
         </author>
     </info>
     <itemizedlist>
-        <listitem>foo</listitem>
-        <listitem>bar</listitem>
-        <listitem>hola</listitem>
+        <listitem><para>foo</para></listitem>
+        <listitem><para>bar</para></listitem>
+        <listitem><para>hola</para></listitem>
     </itemizedlist>
     <para>Parrafo de prueba</para>
     <section>

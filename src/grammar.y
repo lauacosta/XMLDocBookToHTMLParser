@@ -12,7 +12,6 @@
 %token <text> TEXTO 
 %token <text> URL
 %token <text> RUTA
-
 %token XLINK VIDEODATA IMAGEDATA DOCTYPE C_REF
 %token A_ARTICLE        C_ARTICLE
 %token A_INFO           C_INFO
@@ -138,10 +137,11 @@ authorcontent:
 |   personame authorcontent
 |   personame
 |   surname
+|   firstname
 ;
 
 author:
-    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}
+    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}    
 ;
 
 copyrightyearcontent:
@@ -162,6 +162,7 @@ copyright:
 titlecontent: 
     emphasis titlecontent   | emphasis
 |   link titlecontent       | link
+|   xlink titlecontent      | xlink
 |   email titlecontent      | email
 |   TEXTO {fprintf(salida, "%s",$1);} titlecontent      | TEXTO {fprintf(salida, "%s",$1);}
 ;
@@ -177,14 +178,18 @@ titlesec:
 ;
 
 simparacontent:
-    emphasis | TEXTO {fprintf(salida, "%s", $1);} |   personame
-|   link     | email
-|   author   | comment
+    emphasis    | emphasis simparacontent
+|   TEXTO {fprintf(salida, "%s", $1);} |   TEXTO {fprintf(salida, "%s", $1);} simparacontent
+|   personame   |   personame   simparacontent
+|   link    |   link     simparacontent
+|   xlink   |   xlink     simparacontent
+|   email   |   email   simparacontent
+|   author  |   author  simparacontent
+|   comment |   comment simparacontent
 ;
 
 simpara:
-    A_SIMPARA {fprintf(salida,"<p>");} simpara simparacontent C_SIMPARA {fprintf(salida,"</p>\n");}
-|   A_SIMPARA {fprintf(salida,"<p>");} simparacontent C_SIMPARA {fprintf(salida,"</p>\n");}
+    A_SIMPARA {fprintf(salida,"<p>");} simparacontent C_SIMPARA {fprintf(salida,"</p>\n");}
 ;
 
 emphasis:
@@ -196,20 +201,26 @@ comment:
 ;
 
 link:
-    A_LINK {fprintf(salida, "<a>");} link simparacontent C_LINK {fprintf(salida, "</a>");}
-|   A_LINK {fprintf(salida, "<a>");} simparacontent C_LINK {fprintf(salida, "</a>");}
-|   A_LINK {fprintf(salida, "<a>");} xlink C_LINK {fprintf(salida, "</a>");}
+    A_LINK {fprintf(salida, "<a>");} simparacontent C_LINK {fprintf(salida, "</a>");}
 ;
 
 paracontent:
-    emphasis    | link          | email     | author
-|   comment     | itemizedlist  | important | address
-|   mediaobject | informaltable | TEXTO {fprintf(salida, "%s\n",$1);}
+  emphasis      | emphasis       paracontent
+| link          | link           paracontent
+| email         | email          paracontent
+| author        | author         paracontent
+| comment       | comment        paracontent
+| itemizedlist  | itemizedlist   paracontent
+| important     | important      paracontent
+| address       | address        paracontent
+| mediaobject   | mediaobject    paracontent
+| informaltable | informaltable  paracontent
+| xlink         | xlink          paracontent
+| TEXTO {fprintf(salida, "%s\n",$1);}   | TEXTO {fprintf(salida, "%s\n",$1);}   paracontent
 ;
 
 para:
-    A_PARA {fprintf(salida,"<p>");} para paracontent C_PARA {fprintf(salida,"</p>\n");}
-|   A_PARA {fprintf(salida,"<p>");} paracontent C_PARA  {fprintf(salida,"</p>\n");}
+   A_PARA {fprintf(salida,"<p>");} paracontent C_PARA  {fprintf(salida,"</p>\n");}
 ;
 
 important:
@@ -220,6 +231,7 @@ sharedcontent:
     comment sharedcontent       | comment
 |   emphasis sharedcontent      | emphasis
 |   link sharedcontent          | link
+|   xlink sharedcontent         | xlink
 |   TEXTO {fprintf(salida, "%s",$1);}  sharedcontent         | TEXTO {fprintf(salida, "%s",$1);} 
 ;
 
@@ -301,13 +313,16 @@ imagedata:
 ;
 
 itemizedlist:
- //   A_ITEMIZEDLIST {fprintf(salida, "<ul>\n");} listitem itemizedlist C_ITEMIZEDLIST {fprintf(salida, "</ul>\n");}
-   A_ITEMIZEDLIST {fprintf(salida, "<ul>\n");} listitem C_ITEMIZEDLIST {fprintf(salida, "</ul>\n");}
+   A_ITEMIZEDLIST {fprintf(salida, "<ul>\n");} listitem listitemrecu C_ITEMIZEDLIST {fprintf(salida, "</ul>\n");}
+;
+
+listitemrecu:
+    %empty
+|   listitem listitemrecu
 ;
 
 listitem:
-    A_LISTITEM  {fprintf(salida, "<li>");} content listitem C_LISTITEM {fprintf(salida, "</li>\n");}
-//   A_LISTITEM  {fprintf(salida, "<li>");} content C_LISTITEM {fprintf(salida, "</li>\n");}
+    A_LISTITEM  {fprintf(salida, "<li>");} content C_LISTITEM {fprintf(salida, "</li>\n");}
 ;
 
 informaltablecontent:
