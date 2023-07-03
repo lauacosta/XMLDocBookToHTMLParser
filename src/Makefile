@@ -3,12 +3,12 @@ CC = gcc
 FLEX = flex	
 BISON = bison	
 
-BisonFlags = -d -t -Wother -Wcounterexamples -v 
+BisonFlags = -d -t -Wother -Wcounterexamples 
 CCFlags = -Wall -Wextra -pedantic
 
 TARGETBISON = grammar.y
 TARGETFLEX = scanner.l
-TARGETDIR = Parser
+TARGETDIR = ../bin/Parser
 
 default: $(TARGETBISON) $(TARGETFLEX) main.c
 	$(BISON) $(BisonFlags) $(TARGETBISON)

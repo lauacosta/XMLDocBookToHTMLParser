@@ -60,7 +60,7 @@
 %%
 
 sigma:
-    DOCTYPE {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n\t");} article {fprintf(salida,"</body>\n</html>\n");}
+    DOCTYPE {fprintf(salida,"<!DOCTYPE html>\n<html lang=\"en\">\n<body>\n\t");} article {fprintf(salida,"</body>\n</html>\n");} 
 ;
 
 article: 
@@ -105,7 +105,7 @@ infocontent:
 
 info: 
     %empty
-|    A_INFO  {fprintf(salida,"<div> \n <p style=\"background-color: green; color: white; font-size: 8pt;\">\n");} titlesec infocontent C_INFO {fprintf(salida,"</p>\n</div>\n");}
+|    A_INFO  {fprintf(salida,"<div style=\"background-color: green; color: white; font-size: 8pt;\">\n");} titlesec infocontent C_INFO {fprintf(salida,"</div>\n");}
 ;
 
 abstractcontent:
@@ -141,7 +141,7 @@ authorcontent:
 ;
 
 author:
-    A_AUTHOR {fprintf(salida,"<address>\n");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}    
+    A_AUTHOR {fprintf(salida,"<address>");} authorcontent C_AUTHOR {fprintf(salida,"</address>\n");}    
 ;
 
 copyrightyearcontent:
@@ -201,7 +201,7 @@ comment:
 ;
 
 link:
-    A_LINK {fprintf(salida, "<a>");} simparacontent C_LINK {fprintf(salida, "</a>");}
+    A_LINK {fprintf(salida, "<a href=");} simparacontent C_LINK {fprintf(salida, "</a>");}
 ;
 
 paracontent:
@@ -224,7 +224,7 @@ para:
 ;
 
 important:
-    A_IMPORTANT {fprintf(salida,"<div>\n<p><b>");} titlesec content C_IMPORTANT {fprintf(salida,"</b></p>\n</div>\n");}
+    A_IMPORTANT {fprintf(salida,"<div style=\"background-color: red; color: white;\">\n<p><b>");} titlesec content C_IMPORTANT {fprintf(salida,"</b></p>\n</div>\n");}
 ;
 
 sharedcontent:
@@ -232,19 +232,19 @@ sharedcontent:
 |   emphasis sharedcontent      | emphasis
 |   link sharedcontent          | link
 |   xlink sharedcontent         | xlink
-|   TEXTO {fprintf(salida, "%s",$1);}  sharedcontent         | TEXTO {fprintf(salida, "%s",$1);} 
+|   TEXTO {fprintf(salida, "%s ",$1);}  sharedcontent         | TEXTO {fprintf(salida, "%s",$1);} 
 ;
 
 personame:
-    A_PERSONNAME {fprintf(salida,"<p>");} firstname surname C_PERSONNAME {fprintf(salida,"</p>");}
+    A_PERSONNAME firstname surname C_PERSONNAME 
 ;
 
 firstname:
-    A_FIRSTNAME {fprintf(salida,"<p>");} sharedcontent C_FIRSTNAME {fprintf(salida,"</p>\n");}
+    A_FIRSTNAME  sharedcontent C_FIRSTNAME 
 ;
 
 surname:
-    A_SURNAME {fprintf(salida,"<p>");} sharedcontent C_SURNAME {fprintf(salida,"</p>\n");}
+    A_SURNAME  sharedcontent C_SURNAME 
 ;
 
 street:
@@ -303,13 +303,13 @@ videoobject:
 ;
 
 videodata:
-   VIDEODATA {fprintf(salida,"html:a href=\"");} URL C_REF {fprintf(salida,"\">");}   
-|  VIDEODATA {fprintf(salida,"html:a href=\"");} RUTA C_REF {fprintf(salida,"\">");}
+   VIDEODATA {fprintf(salida,"<video src=");} URL {fprintf(salida, "%s", $3);}C_REF {fprintf(salida,"\">");}   
+|  VIDEODATA {fprintf(salida,"<video src=");} RUTA {fprintf(salida, "%s </video>", $3);}
 ;
 
 imagedata:
-   IMAGEDATA {fprintf(salida,"html:a href=\"");} URL C_REF  {fprintf(salida,"\">");}
-|  IMAGEDATA {fprintf(salida,"html:a href=\"");} RUTA C_REF {fprintf(salida,"\">");}
+   IMAGEDATA {fprintf(salida,"<img src=");} URL {fprintf(salida, "%s", $3);} C_REF  {fprintf(salida,"\">");}
+|  IMAGEDATA {fprintf(salida,"<img src=");} RUTA {fprintf(salida, "%s", $3);}
 ;
 
 itemizedlist:
@@ -323,6 +323,7 @@ listitemrecu:
 
 listitem:
     A_LISTITEM  {fprintf(salida, "<li>");} content C_LISTITEM {fprintf(salida, "</li>\n");}
+|   A_LISTITEM  {fprintf(salida, "<li>");} TEXTO {fprintf(salida, "%s", $3);} C_LISTITEM {fprintf(salida, "</li>\n");}
 ;
 
 informaltablecontent:
@@ -331,18 +332,18 @@ informaltablecontent:
 ;
 
 informaltable:
-    A_INFORMALTABLE informaltablecontent C_INFORMALTABLE
+    A_INFORMALTABLE {fprintf(salida,"<table style=\"border: 1px solid black; border-collapse: collapse;\">");} informaltablecontent  C_INFORMALTABLE {fprintf(salida,"</table>");}
 ;
 
 tgroup:
     A_TGROUP thead  tbody   tfoot   C_TGROUP
-|   A_TGROUP thead  tfoot           C_TGROUP
+|   A_TGROUP thead  tbody           C_TGROUP
 |   A_TGROUP tbody  tfoot           C_TGROUP
-|   A_TGROUP tfoot                  C_TGROUP
+|   A_TGROUP tbody                  C_TGROUP
 ;
 
 table:
-    A_TABLE     tablecontent      C_TABLE
+    A_TABLE  {fprintf(salida,"<table style=\"border: 1px solid black; border-collapse: collapse;\">");}   tablecontent      C_TABLE   {fprintf(salida,"</table>");}
 ;
 
 tablecontent:
@@ -350,15 +351,15 @@ tablecontent:
 ;
 
 thead:
-     A_THEAD    tablecontent    C_THEAD
+     A_THEAD   {fprintf(salida,"<thead>");} tablecontent    C_THEAD {fprintf(salida,"</thead>");}
 ;
 
 tbody:
-     A_TBODY    tablecontent    C_TBODY
+     A_TBODY  {fprintf(salida,"<tbody>");}  tablecontent    C_TBODY  {fprintf(salida,"</tbody>");}
 ;
 
 tfoot:
-     A_TFOOT    tablecontent    C_TFOOT
+     A_TFOOT  {fprintf(salida,"<foot>");}  tablecontent    C_TFOOT {fprintf(salida,"</foot>");}
 ;
 
 rowcontent:
@@ -367,7 +368,7 @@ rowcontent:
 ;
 
 row:
-   A_ROW    rowcontent  C_ROW
+   A_ROW {fprintf(salida,"<tr>");}  rowcontent  C_ROW    {fprintf(salida,"</tr>");}
 ;
 
 entrycontent:
@@ -382,15 +383,14 @@ entrycontent:
 ;
 
 entry:
-    A_ENTRY entrycontent C_ENTRY
+    A_ENTRY {fprintf(salida,"<td style=\"border: 1px solid black;\">");} entrycontent C_ENTRY {fprintf(salida,"</td>");}
 ;
 
 entrytbl:
-    A_ENTRYTBL  thead tbody C_ENTRYTBL
-|   A_ENTRYTBL  tbody C_ENTRYTBL
+    A_ENTRYTBL {fprintf(salida,"<td style=\"border: 1px solid black;\">");} thead tbody C_ENTRYTBL {fprintf(salida,"</td>");}
+|   A_ENTRYTBL {fprintf(salida,"<td style=\"border: 1px solid black;\">");} tbody C_ENTRYTBL   {fprintf(salida,"</td>");}
 ;
 
 xlink:
-    XLINK {fprintf(salida, "<a href=");} URL C_REF {fprintf(salida, "</a>\n");}
-;
-%%
+    XLINK {fprintf(salida, "<a href=");} URL {fprintf(salida, "%s", $3);} C_REF {fprintf(salida, "</a>\n");}
+;%%

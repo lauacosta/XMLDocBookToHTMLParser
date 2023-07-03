@@ -5,10 +5,9 @@
     void yyerror(const char *str);
 %}
 
-
-texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/\@\\[\]\%\+\#\=\&\$\'\”\“ ]+\"?)*
-url             (http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?
-ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
+texto           [0-9a-zA-Z\s:;,!?()*\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\@[\]\%\+\#\=\&\$\'\”\“ ]+
+url             (\"(http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?(([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+)(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?)?\")
+ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z0-9]+\"\/\>)?
 
 %%
 "<!DOCTYPE article>"    { return DOCTYPE;            }
@@ -94,36 +93,17 @@ ruta            (\"(..|.|~)?(\/?[a-zA-Z0-9]+\/)*[a-zA-Z0-9]+\.[a-zA-Z]+\"\/\>)?
 "</tbody>"              { return C_TBODY;            }
 "<entrytbl>"            { return A_ENTRYTBL;         }
 "</entrytbl>"           { return C_ENTRYTBL;         }
+"<entry>"               { return A_ENTRY;            }
+"</entry>"              { return C_ENTRY;            }
 "<link xlink:href="     { return XLINK;              }
 "/>"                    { return C_REF;              }
 \n                      { ; }
 [ \t]+                  { ;/* Ignorar espacios y tabuladores */}
-{url}                   { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return URL;  }
-{ruta}                  { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return RUTA; }
-{texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("ta null"); exit(1);} return TEXTO;}
+{url}                   { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("Puntero a NULL"); exit(1);} return URL;  }
+{ruta}                  { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("Puntero a NULL"); exit(1);} return RUTA; }
+{texto}                 { yylval.text = strdup(yytext); if(yylval.text == NULL) {printf("Puntero a NULL"); exit(1);} return TEXTO;}
 .                       { yyerror("Caracter desconocido"); exit(1); }
 %%
-/*
-const char* getExtension(const char* filename) {
-    const char* extension = strrchr(filename, '.');
-    if (extension && extension != filename) return extension + 1;;
-    return "";
-}
 
-int errorControl (int argc, char **argv) {
-    if(argc > 1) {
-        if(!(yyin = fopen(argv[1], "r"))) {
-            fprintf(stderr, "El archivo no ha sido encontrado o no existe.");
-            return 1;
-        }
-
-        char *path = argv[1];
-
-        if(strcmp(getExtension(path), "xml") != 0){
-            printf("La extensión del archivo no es .xml, pruebe con la extensión correcta.");
-            return 1;
-        }
-    }
-    return 0;
-}
-*/
+//texto           ([0-9]|\"?[a-zA-Z\s:;,!?()\.¡¿ÁÉÍÓÚÑñáéíóúü\-\_\/\@\\[\]\%\+\#\=\&\$\'\”\“ ]+\"?)*
+//url             (\"http:\/\/|https:\/\/|ftp:\/\/|ftps:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+(:[0-9]+)?(\/|(\/[a-zA-Z0-9\_\-]+)+(\.[a-zA-Z0-9]+)?\")?

@@ -1,0 +1,77 @@
+<!DOCTYPE article>
+<article>
+    <info>
+        <title>Introducción a la Computación Cuántica</title>
+        <author>
+            <firstname>Lautaro</firstname>
+            <surname>Acosta</surname>
+        </author>
+        <address>
+            <street> French 414 </street>
+            <state>Chaco</state>
+            <city>Resistencia</city>
+            <postcode>3500</postcode>
+        </address>
+        <date>2 de Julio del 2023</date>
+    </info>
+    <title>Descripción General</title>
+    <para>
+        La computación cuántica es un revolucionario campo que combina principios de la mecánica cuántica y la ciencia de la computación para resolver complejos problemas de manera más eficiente que las computadoras clasicas.
+    </para>
+    <section>
+        <title>Bits Cuánticos (Cúbits)</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../ejemplos/imagenes/qubit.jpg"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            El bloque de construcción de la computación cuántica es el cúbit, el cual actúa como análogo cuántico del bit. A diferencia de estos últimos, que solamente pueden representar uno de dos estados en un tiempo determinado, los cúbits pueden existir en múltiples estados simultáneamente debido a una propiedad denominada superposición
+        </para>
+        <para>
+            Cúbits pueden ser implementados usando varios sistemas físicos, como átomos, fotones o circuitos superconductores. Estos sistemas exhiben propiedades cuánticas que permite la manipulación y medición de cúbits. 
+        </para>
+    </section>
+    <section>
+        <title>Compuertas Cúanticas y Algoritmos</title>
+        <para>
+            De manera similar a las computadores clásicas que emplean el uso de compuertas lógicas para realziar operaciones sobre bits, las computadoras cuánticas emplean compuertas cuánticas para manipular cúbits. Las compuertas cuánticas son transformaciones unitarias que cambian el estado cuántico de un cúbit. 
+            Tienen la característica de ser reversibles, a diferencia de las compuertas clásicas, y son representadas mediante matrices unitarias.
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="https://thumbs.gfycat.com/AggressiveHighCats-size_restricted.gif"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            Algoritmos Cúanticos, como el Algoritmo de Shor para descomponer en factores un número entero y el Algoritmo de Grover para la búsqueda de datos en una secuencia no ordenada, toman ventaja de las propiedades cuánticas para resolver problemas de manera exponencialmente más rapida que algoritmos clásicos.
+        </para>
+    </section>
+    <section>
+        <title>Desafíos y el futuro</title>
+        <para>La computación cuántica enfrenta varios desafíos: </para>
+        <itemizedlist>
+            <listitem>
+                <important><para>Decoherencia cuántica:</para></important>
+                <para>Fenómeno donde un sistema físico, bajo ciertas condiciones, deja de presentar un comportamiento previamente cúantico y pasa a exhibir un comportamiento clásico</para>
+            </listitem>
+            <listitem>
+                <important><para>Corrección de errores cuánticos:</para></important>
+                <para>Esta práctica trata de proteger la información cuántica de errores debidos a, por ejemplo, la decoherencia. Esto es esencial para que pueda ser implementada en codiciones realistas</para>
+            </listitem>
+            <listitem>
+                <important><para>Escalabilidad:</para></important>
+                <para>La computación Cuántica presenta múltiples problemas a la hora de escalar los sistemas, desde problemas de refrigeración, como de materiales, así como mantener la calidad de los cúbits</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Investigadores están activamente trabajando para desarrollar códigos para corrección de errores y sistemas cuánticos robustos para superar estos desafíos. Adicionalmente, esfuerzos están siendo realizados para aumentar el número de cúbits y ,más importante, mejorar la calidad de los cúbits, para mejorar la estabilidad y confiabilidad de computadoras cuánticas.
+        </para>
+    </section>
+    <section>
+        <title>Conclusión</title>
+        <para>
+            La computación cuántica representa una tremenda promesa para la resolución de complejos problemas computacionales en muchos dominios. Aunque el campo esté en sus etapas tempranas, la investigación y los avances realizados están trazando el camino para un futuro donde las computadoras cuánticas puedan resolver tareas más allá de las capacidad de sus contrapartes clásicas.
+        </para>
+    </section>
+</article>

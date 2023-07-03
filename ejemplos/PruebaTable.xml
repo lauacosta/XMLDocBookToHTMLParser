@@ -1,0 +1,51 @@
+<!DOCTYPE article>
+<article>
+    <info>
+        <title>Titulo 1</title>
+        <author>
+            <firstname>Ivan</firstname>
+            <surname>Niveyro</surname>
+        </author>
+    </info>
+    <para>Parrafo de prueba tabla</para>
+    <informaltable>
+        <tgroup>
+            <thead>
+                <row>
+                    <entry>ID</entry>
+                    <entry>Plástico</entry>
+                    <entry>Precio</entry>
+                    <entry>Cantidad (kg)</entry>
+                    <entry>Descripción</entry>              
+                    <entry>Ultimo cambio</entry>    
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>101</entry>
+                    <entry>PET</entry>
+                    <entry>$10000</entry>
+                    <entry>115,00</entry>
+                    <entry>Botellas</entry>
+                    <entry>Enero 2023</entry>
+                </row>
+                <row>
+                    <entry>150</entry>
+                    <entry>READ</entry>
+                    <entry>$10000</entry>
+                    <entry>100,00</entry>
+                    <entry>Envases</entry>
+                    <entry>Enero 2023</entry>                        
+                </row>
+                <row>
+                    <entry>150</entry>
+                    <entry>READ</entry>
+                    <entry>$10000</entry>
+                    <entry>100,00</entry>
+                    <entry>Envases</entry>
+                    <entry>Enero 2023</entry>                        
+                </row>
+           </tbody>
+       </tgroup>
+    </informaltable>
+</article>

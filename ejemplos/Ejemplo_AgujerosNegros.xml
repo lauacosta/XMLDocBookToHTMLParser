@@ -1,0 +1,118 @@
+<!DOCTYPE article>
+<article>
+    <info>
+        <title>Agujeros Negros</title>
+        <author>
+            <firstname>Ivan</firstname>
+            <surname>Niveyro</surname>
+        </author>
+        <date>02-07-2023</date>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="https://upload.wikimedia.org/wikipedia/commons/6/67/UTN_logo.jpg"/>
+            </imageobject>
+        </mediaobject>
+    </info>
+    <title>AGUJEROS NEGROS</title>
+    <para>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="https://64.media.tumblr.com/6bcad2dfd7d34495536ce245ace698ce/tumblr_n5k07zsDuW1sp6e2vo1_500.gif"/>
+        </imageobject>
+    </mediaobject>
+    </para>
+    <section>
+        <title>Introducción</title>
+        <para>Los agujeros negros son regiones del espacio-tiempo con una gravedad tan intensa que nada, ni siquiera la luz, puede escapar de su atracción. Estos objetos cósmicos fascinantes han capturado la imaginación de científicos y entusiastas de la astronomía durante décadas y continúan siendo un tema de investigación activo en la física teórica y la astrofísica.</para>
+    </section>
+    <section>
+        <title>Características de los agujeros negros</title>
+        <para>Las siguientes características son:</para>        
+        <itemizedlist>
+            <listitem>
+                <important><para>Horizonte de eventos</para></important>
+                <para>El horizonte de eventos es la frontera imaginaria alrededor de un agujero negro a partir de la cual la velocidad de escape supera la velocidad de la luz. Una vez que un objeto cruza el horizonte de eventos, se considera atrapado dentro del agujero negro y su destino inevitable es colapsar en el punto singular.</para>
+            </listitem>
+            <listitem>
+                <important><para>Singularidad</para></important>
+                <para>La singularidad es el punto de densidad y curvatura infinitas en el centro de un agujero negro. Se cree que las leyes de la física tal como las conocemos dejan de aplicarse en la singularidad, lo que hace que sea un punto de gran interés y misterio para los físicos.</para>
+            </listitem>
+            <listitem>
+                <important><para>Eventos extremos</para></important>
+                <para>Los agujeros negros pueden dar lugar a fenómenos extremos, como los chorros de materia expulsados desde sus polos. Estos chorros pueden ser observados en forma de poderosos haces de radiación en diferentes longitudes de onda, desde ondas de radio hasta rayos gamma.</para>
+            </listitem>
+        </itemizedlist>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="https://cdn.todamateria.com/imagenes/agujeronegro1-0-cke.jpg"/>
+            </imageobject>
+        </mediaobject>
+        
+    </section>
+    <section>
+        <title>Historia</title>
+        <para>Los agujeros negros continúan siendo objeto de investigación activa en la física teórica y la astrofísica. Los científicos están interesados en comprender mejor la formación y evolución de los agujeros negros, así como en explorar las propiedades de los chorros de materia expulsados por ellos. Además, se están realizando esfuerzos para detectar ondas gravitacionales provenientes de la fusión de agujeros negros, lo que proporcionaría evidencia directa de su existencia y comportamiento.</para>
+        <informaltable>
+        <tgroup>
+            <thead>
+                <row>
+                    <entry>Año</entry>
+                    <entry>Cientificos - Entidad</entry>
+                    <entry>Datos Relevantes</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>1783</entry>
+                    <entry>John Michell</entry>
+                    <entry>Michell calculó que un cuerpo con una densidad 500 veces mayor a la del Sol, pero con su mismo radio, tendría, en su superficie, una velocidad de escape igual a la de la luz y sería invisible</entry>
+                </row>
+                <row>
+                    <entry>1915</entry>
+                    <entry>Karl Schwarzschild</entry>
+                    <entry>Einstein desarrolló la relatividad general y demostró que la luz era influida por la interacción gravitatoria. Unos meses después, Karl Schwarzschild encontró una solución a las ecuaciones de Einstein, donde un cuerpo pesado absorbería la luz.</entry>
+                </row>
+                <row>
+                    <entry>1930</entry>
+                    <entry>Subrahmanyan Chandrasekhar</entry>
+                    <entry>Demostró que un cuerpo con una masa crítica (ahora conocida como límite de Chandrasekhar) y que no emitiese radiación, colapsaría por su propia gravedad porque no habría nada que se conociera que pudiera frenarla</entry>     
+                </row>
+                <row>
+                    <entry>1930-1940</entry>
+                    <entry>Eddington</entry>
+                    <entry>Se opuso a la idea de que la estrella alcanzara un tamaño nulo, lo que implicaría una singularidad desnuda de materia, y que debería haber algo que inevitablemente pusiera freno al colapso, línea adoptada por la mayoría de los científicos</entry>     
+                </row>
+                <row>
+                    <entry>1939</entry>
+                    <entry>Robert Oppenheimer</entry>
+                    <entry>Predijo que una estrella masiva podría sufrir un colapso gravitatorio y, por tanto, los agujeros negros podrían ser formados en la naturaleza</entry>     
+                </row>
+                <row>
+                    <entry>1967</entry>
+                    <entry>Stephen Hawking y Roger Penrose</entry>
+                    <entry>Probaron que los agujeros negros son soluciones a las ecuaciones de Einstein y que en determinados casos no se podría impedir que se crease un agujero negro a partir de un colapso. La idea de agujero negro tomó fuerza con los avances científicos y experimentales que llevaron al descubrimiento de los púlsares</entry>      
+                </row>
+                <row>
+                    <entry>1969</entry>
+                    <entry>John Wheeler</entry>
+                    <entry>Acuñó la locución 'agujero negro' durante una reunión de cosmólogos en Nueva York, para designar lo que anteriormente se llamó 'estrella en colapso gravitatorio completo'</entry>      
+                </row>
+                <row>
+                    <entry>2019</entry>
+                    <entry>Telescopio del Horizonte de Sucesos</entry>
+                    <entry>Presentó la primera imagen jamás capturada de un agujero negro supermasivo ubicado en el centro de la galaxia M87. Se esperaba a su vez el anuncio de otra imagen real de un agujero negro en Sagitario A*</entry>      
+                </row>
+           </tbody>
+       </tgroup>
+    </informaltable>
+    </section>
+    <section>
+        <title>Conclusiones</title>
+        <para>Los agujeros negros son objetos fascinantes y misteriosos que desafían nuestra comprensión actual de la física. A través de la teoría de la relatividad y las observaciones astronómicas, hemos obtenido información invaluable sobre su naturaleza y propiedades. Sin embargo, todavía hay mucho por descubrir y comprender sobre estos enigmáticos objetos cósmicos, lo que los convierte en un campo de investigación emocionante y prometedor en la ciencia.</para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="https://i.giphy.com/media/5xsVPLFdyNa0w/giphy.webp"/>
+            </imageobject>
+        </mediaobject>
+    </section>
+</article>
